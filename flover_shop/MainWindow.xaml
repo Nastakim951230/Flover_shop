@@ -1,0 +1,31 @@
+﻿<Window x:Class="flover_shop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:flover_shop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
+                <Image Width="80" Source="Image/logo.png"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center">Цветочная лавка</TextBlock>
+                </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="Entrance">Вход</Button>
+                <Button Name="Registration" Click="Registration_Click">Регистрация</Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+           
+        </Grid>
+        <Frame Name="Okno" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Window>
