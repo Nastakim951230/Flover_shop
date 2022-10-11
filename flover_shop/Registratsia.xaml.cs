@@ -33,7 +33,7 @@ namespace flover_shop
         {
            
 
-            if (Surname.Text=="" || Name.Text==""|| Date_of_birth.Text=="" || Login.Text=="" || Female.IsChecked == false && Male.IsChecked==false|| Password.Password.ToString()=="")
+            if (Surname.Text=="" || Name.Text==""|| Dateofbirth.Text=="" || Login.Text=="" || Female.IsChecked == false && Male.IsChecked==false|| Password.Password.ToString()=="" || Telefon.Text=="")
             {
                     MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
             }
@@ -43,7 +43,25 @@ namespace flover_shop
                 Regex r = new Regex("(?=.*?[A-Z])(?=(.*?[a-z]){3,})(?=(.*?[0-9]){2,})(?=.*?[#?!@$%^&*-]).{8,}");
                if(r.IsMatch(s))
                 {
-                    string parol = password.HasPassword(Password.Password.ToString());
+                    int gender=0;
+                    if (Female.IsChecked==true)
+                    {
+                         gender = 1;
+                    }
+                    else if (Male.IsChecked==true)
+                    {
+                         gender = 2;
+                    }
+                   string parol = password.HasPassword(Password.Password.ToString());
+                    Users users = new Users() { Surname=Surname.Text, Name=Name.Text,Otchestvo= Othestvo.Text, Floor = gender, Date_of_Birth=(DateTime)Dateofbirth.SelectedDate, Login= Login.Text, Password=parol,Role=2};
+                    Base.BD.Users.Add(users);
+                    Base.BD.SaveChanges();
+                    
+
+                    //Сlients client =new Сlients() { id_user=, Telefon = Telefon.Text, email =Email.Text, points=0};
+                    //Base.BD.Сlients.Add(client);
+                    //Base.BD.SaveChanges();
+                    MessageBox.Show("Пользователь зарегестрирован"); // комментарй
                     ClassGlav.perehod.GoBack();
                 }
                else

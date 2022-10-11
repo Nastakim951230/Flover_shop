@@ -20,11 +20,7 @@ namespace flover_shop
     /// </summary>
     public partial class MainWindow : Window
     {
-        class Base
-        {
-            public static BaseDana BD;   
-        }
-
+       
         public MainWindow()
         {
             InitializeComponent();

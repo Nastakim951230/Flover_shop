@@ -5,54 +5,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:flover_shop"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="360" d:DesignWidth="800"
       Title="Registratsia">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Name="Grid1"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock>Основные данные</TextBlock>
+            <TextBlock HorizontalAlignment="Center">Основные данные</TextBlock>
             <Button Name="Nazad" HorizontalAlignment="Right" Click="Nazad_Click">Назад</Button>
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock>Фамилия:</TextBlock>
-                    <TextBox Name="Surname"></TextBox>
+                    <TextBlock Style="{StaticResource TextStyle}" >Фамилия:</TextBlock>
+                 
+                    <TextBox Name="Surname"  Style="{StaticResource TextWidth}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock>Имя:</TextBlock>
-                    <TextBox Name="Name"></TextBox>
+                    <TextBlock Style="{StaticResource TextStyle}">Имя:</TextBlock>
+                <TextBox Name="Name" Style="{StaticResource TextWidth}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock>Отчество:</TextBlock>
-                    <TextBox Name="Othestvo"></TextBox>
+                    <TextBlock Style="{StaticResource TextStyle}">Отчество:</TextBlock>
+                    <TextBox Name="Othestvo" Style="{StaticResource TextWidth}"></TextBox>
                 </StackPanel>
+              
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock>Пол:</TextBlock>
+                    <TextBlock Style="{StaticResource TextStyle}">Пол:</TextBlock>
                     <RadioButton Name="Female">Жен</RadioButton>
                     <RadioButton Name="Male">Муж</RadioButton>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock>Дата рождения:</TextBlock>
-                    <DatePicker Name="Date_of_birth"></DatePicker>
+                    <TextBlock Style="{StaticResource TextStyle}">Дата рождения:</TextBlock>
+                    <DatePicker Name="Dateofbirth"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock>Логин:</TextBlock>
+                    <TextBlock Style="{StaticResource TextStyle}">Номер телефона:</TextBlock>
+                    <TextBox Name="Telefon"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextStyle}">Email:</TextBlock>
+                    <TextBox Name="Email"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextStyle}">Логин:</TextBlock>
                     <TextBox Name="Login"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>Пароль:</TextBlock>
+                    <TextBlock Style="{StaticResource TextStyle}">Пароль:</TextBlock>
                     <PasswordBox Name="Password" ></PasswordBox>
                     <Button Name="Pass"  Height="22" Click="Pass_Click">
                         <Image Source="Image/Замок1.png"></Image>
                     </Button>
                    
                 </StackPanel>
-                <Button Name="Add" Click="Add_Click">Далее</Button>
+                
+                <Button Name="Add" Click="Add_Click" VerticalAlignment="Bottom">Далее</Button>
             </StackPanel>
         </Grid>
     </Grid>

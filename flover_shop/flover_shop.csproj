@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base.cs" />
     <Compile Include="BD.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +85,9 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Сlients.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Page Include="Glavna.xaml">

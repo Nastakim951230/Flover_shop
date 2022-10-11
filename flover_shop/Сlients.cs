@@ -12,20 +12,15 @@ namespace flover_shop
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Сlients
     {
-        public int ID { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string Otchestvo { get; set; }
-        public int Floor { get; set; }
-        public System.DateTime Date_of_Birth { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int Role { get; set; }
+        public int Id_clients { get; set; }
+        public int id_user { get; set; }
+        public string Telefon { get; set; }
+        public string email { get; set; }
+        public string image { get; set; }
+        public int points { get; set; }
     
-        public virtual Floor Floor1 { get; set; }
-        public virtual Role Role1 { get; set; }
-        public virtual Сlients Сlients { get; set; }
+        public virtual Users Users { get; set; }
     }
 }
