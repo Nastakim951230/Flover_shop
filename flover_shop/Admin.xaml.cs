@@ -16,22 +16,13 @@ using System.Windows.Shapes;
 namespace flover_shop
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Admin.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Admin : Page
     {
-       
-        public MainWindow()
+        public Admin()
         {
             InitializeComponent();
-            Base.BD = new BaseDana();
-            Okno.Navigate(new Glavna());
-            Hat.Navigate(new Hat());
-            ClassGlav.perehod = Okno;
-            ClassGlav.shapka = Hat;
-
         }
-
-        
     }
 }

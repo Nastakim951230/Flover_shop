@@ -14,6 +14,12 @@ namespace flover_shop
     
     public partial class Users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Users()
+        {
+            this.Сlients = new HashSet<Сlients>();
+        }
+    
         public int ID { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
@@ -26,6 +32,7 @@ namespace flover_shop
     
         public virtual Floor Floor1 { get; set; }
         public virtual Role Role1 { get; set; }
-        public virtual Сlients Сlients { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Сlients> Сlients { get; set; }
     }
 }

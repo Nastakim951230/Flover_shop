@@ -11,6 +11,7 @@ namespace flover_shop
     internal class ClassGlav
     {
         public static Frame perehod;
+        public static Frame shapka;
     }
 
 }

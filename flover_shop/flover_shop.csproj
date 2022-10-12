@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin.xaml.cs">
+      <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Base.cs" />
     <Compile Include="BD.cs">
       <AutoGen>True</AutoGen>
@@ -76,6 +79,15 @@
     </Compile>
     <Compile Include="Glavna.xaml.cs">
       <DependentUpon>Glavna.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hat.xaml.cs">
+      <DependentUpon>Hat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hat_menu.xaml.cs">
+      <DependentUpon>Hat_menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Input.xaml.cs">
+      <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
     <Compile Include="password.cs" />
     <Compile Include="Registratsia.xaml.cs">
@@ -90,7 +102,23 @@
     <Compile Include="Сlients.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Page Include="Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Glavna.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hat_menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Input.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,7 +44,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource TextStyle}">Номер телефона:</TextBlock>
-                    <TextBox Name="Telefon"></TextBox>
+                    <TextBox  Name="Telefon"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource TextStyle}">Email:</TextBlock>

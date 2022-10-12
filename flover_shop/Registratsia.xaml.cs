@@ -26,10 +26,106 @@ namespace flover_shop
         public Registratsia()
         {
             InitializeComponent();
-            
+            Base.BD = new BaseDana();
+        }
+  
+       public bool isFormEmail(string a)
+        {
+            Regex m = new Regex("^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$");
+            if (m.IsMatch(a))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Был не правильно введен email", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        public bool isFormTelef(string a)
+        {
+            Regex m = new Regex("[8][(](\\d{3})[)]\\d{3}-\\d{2}-\\d{2}");
+            if (m.IsMatch(a))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Был не правильно введен номер телефона", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            }
+        }
+        
+        public bool isFormLogin(string a)
+        {
+            Users users = Base.BD.Users.FirstOrDefault(l => l.Login == a);
+            if(users == null)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Данный логин нельзя использовать, выберите другой", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+        
+        public bool isFormPassword(string a)
+        {
+            Regex r = new Regex("(?=.*?[A-Z])(?=(.*?[a-z]){3,})(?=(.*?[0-9]){2,})(?=.*?[#?!@$%^&*-]).{8,}");
+            if (r.IsMatch(a))
+            {
+                return true;
+            }
+            else
+            {
+                string[] str = new string[5];
+                str[0] = "(?=.*?[A-Z])";
+                str[1] = "(?=(.*?[a-z]){3,})";
+                str[2] = "(?=(.*?[0-9]){2,})";
+                str[3] = "(?=.*?[#?!@$%^&*-])";
+                str[4] = ".{8,}";
+                for (int i = 0; i < str.Length; i++)
+                {
+                    string st = str[i];
+                    r = new Regex(st);
+                    if (r.IsMatch(a))
+                    {
+
+                    }
+                    else
+                    {
+                        if (i == 0)
+                        {
+                            MessageBox.Show("В пароле должно быть хотябы не менее 1 заглавного латинского символа", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        }
+                        else if (i == 1)
+                        {
+                            MessageBox.Show("В пароле должно быть хотябы не менее 3 строчных латинских символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else if (i == 2)
+                        {
+                            MessageBox.Show("В пароле должно быть хотябы не менее 2 цифры", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else if (i == 3)
+                        {
+                            MessageBox.Show("В пароле должно быть хотябы не менее 1 спец символов (#?!@$%^&*-)", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        else if (i == 4)
+                        {
+                            MessageBox.Show("Длина пароля должна быть не менее 8 символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                    }
+                }
+                return false;
+            }
+        }
+            private void Add_Click(object sender, RoutedEventArgs e)
         {
            
 
@@ -39,74 +135,73 @@ namespace flover_shop
             }
             else
             {
-                string s=Password.Password.ToString();
-                Regex r = new Regex("(?=.*?[A-Z])(?=(.*?[a-z]){3,})(?=(.*?[0-9]){2,})(?=.*?[#?!@$%^&*-]).{8,}");
-               if(r.IsMatch(s))
+                if (isFormLogin(Login.Text))
                 {
-                    int gender=0;
-                    if (Female.IsChecked==true)
+                    if (isFormTelef(Telefon.Text))
                     {
-                         gender = 1;
-                    }
-                    else if (Male.IsChecked==true)
-                    {
-                         gender = 2;
-                    }
-                   string parol = password.HasPassword(Password.Password.ToString());
-                    Users users = new Users() { Surname=Surname.Text, Name=Name.Text,Otchestvo= Othestvo.Text, Floor = gender, Date_of_Birth=(DateTime)Dateofbirth.SelectedDate, Login= Login.Text, Password=parol,Role=2};
-                    Base.BD.Users.Add(users);
-                    Base.BD.SaveChanges();
-                    
-
-                    //Сlients client =new Сlients() { id_user=, Telefon = Telefon.Text, email =Email.Text, points=0};
-                    //Base.BD.Сlients.Add(client);
-                    //Base.BD.SaveChanges();
-                    MessageBox.Show("Пользователь зарегестрирован"); // комментарй
-                    ClassGlav.perehod.GoBack();
-                }
-               else
-                {
-                    string [] str=new string[5];
-                    str[0] = "(?=.*?[A-Z])";
-                    str[1] = "(?=(.*?[a-z]){3,})";
-                    str[2] = "(?=(.*?[0-9]){2,})";
-                    str[3] = "(?=.*?[#?!@$%^&*-])";
-                    str[4] = ".{8,}";
-                    for (int i=0; i<str.Length; i++)
-                    {
-                        string st=str[i];
-                        r = new Regex(st);
-                        if (r.IsMatch(s))
+                        if (Email.Text != "")
                         {
+                            if (isFormEmail(Email.Text))
+                            {
 
+                                string s = Password.Password.ToString();
+                                if (isFormPassword(s))
+                                {
+                                    int gender = 0;
+                                    if (Female.IsChecked == true)
+                                    {
+                                        gender = 1;
+                                    }
+                                    else if (Male.IsChecked == true)
+                                    {
+                                        gender = 2;
+                                    }
+                                    string parol = password.HasPassword(Password.Password.ToString());
+                                    Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = 2 };
+                                    Base.BD.Users.Add(users);
+                                    Base.BD.SaveChanges();
+
+                                    Сlients client = new Сlients() { id_user = users.ID, Telefon = Telefon.Text, email = Email.Text, image = null, points = 0 };
+                                    Base.BD.Сlients.Add(client);
+                                    Base.BD.SaveChanges();
+                                    MessageBox.Show("Пользователь зарегестрирован");
+                                    ClassGlav.perehod.Navigate(new Input());
+                                }
+                            }
                         }
                         else
                         {
-                            if (i==0)
+                            string s = Password.Password.ToString();
+                            if (isFormPassword(s))
                             {
-                                MessageBox.Show("В пароле должно быть хотябы не менее 1 заглавного латинского символа", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                break;
-                            }
-                            else if (i==1)
-                            {
-                                MessageBox.Show("В пароле должно быть хотябы не менее 3 строчных латинских символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                            else if (i==2)
-                            {
-                                MessageBox.Show("В пароле должно быть хотябы не менее 2 цифры", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                            else if (i==3)
-                            {
-                                MessageBox.Show("В пароле должно быть хотябы не менее 1 спец символов (#?!@$%^&*-)", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                            else if (i==4)
-                            {
-                                MessageBox.Show("Длина пароля должна быть не менее 8 символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
+                                int gender = 0;
+                                if (Female.IsChecked == true)
+                                {
+                                    gender = 1;
+                                }
+                                else if (Male.IsChecked == true)
+                                {
+                                    gender = 2;
+                                }
 
+
+
+                                string parol = password.HasPassword(Password.Password.ToString());
+                                Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = 2 };
+                                Base.BD.Users.Add(users);
+                                Base.BD.SaveChanges();
+
+                                Сlients client = new Сlients() { id_user = users.ID, Telefon = Telefon.Text, email = Email.Text, image = null, points = 0 };
+                                Base.BD.Сlients.Add(client);
+                                Base.BD.SaveChanges();
+                                MessageBox.Show("Пользователь зарегестрирован");
+                                ClassGlav.perehod.GoBack();
+                            }
                         }
+
                     }
                 }
+                
             }
                 
         }
@@ -120,5 +215,7 @@ namespace flover_shop
         {
            
         }
+       
+       
     }
 }
