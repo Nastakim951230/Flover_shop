@@ -9,15 +9,25 @@
       Title="Hat_menu">
 
     <Grid>
-        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
-            <Image Width="100" Source="Image/logo.png"/>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center">Цветочная лавка</TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Name="Exit" Click="Exit_Click">Выход</Button>
-            
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
+                <Image Width="100" Source="Image/logo.png"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource TextStyleZagolovok}">Цветочная лавка</TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="2" >
+            <StackPanel Orientation="Vertical">
+                <Button Name="Exit" Click="Exit_Click">Выход</Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

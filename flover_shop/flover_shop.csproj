@@ -194,6 +194,9 @@
       <DependentUpon>BD.edmx</DependentUpon>
       <LastGenOutput>BD.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\Фон1.png" />
+    <Resource Include="Image\Фон.png" />
+    <Resource Include="Image\Цветы.jpg" />
     <Resource Include="Image\Замок1.png" />
     <Resource Include="Image\logo.png" />
   </ItemGroup>

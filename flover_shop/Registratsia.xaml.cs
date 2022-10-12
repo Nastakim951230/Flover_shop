@@ -208,7 +208,7 @@ namespace flover_shop
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            ClassGlav.perehod.GoBack();
+            ClassGlav.perehod.Navigate(new Glavna());
         }
 
         private void Pass_Click(object sender, RoutedEventArgs e)

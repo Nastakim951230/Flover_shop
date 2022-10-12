@@ -9,15 +9,32 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF7BEDF" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
         </Grid>
-        <Grid Grid.Row="1">
-           
+        <Grid Grid.Row="1" Background="#FFBFC5BC"></Grid>
+        <Grid Grid.Row="2">
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FFF7F9CF" Offset="1"/>
+                        
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
         </Grid>
         <Frame Name="Hat" Grid.Row="0" NavigationUIVisibility="Hidden"></Frame>
-        <Frame Name="Okno" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
+        <Frame Name="Okno" Grid.Row="2" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

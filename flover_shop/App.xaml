@@ -5,32 +5,49 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="TextWidth" TargetType="TextBox">
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Margin" Value="5,0,0,5"/>
+           
+            <Setter Property="Margin" Value="5,5,5,0"/>
            
         </Style>
         <Style x:Key="TextStyle" TargetType="TextBlock">
-            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Margin" Value="5,5,5,0"/>
+            <Setter Property="FontFamily" Value="Footlight MT Light"/>
+            <Setter Property="FontSize" Value="16"/>
+
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="5,5,5,0"/>
+        </Style>
+        <Style x:Key="TextStyleZagolovok" TargetType="TextBlock">
+            <Setter Property="Margin" Value="5,5,5,0"/>
+            <Setter Property="FontFamily" Value="Forte"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="5,0,0,5"/>
-           
         </Style>
         <Style TargetType="TextBox">
-            
-            <Setter Property="Margin" Value="10,0,0,10"/>
+            <Setter Property="FontFamily" Value="Footlight MT Light"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="10,5,10,0"/>
         </Style>
         <Style TargetType="PasswordBox">
-            <Setter Property="Width" Value="250"/>
-            <Setter Property="Margin" Value="5,0,0,5"/>
+
+            <Setter Property="Margin" Value="5,5,5,0"/>
         </Style>
         <Style TargetType="DatePicker">
-            <Setter Property="Margin" Value="5,0,0,5"/>
+            <Setter Property="Margin" Value="10,5,10,0"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="Margin" Value="5,0,0,5"/>
+            <Setter Property="Margin" Value="5,5,5,0"/>
+            <Setter Property="Background" Value="#FFE4B3F9"/>
+            <Setter Property="BorderBrush" Value="#FFD068F6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            
         </Style>
         <Style TargetType="TextBlock">
-           
+            <Setter Property="FontFamily" Value="Freestyle Script"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
        
     </Application.Resources>

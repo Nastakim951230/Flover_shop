@@ -23,12 +23,12 @@ namespace flover_shop
         public Input()
         {
             InitializeComponent();
-
+            //Login=admin Password=admin
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            ClassGlav.perehod.GoBack();
+            ClassGlav.perehod.Navigate(new Glavna());
         }
 
         private void Inpu_Click(object sender, RoutedEventArgs e)

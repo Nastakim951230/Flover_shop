@@ -9,29 +9,64 @@
       Title="Input">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Name="Grid1"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <TextBlock HorizontalAlignment="Right" Margin="0,0,299,0">Вход (Login=admin Password=admin)</TextBlock>
-            <Button Name="Nazad" HorizontalAlignment="Right" Click="Nazad_Click">Назад</Button>
-        </Grid>
-        <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="180"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
             <StackPanel Orientation="Vertical">
+                
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="Image\Фон.png"></ImageBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.Background>
+                <ImageBrush ImageSource="Image\Фон1.png"></ImageBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource TextStyleZagolovok}">Вход</TextBlock>
+                    </StackPanel>
                     <TextBlock Style="{StaticResource TextStyle}">Логин:</TextBlock>
-                    <TextBox Name="Login"></TextBox>
-                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="Login"  Height="22"></TextBox>
                     <TextBlock Style="{StaticResource TextStyle}">Пароль:</TextBlock>
-                    <PasswordBox Name="Password" ></PasswordBox>
-                    <Button Name="Pass"  Height="22" >
-                        <Image Source="Image/Замок1.png"></Image>
-                    </Button>
-                </StackPanel>
+                    <PasswordBox Name="Password" Height="22" ></PasswordBox>
 
-                <Button Name="Inpu" Click="Inpu_Click">Вход</Button>
-                   
+                  
                 </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel>
+                        <Button Name="Nazad" Click="Nazad_Click">Назад</Button>
+                    </StackPanel>
+                    
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Button Name="Inpu" Click="Inpu_Click" >Вход</Button>
+                    </StackPanel>
+                  
+                </Grid>
+
+            </Grid>
+           
         </Grid>
     </Grid>
 </Page>

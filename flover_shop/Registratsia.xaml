@@ -9,60 +9,102 @@
       Title="Registratsia">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Name="Grid1"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <TextBlock HorizontalAlignment="Center">Основные данные</TextBlock>
-            <Button Name="Nazad" HorizontalAlignment="Right" Click="Nazad_Click">Назад</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" ></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition  Width="180"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="2">
+            <Grid.Background>
+                <ImageBrush ImageSource="Image\Фон1.png"></ImageBrush>
+            </Grid.Background>
         </Grid>
-        <Grid Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}" >Фамилия:</TextBlock>
+        <Grid Grid.Column="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="Image\Фон.png"></ImageBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TextStyleZagolovok}">Основные данные</TextBlock>
+                
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
+                   
+                        <TextBlock Style="{StaticResource TextStyle}">Номер телефона:</TextBlock>
+                    <TextBox  Name="Telefon"></TextBox>
+                    <TextBlock Style="{StaticResource TextStyle}">Email:</TextBlock>
+                        <TextBox Name="Email"></TextBox>
                  
-                    <TextBox Name="Surname"  Style="{StaticResource TextWidth}"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}">Имя:</TextBlock>
-                <TextBox Name="Name" Style="{StaticResource TextWidth}"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}">Отчество:</TextBlock>
-                    <TextBox Name="Othestvo" Style="{StaticResource TextWidth}"></TextBox>
-                </StackPanel>
-              
-                <StackPanel Orientation="Horizontal">
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+
                     <TextBlock Style="{StaticResource TextStyle}">Пол:</TextBlock>
                     <RadioButton Name="Female">Жен</RadioButton>
                     <RadioButton Name="Male">Муж</RadioButton>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource TextStyle}">Дата рождения:</TextBlock>
                     <DatePicker Name="Dateofbirth"></DatePicker>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}">Номер телефона:</TextBlock>
-                    <TextBox  Name="Telefon"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}">Email:</TextBlock>
-                    <TextBox Name="Email"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource TextStyle}">Логин:</TextBlock>
-                    <TextBox Name="Login"></TextBox>
-                    <TextBlock Style="{StaticResource TextStyle}">Пароль:</TextBlock>
-                    <PasswordBox Name="Password" ></PasswordBox>
-                    <Button Name="Pass"  Height="22" Click="Pass_Click">
-                        <Image Source="Image/Замок1.png"></Image>
-                    </Button>
-                   
-                </StackPanel>
-                
-                <Button Name="Add" Click="Add_Click" VerticalAlignment="Bottom">Далее</Button>
-            </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource TextStyle}" >Фамилия:</TextBlock>
+                        <TextBox Name="Surname" Style="{StaticResource TextWidth}"></TextBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource TextStyle}">Имя:</TextBlock>
+                        <TextBox Name="Name" Style="{StaticResource TextWidth}"></TextBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource TextStyle}">Отчество:</TextBlock>
+                        <TextBox Name="Othestvo" Style="{StaticResource TextWidth}"></TextBox>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="4" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource TextStyle}">Логин:</TextBlock>
+                        <TextBox Name="Login"></TextBox>
+                        <Button Name="Nazad" Click="Nazad_Click" VerticalAlignment="Bottom">Назад</Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource TextStyle}">Пароль:</TextBlock>
+                        <PasswordBox Name="Password" ></PasswordBox>
+                        <Button Name="Add" Click="Add_Click" >Далее</Button>
+                    </StackPanel>
+                </Grid>
+             
+            </Grid>
         </Grid>
+
     </Grid>
 </Page>
