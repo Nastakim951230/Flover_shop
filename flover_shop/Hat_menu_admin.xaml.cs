@@ -16,15 +16,24 @@ using System.Windows.Shapes;
 namespace flover_shop
 {
     /// <summary>
-    /// Логика взаимодействия для Admin.xaml
+    /// Логика взаимодействия для Hat_menu_admin.xaml
     /// </summary>
-    public partial class Admin : Page
+    public partial class Hat_menu_admin : Page
     {
-        public Admin()
+        public Hat_menu_admin()
         {
             InitializeComponent();
-       
-            ClassGlav.Admin = DataGrid;
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            ClassGlav.shapka.Navigate(new Hat());
+            ClassGlav.perehod.Navigate(new Glavna());
+        }
+
+        private void User_Click(object sender, RoutedEventArgs e)
+        {
+            ClassGlav.Admin.Navigate(new Admin_User());
         }
     }
 }

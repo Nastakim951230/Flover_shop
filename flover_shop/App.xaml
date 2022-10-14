@@ -44,6 +44,7 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
             
+            
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Freestyle Script"/>

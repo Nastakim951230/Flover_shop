@@ -26,6 +26,7 @@ namespace flover_shop
         }
     
         public virtual DbSet<Floor> Floor { get; set; }
+        public virtual DbSet<Floor_gender> Floor_gender { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Сlients> Сlients { get; set; }

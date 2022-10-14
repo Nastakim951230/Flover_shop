@@ -41,7 +41,7 @@ namespace flover_shop
 
                 if (users.Role == 1)
                 {
-                    ClassGlav.shapka.Navigate(new Hat_menu());
+                    ClassGlav.shapka.Navigate(new Hat_menu_admin());
                     ClassGlav.perehod.Navigate(new Admin());
                 }
                 else if (users.Role == 2)

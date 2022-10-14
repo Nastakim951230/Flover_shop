@@ -9,6 +9,24 @@
       Title="Admin">
 
     <Grid>
-        <TextBlock>Администратор</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="Image\Фон.png"></ImageBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.Background>
+                <ImageBrush ImageSource="Image\Фон1.png"></ImageBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Frame Name="DataGrid" Grid.Column="1" NavigationUIVisibility="Hidden"></Frame>
+            
+        </Grid>
     </Grid>
 </Page>

@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180" ></ColumnDefinition>
+            <ColumnDefinition Width="120" ></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition  Width="180"></ColumnDefinition>
+            <ColumnDefinition  Width="120"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="2">
             <Grid.Background>

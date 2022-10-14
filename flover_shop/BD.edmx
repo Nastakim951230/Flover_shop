@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Floor">
+        <EntityType Name="Floor_gender">
           <Key>
             <PropertyRef Name="ID_floor" />
           </Key>
@@ -44,11 +44,11 @@
           <Property Name="image" Type="nvarchar(max)" />
           <Property Name="points" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Users_Floor">
-          <End Role="Floor" Type="Self.Floor" Multiplicity="1" />
+        <Association Name="FK_Users_Floor_gender">
+          <End Role="Floor_gender" Type="Self.Floor_gender" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Floor">
+            <Principal Role="Floor_gender">
               <PropertyRef Name="ID_floor" />
             </Principal>
             <Dependent Role="Users">
@@ -81,12 +81,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
-          <EntitySet Name="Floor" EntityType="Self.Floor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сlients" EntityType="Self.Сlients" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Users_Floor" Association="Self.FK_Users_Floor">
-            <End Role="Floor" EntitySet="Floor" />
+          <AssociationSet Name="FK_Users_Floor_gender" Association="Self.FK_Users_Floor_gender">
+            <End Role="Floor_gender" EntitySet="Floor_gender" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
@@ -104,11 +104,12 @@
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BaseDana" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Floor" EntityType="Model.Floor" />
+          <EntitySet Name="Floor_gender" EntityType="Model.Floor_gender" />
           <EntitySet Name="Role" EntityType="Model.Role" />
           <EntitySet Name="Users" EntityType="Model.Users" />
           <EntitySet Name="Сlients" EntityType="Model.Сlients" />
-          <AssociationSet Name="FK_Users_Floor" Association="Model.FK_Users_Floor">
-            <End Role="Floor" EntitySet="Floor" />
+          <AssociationSet Name="FK_Users_Floor_gender" Association="Model.FK_Users_Floor_gender">
+            <End Role="Floor_gender" EntitySet="Floor_gender" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Model.FK_Users_Role">
@@ -126,7 +127,14 @@
           </Key>
           <Property Name="ID_floor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Floor1" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="Model.FK_Users_Floor" FromRole="Floor" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Floor_gender">
+          <Key>
+            <PropertyRef Name="ID_floor" />
+          </Key>
+          <Property Name="ID_floor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Floor" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Users_Floor_gender" FromRole="Floor_gender" ToRole="Users" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -149,7 +157,7 @@
           <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Floor1" Relationship="Model.FK_Users_Floor" FromRole="Users" ToRole="Floor" />
+          <NavigationProperty Name="Floor_gender" Relationship="Model.FK_Users_Floor_gender" FromRole="Users" ToRole="Floor_gender" />
           <NavigationProperty Name="Role1" Relationship="Model.FK_Users_Role" FromRole="Users" ToRole="Role" />
           <NavigationProperty Name="Сlients" Relationship="Model.FK_Сlients_Users1" FromRole="Users" ToRole="Сlients" />
         </EntityType>
@@ -165,11 +173,11 @@
           <Property Name="points" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
         </EntityType>
-        <Association Name="FK_Users_Floor">
-          <End Type="Model.Floor" Role="Floor" Multiplicity="1" />
+        <Association Name="FK_Users_Floor_gender">
+          <End Type="Model.Floor_gender" Role="Floor_gender" Multiplicity="1" />
           <End Type="Model.Users" Role="Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Floor">
+            <Principal Role="Floor_gender">
               <PropertyRef Name="ID_floor" />
             </Principal>
             <Dependent Role="Users">
@@ -207,10 +215,10 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="BaseDana">
-          <EntitySetMapping Name="Floor">
-            <EntityTypeMapping TypeName="Model.Floor">
-              <MappingFragment StoreEntitySet="Floor">
-                <ScalarProperty Name="Floor1" ColumnName="Floor" />
+          <EntitySetMapping Name="Floor_gender">
+            <EntityTypeMapping TypeName="Model.Floor_gender">
+              <MappingFragment StoreEntitySet="Floor_gender">
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="ID_floor" ColumnName="ID_floor" />
               </MappingFragment>
             </EntityTypeMapping>

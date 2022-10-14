@@ -14,16 +14,7 @@ namespace flover_shop
     
     public partial class Floor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Floor()
-        {
-            this.Users = new HashSet<Users>();
-        }
-    
         public int ID_floor { get; set; }
         public string Floor1 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
     }
 }

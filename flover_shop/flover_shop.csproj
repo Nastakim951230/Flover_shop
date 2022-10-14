@@ -67,6 +67,9 @@
     <Compile Include="Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin_User.xaml.cs">
+      <DependentUpon>Admin_User.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Base.cs" />
     <Compile Include="BD.cs">
       <AutoGen>True</AutoGen>
@@ -77,6 +80,9 @@
     <Compile Include="Floor.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Floor_gender.cs">
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Glavna.xaml.cs">
       <DependentUpon>Glavna.xaml</DependentUpon>
     </Compile>
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="Hat_menu.xaml.cs">
       <DependentUpon>Hat_menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hat_menu_admin.xaml.cs">
+      <DependentUpon>Hat_menu_admin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
@@ -106,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Glavna.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Hat_menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hat_menu_admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace flover_shop
 {
     /// <summary>
-    /// Логика взаимодействия для Admin.xaml
+    /// Логика взаимодействия для Admin_User.xaml
     /// </summary>
-    public partial class Admin : Page
+    public partial class Admin_User : Page
     {
-        public Admin()
+        public Admin_User()
         {
             InitializeComponent();
-       
-            ClassGlav.Admin = DataGrid;
+            Admin_user.ItemsSource = Base.BD.Users.ToList();
         }
     }
 }

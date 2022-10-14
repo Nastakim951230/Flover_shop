@@ -12,27 +12,18 @@ namespace flover_shop
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Floor_gender
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Floor_gender()
         {
-            this.Сlients = new HashSet<Сlients>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int ID { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string Otchestvo { get; set; }
-        public int Floor { get; set; }
-        public System.DateTime Date_of_Birth { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int Role { get; set; }
+        public int ID_floor { get; set; }
+        public string Floor { get; set; }
     
-        public virtual Floor_gender Floor_gender { get; set; }
-        public virtual Role Role1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Сlients> Сlients { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }
