@@ -25,5 +25,10 @@ namespace flover_shop
             InitializeComponent();
             Admin_user.ItemsSource = Base.BD.Users.ToList();
         }
+
+        private void Searc_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

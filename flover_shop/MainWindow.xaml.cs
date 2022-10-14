@@ -24,7 +24,7 @@ namespace flover_shop
         public MainWindow()
         {
             InitializeComponent();
-            Base.BD = new BaseDana();
+            Base.BD = new Data();
             Okno.Navigate(new Glavna());
             Hat.Navigate(new Hat());
             ClassGlav.perehod = Okno;

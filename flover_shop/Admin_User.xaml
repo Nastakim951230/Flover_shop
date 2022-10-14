@@ -15,7 +15,32 @@
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Label>Фильтрация по полу</Label>
+                    <ComboBox>
+                        <TextBlock>Мужской</TextBlock>
+                        <TextBlock>Женский</TextBlock>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+
+                    <ComboBox>
+
+                    </ComboBox>
+                    <TextBox Name="TextSearc" Width="200" Height="25"></TextBox>
+                    <Button Width="25" Height="25" Name="Searc" Click="Searc_Click">
+                        <Image  Source="Image/search.png" ></Image>
+                    </Button>
+                </StackPanel>
+            </Grid>
+           
         </Grid>
         <Grid Grid.Row="1" >
                 
@@ -25,8 +50,9 @@
                         <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Отчество" Binding="{Binding Otchestvo}"/>
                         <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
-                        <DataGridTextColumn Header="Пол" Binding="{Binding Floor.Floor}"/>
-                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding Date_of_Birth}"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Floor_gender.Floor}"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding Date_of_Birth, StringFormat={}dd.MM.yyyy}"/>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding Role_user_admin.Role}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

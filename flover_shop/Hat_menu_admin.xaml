@@ -35,7 +35,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Button Name="User" Click="User_Click">Пользователи</Button>
+                    <Button Name="User"  Click="User_Click">Пользователи</Button>
                 </Grid>
             </Grid>    
            

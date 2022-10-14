@@ -8,6 +8,6 @@ namespace flover_shop
 {
     internal class Base
     {
-        public static BaseDana BD;
+        public static Data BD;
     }
 }

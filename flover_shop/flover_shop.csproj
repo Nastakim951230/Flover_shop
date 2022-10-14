@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,6 +42,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.9.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.9\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -71,17 +76,24 @@
       <DependentUpon>Admin_User.xaml</DependentUpon>
     </Compile>
     <Compile Include="Base.cs" />
-    <Compile Include="BD.cs">
+    <Compile Include="BaseData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>BaseData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseData.edmx</DependentUpon>
     </Compile>
     <Compile Include="ClassGlav.cs" />
-    <Compile Include="Floor.cs">
-      <DependentUpon>BD.tt</DependentUpon>
-    </Compile>
     <Compile Include="Floor_gender.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Compile Include="Glavna.xaml.cs">
       <DependentUpon>Glavna.xaml</DependentUpon>
@@ -102,14 +114,14 @@
     <Compile Include="Registratsia.xaml.cs">
       <DependentUpon>Registratsia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+    <Compile Include="Role_user_admin.cs">
+      <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Compile Include="Сlients.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Page Include="Admin.xaml">
       <SubType>Designer</SubType>
@@ -147,16 +159,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BD.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BD.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BD.edmx</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -184,12 +186,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="BD.edmx">
+    <EntityDeploy Include="BaseData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BD.Designer.cs</LastGenOutput>
+      <LastGenOutput>BaseData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BD.edmx.diagram">
-      <DependentUpon>BD.edmx</DependentUpon>
+    <None Include="BaseData.edmx.diagram">
+      <DependentUpon>BaseData.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -201,16 +203,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BD.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BD.Context.cs</LastGenOutput>
-      <DependentUpon>BD.edmx</DependentUpon>
-    </Content>
-    <Content Include="BD.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BD.edmx</DependentUpon>
-      <LastGenOutput>BD.cs</LastGenOutput>
-    </Content>
     <Resource Include="Image\Фон1.png" />
     <Resource Include="Image\Фон.png" />
     <Resource Include="Image\Цветы.jpg" />
@@ -219,6 +211,19 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseData.edmx</DependentUpon>
+      <LastGenOutput>BaseData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BaseData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseData.edmx</DependentUpon>
+      <LastGenOutput>BaseData.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Image\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

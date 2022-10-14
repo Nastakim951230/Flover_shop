@@ -26,7 +26,7 @@ namespace flover_shop
         public Registratsia()
         {
             InitializeComponent();
-            Base.BD = new BaseDana();
+            Base.BD = new Data();
         }
   
        public bool isFormEmail(string a)

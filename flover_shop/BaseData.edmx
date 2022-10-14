@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Floor_gender">
           <Key>
             <PropertyRef Name="ID_floor" />
@@ -12,7 +12,7 @@
           <Property Name="ID_floor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Floor" Type="nvarchar" MaxLength="3" Nullable="false" />
         </EntityType>
-        <EntityType Name="Role">
+        <EntityType Name="Role_user_admin">
           <Key>
             <PropertyRef Name="ID_role" />
           </Key>
@@ -57,10 +57,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Role_user_admin" Type="Self.Role_user_admin" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Role">
+            <Principal Role="Role_user_admin">
               <PropertyRef Name="ID_role" />
             </Principal>
             <Dependent Role="Users">
@@ -82,7 +82,7 @@
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_user_admin" EntityType="Self.Role_user_admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сlients" EntityType="Self.Сlients" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Users_Floor_gender" Association="Self.FK_Users_Floor_gender">
@@ -90,7 +90,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
-            <End Role="Role" EntitySet="Role" />
+            <End Role="Role_user_admin" EntitySet="Role_user_admin" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Сlients_Users1" Association="Self.FK_Сlients_Users1">
@@ -98,68 +98,43 @@
             <End Role="Сlients" EntitySet="Сlients" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="BaseDana" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Floor" EntityType="Model.Floor" />
-          <EntitySet Name="Floor_gender" EntityType="Model.Floor_gender" />
-          <EntitySet Name="Role" EntityType="Model.Role" />
-          <EntitySet Name="Users" EntityType="Model.Users" />
-          <EntitySet Name="Сlients" EntityType="Model.Сlients" />
-          <AssociationSet Name="FK_Users_Floor_gender" Association="Model.FK_Users_Floor_gender">
-            <End Role="Floor_gender" EntitySet="Floor_gender" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Role" Association="Model.FK_Users_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Сlients_Users1" Association="Model.FK_Сlients_Users1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Сlients" EntitySet="Сlients" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Floor">
-          <Key>
-            <PropertyRef Name="ID_floor" />
-          </Key>
-          <Property Name="ID_floor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Floor1" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Floor_gender">
           <Key>
             <PropertyRef Name="ID_floor" />
           </Key>
           <Property Name="ID_floor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Floor" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="Model.FK_Users_Floor_gender" FromRole="Floor_gender" ToRole="Users" />
+          <Property Name="Floor" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Floor_gender" FromRole="Floor_gender" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Role">
+        <EntityType Name="Role_user_admin">
           <Key>
             <PropertyRef Name="ID_role" />
           </Key>
           <Property Name="ID_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="Model.FK_Users_Role" FromRole="Role" ToRole="Users" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role_user_admin" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Floor" Type="Int32" Nullable="false" />
           <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Floor_gender" Relationship="Model.FK_Users_Floor_gender" FromRole="Users" ToRole="Floor_gender" />
-          <NavigationProperty Name="Role1" Relationship="Model.FK_Users_Role" FromRole="Users" ToRole="Role" />
-          <NavigationProperty Name="Сlients" Relationship="Model.FK_Сlients_Users1" FromRole="Users" ToRole="Сlients" />
+          <NavigationProperty Name="Floor_gender" Relationship="Self.FK_Users_Floor_gender" FromRole="Users" ToRole="Floor_gender" />
+          <NavigationProperty Name="Role_user_admin" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role_user_admin" />
+          <NavigationProperty Name="Сlients" Relationship="Self.FK_Сlients_Users1" FromRole="Users" ToRole="Сlients" />
         </EntityType>
         <EntityType Name="Сlients">
           <Key>
@@ -167,15 +142,15 @@
           </Key>
           <Property Name="Id_clients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_user" Type="Int32" Nullable="false" />
-          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="points" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Model.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
         </EntityType>
         <Association Name="FK_Users_Floor_gender">
-          <End Type="Model.Floor_gender" Role="Floor_gender" Multiplicity="1" />
-          <End Type="Model.Users" Role="Users" Multiplicity="*" />
+          <End Role="Floor_gender" Type="Self.Floor_gender" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Floor_gender">
               <PropertyRef Name="ID_floor" />
@@ -186,10 +161,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Role">
-          <End Type="Model.Role" Role="Role" Multiplicity="1" />
-          <End Type="Model.Users" Role="Users" Multiplicity="*" />
+          <End Role="Role_user_admin" Type="Self.Role_user_admin" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Role">
+            <Principal Role="Role_user_admin">
               <PropertyRef Name="ID_role" />
             </Principal>
             <Dependent Role="Users">
@@ -198,8 +173,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Сlients_Users1">
-          <End Type="Model.Users" Role="Users" Multiplicity="1" />
-          <End Type="Model.Сlients" Role="Сlients" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Сlients" Type="Self.Сlients" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="ID" />
@@ -209,52 +184,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="Data" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" />
+          <EntitySet Name="Role_user_admin" EntityType="Self.Role_user_admin" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Сlients" EntityType="Self.Сlients" />
+          <AssociationSet Name="FK_Users_Floor_gender" Association="Self.FK_Users_Floor_gender">
+            <End Role="Floor_gender" EntitySet="Floor_gender" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role_user_admin" EntitySet="Role_user_admin" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сlients_Users1" Association="Self.FK_Сlients_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Сlients" EntitySet="Сlients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="BaseDana">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Data">
           <EntitySetMapping Name="Floor_gender">
             <EntityTypeMapping TypeName="Model.Floor_gender">
               <MappingFragment StoreEntitySet="Floor_gender">
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="ID_floor" ColumnName="ID_floor" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="Model.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Role1" ColumnName="Role" />
+          <EntitySetMapping Name="Role_user_admin">
+            <EntityTypeMapping TypeName="Model.Role_user_admin">
+              <MappingFragment StoreEntitySet="Role_user_admin">
                 <ScalarProperty Name="ID_role" ColumnName="ID_role" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Model.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Сlients">
             <EntityTypeMapping TypeName="Model.Сlients">
               <MappingFragment StoreEntitySet="Сlients">
-                <ScalarProperty Name="points" ColumnName="points" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="points" ColumnName="points" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

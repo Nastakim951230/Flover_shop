@@ -13,10 +13,10 @@ namespace flover_shop
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BaseDana : DbContext
+    public partial class Data : DbContext
     {
-        public BaseDana()
-            : base("name=BaseDana")
+        public Data()
+            : base("name=Data")
         {
         }
     
@@ -25,9 +25,8 @@ namespace flover_shop
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Floor> Floor { get; set; }
         public virtual DbSet<Floor_gender> Floor_gender { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Role_user_admin> Role_user_admin { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Сlients> Сlients { get; set; }
     }

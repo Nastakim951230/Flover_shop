@@ -31,7 +31,7 @@ namespace flover_shop
         public int Role { get; set; }
     
         public virtual Floor_gender Floor_gender { get; set; }
-        public virtual Role Role1 { get; set; }
+        public virtual Role_user_admin Role_user_admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Сlients> Сlients { get; set; }
     }

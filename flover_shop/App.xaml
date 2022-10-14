@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:flover_shop"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+       
         <Style x:Key="TextWidth" TargetType="TextBox">
            
             <Setter Property="Margin" Value="5,5,5,0"/>
@@ -28,6 +29,9 @@
             <Setter Property="FontFamily" Value="Footlight MT Light"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="10,5,10,0"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"></Setter>
         </Style>
         <Style TargetType="PasswordBox">
 
