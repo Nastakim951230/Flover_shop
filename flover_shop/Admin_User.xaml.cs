@@ -28,7 +28,64 @@ namespace flover_shop
 
         private void Searc_Click(object sender, RoutedEventArgs e)
         {
-            
+            //string poisk = "";
+            //string tabl = "";
+            //switch (Poisk.SelectedIndex)
+            //{
+            //    case 0:
+            //        {
+
+            //            tabl = "Surname";
+            //            poisk = TextSearc.Text;
+            //            Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Surname == poisk);
+            //        }
+            //        break;
+            //    case 1:
+            //        {
+            //            tabl = "Name";
+            //        }
+            //        break;
+            //    case 2:
+            //        {
+            //            tabl = "Otchestvo";
+            //        }
+            //        break;
+            //    case 3:
+            //        {
+            //            tabl = "Login";
+            //        }
+            //        break;
+            //    case 4:
+            //        {
+            //            tabl = "Floor";
+
+            //        }
+            //        break;
+            //    case 5:
+            //        {
+            //            tabl = "Date_of_Birth";
+            //        }
+            //        break;
+            //    case 6:
+            //        {
+            //            tabl = "Role";
+            //        }
+            //        break;
+            //}
+        }
+
+       
+
+        
+
+        private void Poisk_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -25,6 +25,12 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+        </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Footlight MT Light"/>
             <Setter Property="FontSize" Value="14"/>

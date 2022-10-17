@@ -16,25 +16,31 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="228"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Label>Фильтрация по полу</Label>
-                    <ComboBox>
-                        <TextBlock>Мужской</TextBlock>
-                        <TextBlock>Женский</TextBlock>
+                    <ComboBox Width="80" Height="20"  SelectionChanged="ComboBox_SelectionChanged_1">
+                        <ComboBoxItem >Мужской</ComboBoxItem>
+                        <ComboBoxItem >Женский</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 
-                    <ComboBox>
-
+                    <ComboBox Name="Poisk"  Width="80" Height="20" SelectionChanged="Poisk_SelectionChanged">
+                        <ComboBoxItem >Фамилия</ComboBoxItem>
+                        <ComboBoxItem >Имя</ComboBoxItem>
+                        <ComboBoxItem >Отчество</ComboBoxItem>
+                        <ComboBoxItem >Логин</ComboBoxItem>
+                        <ComboBoxItem >Пол</ComboBoxItem>
+                        <ComboBoxItem >Дата рождения</ComboBoxItem>
+                        <ComboBoxItem >Роль</ComboBoxItem>
                     </ComboBox>
-                    <TextBox Name="TextSearc" Width="200" Height="25"></TextBox>
+                    <TextBox Name="TextSearc" Width="190" Height="25" ></TextBox>
                     <Button Width="25" Height="25" Name="Searc" Click="Searc_Click">
                         <Image  Source="Image/search.png" ></Image>
                     </Button>
