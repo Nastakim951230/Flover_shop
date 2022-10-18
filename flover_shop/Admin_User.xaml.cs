@@ -28,64 +28,84 @@ namespace flover_shop
 
         private void Searc_Click(object sender, RoutedEventArgs e)
         {
-            //string poisk = "";
-            //string tabl = "";
-            //switch (Poisk.SelectedIndex)
-            //{
-            //    case 0:
-            //        {
+            string poisk = "";
+            
+            switch (Poisk.SelectedIndex)
+            {
+                case 0:
+                    {
 
-            //            tabl = "Surname";
-            //            poisk = TextSearc.Text;
-            //            Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Surname == poisk);
-            //        }
-            //        break;
-            //    case 1:
-            //        {
-            //            tabl = "Name";
-            //        }
-            //        break;
-            //    case 2:
-            //        {
-            //            tabl = "Otchestvo";
-            //        }
-            //        break;
-            //    case 3:
-            //        {
-            //            tabl = "Login";
-            //        }
-            //        break;
-            //    case 4:
-            //        {
-            //            tabl = "Floor";
+                      
+                        poisk = TextSearc.Text;
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Surname == poisk).ToList();
+                    }
+                    break;
+                case 1:
+                    {
+                        poisk = TextSearc.Text;
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Name == poisk).ToList();
+                    }
+                    break;
+                case 2:
+                    {
+                        poisk = TextSearc.Text;
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Otchestvo == poisk).ToList();
+                    }
+                    break;
+                case 3:
+                    {
+                        poisk = TextSearc.Text;
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Login == poisk).ToList();
+                    }
+                    break;
+                case 4:
+                    {
+                        poisk = TextSearc.Text;
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor_gender.Floor == poisk).ToList();
 
-            //        }
-            //        break;
-            //    case 5:
-            //        {
-            //            tabl = "Date_of_Birth";
-            //        }
-            //        break;
-            //    case 6:
-            //        {
-            //            tabl = "Role";
-            //        }
-            //        break;
-            //}
+                    }
+                    break;
+                
+                 
+                case 5:
+                    {
+                        poisk = TextSearc.Text;
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Role_user_admin.Role == poisk).ToList();
+                    }
+                    break;
+            }
         }
 
-       
+      
 
-        
-
-        private void Poisk_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cmbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            if(cmbGender.SelectedIndex == 0)
+            {
+                Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor == 2).ToList();
+            }
+            if (cmbGender.SelectedIndex == 1)
+            {
+                Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor == 1).ToList();
+            }
         }
 
-        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void SurnameFilte_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(SurnameFilte.SelectedIndex == 0)
+            {
+                Admin_user.ItemsSource = Base.BD.Users.OrderByDescending(s => s.Surname).ToList();
+            }
+            if(SurnameFilte.SelectedIndex == 1)
+            {
+                Admin_user.ItemsSource = Base.BD.Users.OrderBy(s => s.Surname).ToList();
+            }
+        }
 
+        private void Viewbd_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_user.ItemsSource = Base.BD.Users.ToList();
+            TextSearc.Text = "";
         }
     }
 }

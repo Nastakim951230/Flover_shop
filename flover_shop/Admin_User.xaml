@@ -12,40 +12,27 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="228"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Label>Фильтрация по полу</Label>
-                    <ComboBox Width="80" Height="20"  SelectionChanged="ComboBox_SelectionChanged_1">
-                        <ComboBoxItem >Мужской</ComboBoxItem>
-                        <ComboBoxItem >Женский</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+          
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                    <ComboBox Name="Poisk"  Width="80" Height="20" SelectionChanged="Poisk_SelectionChanged">
+                    <ComboBox Name="Poisk"  Width="150" Height="20" >
                         <ComboBoxItem >Фамилия</ComboBoxItem>
                         <ComboBoxItem >Имя</ComboBoxItem>
                         <ComboBoxItem >Отчество</ComboBoxItem>
                         <ComboBoxItem >Логин</ComboBoxItem>
-                        <ComboBoxItem >Пол</ComboBoxItem>
-                        <ComboBoxItem >Дата рождения</ComboBoxItem>
-                        <ComboBoxItem >Роль</ComboBoxItem>
+                    <ComboBoxItem >Пол</ComboBoxItem>
+                    <ComboBoxItem >Роль</ComboBoxItem>
                     </ComboBox>
                     <TextBox Name="TextSearc" Width="190" Height="25" ></TextBox>
                     <Button Width="25" Height="25" Name="Searc" Click="Searc_Click">
                         <Image  Source="Image/search.png" ></Image>
                     </Button>
+                <Button Name="Viewbd" Click="Viewbd_Click">Очистить</Button>
                 </StackPanel>
-            </Grid>
+         
            
         </Grid>
         <Grid Grid.Row="1" >
@@ -64,7 +51,28 @@
             </Grid>
 
         <Grid Grid.Row="2">
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label>Сортировка по фамилии</Label>
+                    <ComboBox Name="SurnameFilte"  Width="100" Height="20" SelectionChanged="SurnameFilte_SelectionChanged" >
+                        <ComboBoxItem >По убыванию</ComboBoxItem>
+                        <ComboBoxItem >По возрастанию</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label>Фильтрация по полу</Label>
+                    <ComboBox Name="cmbGender" Width="100" Height="20" SelectionChanged="cmbGender_SelectionChanged" >
+                        <ComboBoxItem >Мужской</ComboBoxItem>
+                        <ComboBoxItem >Женский</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
