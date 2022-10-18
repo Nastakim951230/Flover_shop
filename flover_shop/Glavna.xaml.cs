@@ -23,6 +23,7 @@ namespace flover_shop
         public Glavna()
         {
             InitializeComponent();
+            Flower.ItemsSource = Base.BD.Bouquet.ToList();
         }
     }
 }

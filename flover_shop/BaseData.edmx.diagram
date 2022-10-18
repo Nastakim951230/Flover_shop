@@ -12,6 +12,17 @@
         <AssociationConnector Association="Model.FK_Users_Floor_gender" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Users_Role" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Сlients_Users1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="7.5" PointY="8.25" />
+        <EntityTypeShape EntityType="Model.Bouquet" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="Model.Bouquet_flowers" Width="1.5" PointX="5.625" PointY="11.875" />
+        <EntityTypeShape EntityType="Model.Featured" Width="1.5" PointX="7.5" PointY="5.25" />
+        <EntityTypeShape EntityType="Model.Flowers" Width="1.5" PointX="3.375" PointY="11.875" />
+        <AssociationConnector Association="Model.FK_Basket_Bouquet" />
+        <AssociationConnector Association="Model.FK_Basket_Сlients" />
+        <AssociationConnector Association="Model.FK_Bouquet_flowers_Bouquet" />
+        <AssociationConnector Association="Model.FK_Featured_Bouquet" />
+        <AssociationConnector Association="Model.FK_Bouquet_flowers_Flowers" />
+        <AssociationConnector Association="Model.FK_Featured_Сlients" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

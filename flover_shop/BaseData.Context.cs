@@ -29,5 +29,10 @@ namespace flover_shop
         public virtual DbSet<Role_user_admin> Role_user_admin { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Сlients> Сlients { get; set; }
+        public virtual DbSet<Basket> Basket { get; set; }
+        public virtual DbSet<Bouquet> Bouquet { get; set; }
+        public virtual DbSet<Bouquet_flowers> Bouquet_flowers { get; set; }
+        public virtual DbSet<Featured> Featured { get; set; }
+        public virtual DbSet<Flowers> Flowers { get; set; }
     }
 }

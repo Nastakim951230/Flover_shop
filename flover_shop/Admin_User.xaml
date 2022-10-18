@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
           
@@ -52,22 +52,22 @@
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="310"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Label>Сортировка по фамилии</Label>
-                    <ComboBox Name="SurnameFilte"  Width="100" Height="20" SelectionChanged="SurnameFilte_SelectionChanged" >
+                    <ComboBox Name="SurnameFilte"  Width="130" Height="20" SelectionChanged="SurnameFilte_SelectionChanged" >
                         <ComboBoxItem >По убыванию</ComboBoxItem>
                         <ComboBoxItem >По возрастанию</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
             </Grid>
             <Grid Grid.Column="1">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Label>Фильтрация по полу</Label>
-                    <ComboBox Name="cmbGender" Width="100" Height="20" SelectionChanged="cmbGender_SelectionChanged" >
+                    <ComboBox Name="cmbGender" Width="90" Height="20" SelectionChanged="cmbGender_SelectionChanged" >
                         <ComboBoxItem >Мужской</ComboBoxItem>
                         <ComboBoxItem >Женский</ComboBoxItem>
                     </ComboBox>
