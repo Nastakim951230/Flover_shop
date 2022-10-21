@@ -1,0 +1,49 @@
+﻿<Page x:Class="flover_shop.Flover"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:flover_shop"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="560"
+      Title="Flover">
+
+
+    <Page.Resources>
+        <BitmapImage x:Key="defaultImage" UriSource="Image/not-image.png"></BitmapImage>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Button Name="Add_Flover" Click="Add_Flover_Click">Добавить новый цветок</Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListView Name="Flowersof" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="5" CornerRadius="10" BorderBrush="#FFE25ED5" BorderThickness="1" Background="#FFF9DFF5">
+                            <Grid Width="250" Height="250">
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <Image Width="150" Height="150" Source="{Binding Pfoto_flower, TargetNullValue={StaticResource defaultImage}}"></Image>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding name_flowers}" Style="{StaticResource TBMaska}"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding kolvo_flower}" Style="{StaticResource TBMaska}"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding price_flower}" Style="{StaticResource TBMaska}"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Itog}" Style="{StaticResource TBMaska}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

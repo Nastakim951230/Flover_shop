@@ -15,19 +15,21 @@ using System.Windows.Shapes;
 
 namespace flover_shop
 {
-    
     /// <summary>
-    /// Логика взаимодействия для Admin.xaml
+    /// Логика взаимодействия для Flover.xaml
     /// </summary>
-    public partial class Admin : Page
+    public partial class Flover : Page
     {
-       
-        public Admin()
+        public Flover()
         {
             InitializeComponent();
-            DataGrid.Navigate(new Flower_Bougurt());
-            ClassGlav.Admin = DataGrid;
+            Flowersof.ItemsSource = Base.BD.Flowers.ToList();
             
+        }
+
+        private void Add_Flover_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

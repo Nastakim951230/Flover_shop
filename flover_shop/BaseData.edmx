@@ -53,6 +53,7 @@
           <Property Name="Name_flower" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Kolvo" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Pfoto_flower" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Role_user_admin">
           <Key>
@@ -426,6 +427,7 @@
           <Property Name="Kolvo" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Flowers" ToRole="Bouquet_flowers" />
+          <Property Name="Pfoto_flower" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_Basket_Bouquet">
           <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1" />
@@ -588,6 +590,7 @@
           <EntitySetMapping Name="Flowers">
             <EntityTypeMapping TypeName="Model.Flowers">
               <MappingFragment StoreEntitySet="Flowers">
+                <ScalarProperty Name="Pfoto_flower" ColumnName="Pfoto_flower" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
                 <ScalarProperty Name="Name_flower" ColumnName="Name_flower" />

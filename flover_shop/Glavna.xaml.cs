@@ -23,7 +23,8 @@ namespace flover_shop
         public Glavna()
         {
             InitializeComponent();
-            Flower.ItemsSource = Base.BD.Bouquet.ToList();
+            Flower.Navigate(new Flower_Bougurt());
+            ClassGlav.Glav = Flower;
         }
     }
 }

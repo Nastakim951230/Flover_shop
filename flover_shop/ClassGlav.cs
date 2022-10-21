@@ -13,6 +13,7 @@ namespace flover_shop
         public static Frame perehod;
         public static Frame shapka;
         public static Frame Admin;
+        public static Frame Glav;
     }
 
 }

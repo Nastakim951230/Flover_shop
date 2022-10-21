@@ -20,6 +20,12 @@
             <Setter Property="FontSize" Value="16"/>
 
         </Style>
+        <Style x:Key="User_logo" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5,5,5,0"/>
+            <Setter Property="FontFamily" Value="Footlight MT Light"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
         <Style TargetType="RadioButton">
             <Setter Property="Margin" Value="5,5,5,0"/>
         </Style>

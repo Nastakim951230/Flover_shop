@@ -107,9 +107,16 @@
     <Compile Include="Floor_gender.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Flover.xaml.cs">
+      <DependentUpon>Flover.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Flover_name.cs" />
     <Compile Include="Flowers.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="flowers_for_a_bouquet.cs" />
+    <Compile Include="Flower_Bougurt.xaml.cs">
+      <DependentUpon>Flower_Bougurt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Glavna.xaml.cs">
       <DependentUpon>Glavna.xaml</DependentUpon>
@@ -144,6 +151,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Flover.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Flower_Bougurt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

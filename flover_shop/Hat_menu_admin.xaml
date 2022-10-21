@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="100" d:DesignWidth="800"
       Title="Hat_menu_admin">
-
+    <Page.Resources>
+        <BitmapImage x:Key="defaultImage" UriSource="Image/not-image.png"></BitmapImage>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -33,16 +35,30 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Button Name="User"  Click="User_Click">Пользователи</Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button Name="btBoequet"  Click="btBoequet_Click">Букет</Button>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Name="btFlower" Click="btFlower_Click">Цветы</Button>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Button Name="btZakaz" Click="btZakaz_Click">Заказы</Button>
                 </Grid>
             </Grid>    
            
         </Grid>
         <Grid Grid.Column="2" >
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                 <TextBlock Name="Name_use" Style="{StaticResource User_logo}"></TextBlock >
+                <TextBlock Name="Surname_use" Style="{StaticResource User_logo}"></TextBlock>
                 <Button Name="Exit" Click="Exit_Click">Выход</Button>
+                <Button Name="Update" Click="Update_Click">Изменить</Button>
             </StackPanel>
         </Grid>
     </Grid>

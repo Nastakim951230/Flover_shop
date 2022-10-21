@@ -7,9 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Glavna">
-    <Page.Resources>
-        <BitmapImage x:Key="defaultImage" UriSource="Image/not-image.png"></BitmapImage>
-    </Page.Resources>
+  
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,28 +26,7 @@
             </Grid.Background>
         </Grid>
         <Grid Grid.Column="1">
-            <ListView Name="Flower" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center">
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="5" CornerRadius="10" BorderThickness="1" BorderBrush="#FFE25ED5" Background="#FFF9DFF5">
-                            <Grid Width="150" Height="150">
-                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                                    
-                                    <Image Width="100" Height="100" Source="{Binding Photo_bouquet, TargetNullValue={StaticResource defaultImage}}"></Image>
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding name_bouquet}" Style="{StaticResource TBMaska}"/>
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding price_bouquet}" Style="{StaticResource TBMaska}"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Frame Name="Flower" Grid.Column="1" NavigationUIVisibility="Hidden"></Frame>
         </Grid>
     </Grid>
 </Page>

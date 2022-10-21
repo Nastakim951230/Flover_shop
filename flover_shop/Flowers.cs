@@ -24,6 +24,7 @@ namespace flover_shop
         public string Name_flower { get; set; }
         public int Kolvo { get; set; }
         public int Price { get; set; }
+        public string Pfoto_flower { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bouquet_flowers> Bouquet_flowers { get; set; }

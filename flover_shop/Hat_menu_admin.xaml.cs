@@ -20,20 +20,53 @@ namespace flover_shop
     /// </summary>
     public partial class Hat_menu_admin : Page
     {
+        public static int id_user;
         public Hat_menu_admin()
         {
             InitializeComponent();
+            Users users = Base.BD.Users.FirstOrDefault(i => i.ID == id_user);
+            if (users != null)
+            {
+                Flower_Bougurt.id_role = users.Role;
+                Name_use.Text = users.Name;
+                Surname_use.Text = users.Surname;
+
+            }
+
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            Flower_Bougurt.vyhod = 3;
             ClassGlav.shapka.Navigate(new Hat());
             ClassGlav.perehod.Navigate(new Glavna());
         }
 
         private void User_Click(object sender, RoutedEventArgs e)
         {
+           
             ClassGlav.Admin.Navigate(new Admin_User());
+        }
+
+        private void btBoequet_Click(object sender, RoutedEventArgs e)
+        {
+           
+            ClassGlav.Admin.Navigate(new Flower_Bougurt());
+        }
+
+        private void btFlower_Click(object sender, RoutedEventArgs e)
+        {
+            ClassGlav.Admin.Navigate(new Flover());
+        }
+
+        private void btZakaz_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
