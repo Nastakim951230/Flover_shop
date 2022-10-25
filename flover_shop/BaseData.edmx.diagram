@@ -23,6 +23,9 @@
         <AssociationConnector Association="Model.FK_Featured_Bouquet" />
         <AssociationConnector Association="Model.FK_Bouquet_flowers_Flowers" />
         <AssociationConnector Association="Model.FK_Featured_Сlients" />
+        <EntityTypeShape EntityType="Model.Liked" Width="1.5" PointX="7.5" PointY="2.375" />
+        <AssociationConnector Association="Model.FK_Liked_Bouquet" />
+        <AssociationConnector Association="Model.FK_Liked_Сlients" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

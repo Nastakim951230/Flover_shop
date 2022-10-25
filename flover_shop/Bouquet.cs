@@ -20,6 +20,7 @@ namespace flover_shop
             this.Basket = new HashSet<Basket>();
             this.Bouquet_flowers = new HashSet<Bouquet_flowers>();
             this.Featured = new HashSet<Featured>();
+            this.Liked = new HashSet<Liked>();
         }
     
         public int Id_bouquet { get; set; }
@@ -33,5 +34,7 @@ namespace flover_shop
         public virtual ICollection<Bouquet_flowers> Bouquet_flowers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Featured> Featured { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liked> Liked { get; set; }
     }
 }

@@ -28,7 +28,7 @@
                     </ComboBox>
                     <TextBox Name="TextSearc" Width="190" Height="25" ></TextBox>
                     <Button Width="25" Height="25" Name="Searc" Click="Searc_Click">
-                        <Image  Source="Image/search.png" ></Image>
+                        <Image  Source="../Image/search.png" ></Image>
                     </Button>
                 <Button Name="Viewbd" Click="Viewbd_Click">Очистить</Button>
                 </StackPanel>

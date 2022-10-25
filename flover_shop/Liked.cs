@@ -12,14 +12,13 @@ namespace flover_shop
     using System;
     using System.Collections.Generic;
     
-    public partial class Bouquet_flowers
+    public partial class Liked
     {
-        public int Id_Bouquet_flowers { get; set; }
-        public int Id_flower { get; set; }
-        public int Id_bouquet { get; set; }
-        public int Kolvo { get; set; }
+        public int Id_Liked { get; set; }
+        public int Id_Client { get; set; }
+        public int Id_Bouquet { get; set; }
     
         public virtual Bouquet Bouquet { get; set; }
-        public virtual Flowers Flowers { get; set; }
+        public virtual Сlients Сlients { get; set; }
     }
 }

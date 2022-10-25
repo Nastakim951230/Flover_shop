@@ -39,7 +39,8 @@ namespace flover_shop
             {
                 Add_Bouquet.Visibility = Visibility.Collapsed;
             }
-
+            
+            
         }
 
         private void Add_Bouquet_Click(object sender, RoutedEventArgs e)

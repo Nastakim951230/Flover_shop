@@ -29,6 +29,7 @@
           <Property Name="Id_Bouquet_flowers" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_flower" Type="int" Nullable="false" />
           <Property Name="Id_bouquet" Type="int" Nullable="false" />
+          <Property Name="Kolvo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Featured">
           <Key>
@@ -54,6 +55,14 @@
           <Property Name="Kolvo" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Pfoto_flower" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Liked">
+          <Key>
+            <PropertyRef Name="Id_Liked" />
+          </Key>
+          <Property Name="Id_Liked" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Client" Type="int" Nullable="false" />
+          <Property Name="Id_Bouquet" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Role_user_admin">
           <Key>
@@ -88,7 +97,9 @@
           <Property Name="points" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Basket_Bouquet">
-          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1" />
+          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bouquet">
@@ -100,7 +111,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Basket_Сlients">
-          <End Role="Сlients" Type="Self.Сlients" Multiplicity="1" />
+          <End Role="Сlients" Type="Self.Сlients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Сlients">
@@ -124,7 +137,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Bouquet_flowers_Flowers">
-          <End Role="Flowers" Type="Self.Flowers" Multiplicity="1" />
+          <End Role="Flowers" Type="Self.Flowers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Bouquet_flowers" Type="Self.Bouquet_flowers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Flowers">
@@ -136,7 +151,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Featured_Bouquet">
-          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1" />
+          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Featured" Type="Self.Featured" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bouquet">
@@ -155,6 +172,34 @@
               <PropertyRef Name="Id_clients" />
             </Principal>
             <Dependent Role="Featured">
+              <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Bouquet">
+          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bouquet">
+              <PropertyRef Name="Id_bouquet" />
+            </Principal>
+            <Dependent Role="Liked">
+              <PropertyRef Name="Id_Bouquet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Сlients">
+          <End Role="Сlients" Type="Self.Сlients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Liked" Type="Self.Liked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сlients">
+              <PropertyRef Name="Id_clients" />
+            </Principal>
+            <Dependent Role="Liked">
               <PropertyRef Name="Id_Client" />
             </Dependent>
           </ReferentialConstraint>
@@ -184,7 +229,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Сlients_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Сlients" Type="Self.Сlients" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -202,6 +249,7 @@
           <EntitySet Name="Featured" EntityType="Self.Featured" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Flowers" EntityType="Self.Flowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Liked" EntityType="Self.Liked" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role_user_admin" EntityType="Self.Role_user_admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сlients" EntityType="Self.Сlients" Schema="dbo" store:Type="Tables" />
@@ -228,6 +276,14 @@
           <AssociationSet Name="FK_Featured_Сlients" Association="Self.FK_Featured_Сlients">
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Featured" EntitySet="Featured" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Bouquet" Association="Self.FK_Liked_Bouquet">
+            <End Role="Bouquet" EntitySet="Bouquet" />
+            <End Role="Liked" EntitySet="Liked" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Сlients" Association="Self.FK_Liked_Сlients">
+            <End Role="Сlients" EntitySet="Сlients" />
+            <End Role="Liked" EntitySet="Liked" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Floor_gender" Association="Self.FK_Users_Floor_gender">
             <End Role="Floor_gender" EntitySet="Floor_gender" />
@@ -292,6 +348,7 @@
           <NavigationProperty Name="Users" Relationship="Self.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
           <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Сlients" FromRole="Сlients" ToRole="Basket" />
           <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Сlients" FromRole="Сlients" ToRole="Featured" />
+          <NavigationProperty Name="Liked" Relationship="Model.FK_Liked_Сlients" FromRole="Сlients" ToRole="Liked" />
         </EntityType>
         <Association Name="FK_Users_Floor_gender">
           <End Role="Floor_gender" Type="Self.Floor_gender" Multiplicity="1" />
@@ -375,6 +432,15 @@
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Featured" EntitySet="Featured" />
           </AssociationSet>
+          <EntitySet Name="Liked" EntityType="Model.Liked" />
+          <AssociationSet Name="FK_Liked_Bouquet" Association="Model.FK_Liked_Bouquet">
+            <End Role="Bouquet" EntitySet="Bouquet" />
+            <End Role="Liked" EntitySet="Liked" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liked_Сlients" Association="Model.FK_Liked_Сlients">
+            <End Role="Сlients" EntitySet="Сlients" />
+            <End Role="Liked" EntitySet="Liked" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Basket">
           <Key>
@@ -397,6 +463,7 @@
           <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Bouquet" FromRole="Bouquet" ToRole="Basket" />
           <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Bouquet" FromRole="Bouquet" ToRole="Bouquet_flowers" />
           <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Bouquet" FromRole="Bouquet" ToRole="Featured" />
+          <NavigationProperty Name="Liked" Relationship="Model.FK_Liked_Bouquet" FromRole="Bouquet" ToRole="Liked" />
         </EntityType>
         <EntityType Name="Bouquet_flowers">
           <Key>
@@ -407,6 +474,7 @@
           <Property Name="Id_bouquet" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bouquet" Relationship="Model.FK_Bouquet_flowers_Bouquet" FromRole="Bouquet_flowers" ToRole="Bouquet" />
           <NavigationProperty Name="Flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Bouquet_flowers" ToRole="Flowers" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Featured">
           <Key>
@@ -501,6 +569,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Liked">
+          <Key>
+            <PropertyRef Name="Id_Liked" />
+          </Key>
+          <Property Name="Id_Liked" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Client" Type="Int32" Nullable="false" />
+          <Property Name="Id_Bouquet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bouquet" Relationship="Model.FK_Liked_Bouquet" FromRole="Liked" ToRole="Bouquet" />
+          <NavigationProperty Name="Сlients" Relationship="Model.FK_Liked_Сlients" FromRole="Liked" ToRole="Сlients" />
+        </EntityType>
+        <Association Name="FK_Liked_Bouquet">
+          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Liked" Role="Liked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bouquet">
+              <PropertyRef Name="Id_bouquet" />
+            </Principal>
+            <Dependent Role="Liked">
+              <PropertyRef Name="Id_Bouquet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liked_Сlients">
+          <End Type="Model.Сlients" Role="Сlients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Liked" Role="Liked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сlients">
+              <PropertyRef Name="Id_clients" />
+            </Principal>
+            <Dependent Role="Liked">
+              <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -572,6 +678,7 @@
           <EntitySetMapping Name="Bouquet_flowers">
             <EntityTypeMapping TypeName="Model.Bouquet_flowers">
               <MappingFragment StoreEntitySet="Bouquet_flowers">
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
                 <ScalarProperty Name="Id_bouquet" ColumnName="Id_bouquet" />
                 <ScalarProperty Name="Id_flower" ColumnName="Id_flower" />
                 <ScalarProperty Name="Id_Bouquet_flowers" ColumnName="Id_Bouquet_flowers" />
@@ -595,6 +702,15 @@
                 <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
                 <ScalarProperty Name="Name_flower" ColumnName="Name_flower" />
                 <ScalarProperty Name="Id_Flower" ColumnName="Id_Flower" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liked">
+            <EntityTypeMapping TypeName="Model.Liked">
+              <MappingFragment StoreEntitySet="Liked">
+                <ScalarProperty Name="Id_Bouquet" ColumnName="Id_Bouquet" />
+                <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
+                <ScalarProperty Name="Id_Liked" ColumnName="Id_Liked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

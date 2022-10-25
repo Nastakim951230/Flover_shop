@@ -19,6 +19,7 @@ namespace flover_shop
         {
             this.Basket = new HashSet<Basket>();
             this.Featured = new HashSet<Featured>();
+            this.Liked = new HashSet<Liked>();
         }
     
         public int Id_clients { get; set; }
@@ -33,5 +34,7 @@ namespace flover_shop
         public virtual ICollection<Basket> Basket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Featured> Featured { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Liked> Liked { get; set; }
     }
 }
