@@ -7,9 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="100" d:DesignWidth="800"
       Title="Hat_menu_admin">
-    <Page.Resources>
-        <BitmapImage x:Key="defaultImage" UriSource="Image/not-image.png"></BitmapImage>
-    </Page.Resources>
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
@@ -18,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
-                <Image Width="100" Source="Image/logo.png"/>
+                <Image Width="100" Source="..\Image/logo.png"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" VerticalAlignment="Center">

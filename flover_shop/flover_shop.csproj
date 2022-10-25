@@ -69,10 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Admin.xaml.cs">
+    <Compile Include="Page\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin_User.xaml.cs">
+    <Compile Include="Page\Admin_User.xaml.cs">
       <DependentUpon>Admin_User.xaml</DependentUpon>
     </Compile>
     <Compile Include="Base.cs" />
@@ -107,7 +107,7 @@
     <Compile Include="Floor_gender.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Flover.xaml.cs">
+    <Compile Include="Page\Flover.xaml.cs">
       <DependentUpon>Flover.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flover_name.cs" />
@@ -115,26 +115,26 @@
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Compile Include="flowers_for_a_bouquet.cs" />
-    <Compile Include="Flower_Bougurt.xaml.cs">
+    <Compile Include="Page\Flower_Bougurt.xaml.cs">
       <DependentUpon>Flower_Bougurt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Glavna.xaml.cs">
+    <Compile Include="Page\Glavna.xaml.cs">
       <DependentUpon>Glavna.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Hat.xaml.cs">
+    <Compile Include="Page\Hat.xaml.cs">
       <DependentUpon>Hat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Hat_menu.xaml.cs">
+    <Compile Include="Page\Hat_menu.xaml.cs">
       <DependentUpon>Hat_menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Hat_menu_admin.xaml.cs">
+    <Compile Include="Page\Hat_menu_admin.xaml.cs">
       <DependentUpon>Hat_menu_admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Input.xaml.cs">
+    <Compile Include="Page\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
     <Compile Include="password.cs" />
-    <Compile Include="Registratsia.xaml.cs">
+    <Compile Include="Page\Registratsia.xaml.cs">
       <DependentUpon>Registratsia.xaml</DependentUpon>
     </Compile>
     <Compile Include="Role_user_admin.cs">
@@ -146,39 +146,39 @@
     <Compile Include="Сlients.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
-    <Page Include="Admin.xaml">
+    <Page Include="Page\Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin_User.xaml">
+    <Page Include="Page\Admin_User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Flover.xaml">
+    <Page Include="Page\Flover.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Flower_Bougurt.xaml">
+    <Page Include="Page\Flower_Bougurt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Glavna.xaml">
+    <Page Include="Page\Glavna.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Hat.xaml">
+    <Page Include="Page\Hat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Hat_menu.xaml">
+    <Page Include="Page\Hat_menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Hat_menu_admin.xaml">
+    <Page Include="Page\Hat_menu_admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Input.xaml">
+    <Page Include="Page\Input.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +194,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Registratsia.xaml">
+    <Page Include="Page\Registratsia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

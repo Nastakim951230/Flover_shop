@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace flover_shop
 {
@@ -37,6 +38,30 @@ namespace flover_shop
                 int price=Convert.ToInt32(Price);
                 int itog = kol * price;
                 return "Итог: " + itog + " руб.";
+            }
+        }
+
+        public SolidColorBrush KolvoFlowerColor
+        {
+            
+            get
+            {
+                var brushConverter = new BrushConverter();
+
+                if (Kolvo == 0)
+                {
+                    return (SolidColorBrush)(Brush)brushConverter.ConvertFrom("#FFF7A6A6");
+                }
+                else if ((Kolvo > 1)&&(Kolvo <=9))
+                {
+                    return (SolidColorBrush)(Brush)brushConverter.ConvertFrom("#FFF7F4A6");
+                }
+                else
+                {
+                    return (SolidColorBrush)(Brush)brushConverter.ConvertFrom("#FFF9DFF5");
+                    
+                }
+
             }
         }
 

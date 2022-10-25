@@ -9,7 +9,7 @@
       Title="Flower_Bougurt">
 
     <Page.Resources>
-        <BitmapImage x:Key="defaultImage" UriSource="Image/not-image.png"></BitmapImage>
+        <BitmapImage x:Key="defaultImage" UriSource="..\Image/not-image.png"></BitmapImage>
     </Page.Resources>
     
     <Grid>
