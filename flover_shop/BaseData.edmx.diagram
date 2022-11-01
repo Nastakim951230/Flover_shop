@@ -4,28 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="af586e0d5ec84f93b60c93f9f18f5c6b" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Floor_gender" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Role_user_admin" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Сlients" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_Users_Floor_gender" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Users_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Сlients_Users1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="7.5" PointY="8.25" />
-        <EntityTypeShape EntityType="Model.Bouquet" Width="1.5" PointX="3.375" PointY="8.75" />
-        <EntityTypeShape EntityType="Model.Bouquet_flowers" Width="1.5" PointX="5.625" PointY="11.875" />
-        <EntityTypeShape EntityType="Model.Featured" Width="1.5" PointX="7.5" PointY="5.25" />
-        <EntityTypeShape EntityType="Model.Flowers" Width="1.5" PointX="3.375" PointY="11.875" />
+      <Diagram DiagramId="af586e0d5ec84f93b60c93f9f18f5c6b" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="7.5" PointY="9.625" />
+        <EntityTypeShape EntityType="Model.Bouquet" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="Model.Bouquet_flowers" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Delivery" Width="1.5" PointX="7.5" PointY="18.25" />
+        <EntityTypeShape EntityType="Model.Delivery_type" Width="1.5" PointX="7.5" PointY="16" />
+        <EntityTypeShape EntityType="Model.Featured" Width="1.5" PointX="7.5" PointY="6.875" />
+        <EntityTypeShape EntityType="Model.Floor_gender" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="Model.Flowers" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="Model.Liked" Width="1.5" PointX="7.5" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.Payment" Width="1.5" PointX="9.75" PointY="9.125" />
+        <EntityTypeShape EntityType="Model.Role_user_admin" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="Model.Self_call" Width="1.5" PointX="7.5" PointY="13.25" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="Model.Сlients" Width="1.5" PointX="5.25" PointY="6.375" />
         <AssociationConnector Association="Model.FK_Basket_Bouquet" />
         <AssociationConnector Association="Model.FK_Basket_Сlients" />
+        <AssociationConnector Association="Model.FK_Payment_Basket" />
         <AssociationConnector Association="Model.FK_Bouquet_flowers_Bouquet" />
         <AssociationConnector Association="Model.FK_Featured_Bouquet" />
-        <AssociationConnector Association="Model.FK_Bouquet_flowers_Flowers" />
-        <AssociationConnector Association="Model.FK_Featured_Сlients" />
-        <EntityTypeShape EntityType="Model.Liked" Width="1.5" PointX="7.5" PointY="2.375" />
         <AssociationConnector Association="Model.FK_Liked_Bouquet" />
+        <AssociationConnector Association="Model.FK_Bouquet_flowers_Flowers" />
+        <AssociationConnector Association="Model.FK_Payment_Delivery" />
+        <AssociationConnector Association="Model.FK_Payment_Delivery_type" />
+        <AssociationConnector Association="Model.FK_Featured_Сlients" />
+        <AssociationConnector Association="Model.FK_Users_Floor_gender" />
         <AssociationConnector Association="Model.FK_Liked_Сlients" />
+        <AssociationConnector Association="Model.FK_Payment_Self_call" />
+        <AssociationConnector Association="Model.FK_Users_Role" />
+        <AssociationConnector Association="Model.FK_Сlients_Users1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

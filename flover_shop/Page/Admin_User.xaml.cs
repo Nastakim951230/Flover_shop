@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Admin_User.xaml
     /// </summary>
-    public partial class Admin_User : Page
+    public partial class Admin_User 
     {
         public Admin_User()
         {

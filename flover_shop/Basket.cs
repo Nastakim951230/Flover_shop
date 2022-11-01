@@ -14,11 +14,20 @@ namespace flover_shop
     
     public partial class Basket
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Basket()
+        {
+            this.Payment = new HashSet<Payment>();
+        }
+    
         public int Id_Basket { get; set; }
         public int Id_Client { get; set; }
         public int Id_Bouquet { get; set; }
+        public int Show { get; set; }
     
         public virtual Bouquet Bouquet { get; set; }
         public virtual Сlients Сlients { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payment> Payment { get; set; }
     }
 }

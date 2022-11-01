@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Flower_Bougurt.xaml
     /// </summary>
-    public partial class Flower_Bougurt : Page
+    public partial class Flower_Bougurt 
     {
         public static int id_role;
         public static int vyhod;

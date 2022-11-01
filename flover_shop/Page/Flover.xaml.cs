@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Flover.xaml
     /// </summary>
-    public partial class Flover : Page
+    public partial class Flover 
     {
         public Flover()
         {

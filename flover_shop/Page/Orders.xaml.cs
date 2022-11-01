@@ -13,22 +13,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace flover_shop
+namespace flover_shop.Page
 {
     /// <summary>
-    /// Логика взаимодействия для Hat_menu.xaml
+    /// Логика взаимодействия для Orders.xaml
     /// </summary>
-    public partial class Hat_menu 
+    public partial class Orders 
     {
-        public Hat_menu()
+        public Orders()
         {
             InitializeComponent();
+            Delivery_type.Navigate(new Delivery());
+            ClassGlav.delivery_type = Delivery_type;
+
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void Delivery_Click(object sender, RoutedEventArgs e)
         {
-            ClassGlav.shapka.Navigate(new Hat());
-            ClassGlav.perehod.Navigate(new Glavna());
+            ClassGlav.delivery_type.Navigate(new Delivery());
+        }
+
+        private void Self_call_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

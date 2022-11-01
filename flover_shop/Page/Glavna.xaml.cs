@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Glavna.xaml
     /// </summary>
-    public partial class Glavna : Page
+    public partial class Glavna 
     {
         public Glavna()
         {

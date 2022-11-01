@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Hat_menu_admin.xaml
     /// </summary>
-    public partial class Hat_menu_admin : Page
+    public partial class Hat_menu_admin 
     {
         public static int id_user;
         public Hat_menu_admin()
@@ -50,7 +50,7 @@ namespace flover_shop
 
         private void btBoequet_Click(object sender, RoutedEventArgs e)
         {
-           
+            Flower_Bougurt.id_role = 1;
             ClassGlav.Admin.Navigate(new Flower_Bougurt());
         }
 
@@ -61,7 +61,7 @@ namespace flover_shop
 
         private void btZakaz_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassGlav.Admin.Navigate(new Page.Orders());
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)

@@ -69,6 +69,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Adres.cs" />
+    <Compile Include="Delivery.cs">
+      <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery_type.cs">
+      <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Liked.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
@@ -110,6 +117,9 @@
     <Compile Include="Floor_gender.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Page\Delivery.xaml.cs">
+      <DependentUpon>Delivery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Flover.xaml.cs">
       <DependentUpon>Flover.xaml</DependentUpon>
     </Compile>
@@ -136,11 +146,21 @@
     <Compile Include="Page\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="password.cs" />
     <Compile Include="Page\Registratsia.xaml.cs">
       <DependentUpon>Registratsia.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment_Dann.cs" />
     <Compile Include="Role_user_admin.cs">
+      <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Self_call.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
@@ -154,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page\Admin_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\Delivery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,6 +221,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Page\Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page\Registratsia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

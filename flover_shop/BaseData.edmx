@@ -12,6 +12,7 @@
           <Property Name="Id_Basket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Client" Type="int" Nullable="false" />
           <Property Name="Id_Bouquet" Type="int" Nullable="false" />
+          <Property Name="Show" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Bouquet">
           <Key>
@@ -30,6 +31,23 @@
           <Property Name="Id_flower" Type="int" Nullable="false" />
           <Property Name="Id_bouquet" Type="int" Nullable="false" />
           <Property Name="Kolvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="Id_delivery" />
+          </Key>
+          <Property Name="Id_delivery" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_delivery" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Street_delivery" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Home_delivery" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kv_delivery" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Delivery_type">
+          <Key>
+            <PropertyRef Name="Id_delivery_type" />
+          </Key>
+          <Property Name="Id_delivery_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_delivery_type" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Featured">
           <Key>
@@ -64,12 +82,35 @@
           <Property Name="Id_Client" Type="int" Nullable="false" />
           <Property Name="Id_Bouquet" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id_payment" />
+          </Key>
+          <Property Name="Id_payment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_basket" Type="int" Nullable="false" />
+          <Property Name="Id_delivery_type" Type="int" Nullable="false" />
+          <Property Name="Id_self_call" Type="int" />
+          <Property Name="Id_delivery" Type="int" />
+          <Property Name="Date_of_registration" Type="datetime" Nullable="false" />
+          <Property Name="Order_term" Type="datetime" Nullable="false" />
+          <Property Name="Price_payment" Type="int" Nullable="false" />
+          <Property Name="Stage_of_work" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role_user_admin">
           <Key>
             <PropertyRef Name="ID_role" />
           </Key>
           <Property Name="ID_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Self_call">
+          <Key>
+            <PropertyRef Name="Id_self_call" />
+          </Key>
+          <Property Name="Id_self_call" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_self_call" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Street_self_call" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Home_self_call" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -204,6 +245,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_Basket">
+          <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basket">
+              <PropertyRef Name="Id_Basket" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_basket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Delivery">
+          <End Role="Delivery" Type="Self.Delivery" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="Id_delivery" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_delivery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Delivery_type">
+          <End Role="Delivery_type" Type="Self.Delivery_type" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery_type">
+              <PropertyRef Name="Id_delivery_type" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_delivery_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Self_call">
+          <End Role="Self_call" Type="Self.Self_call" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Self_call">
+              <PropertyRef Name="Id_self_call" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_self_call" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Floor_gender">
           <End Role="Floor_gender" Type="Self.Floor_gender" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -246,11 +335,15 @@
           <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bouquet" EntityType="Self.Bouquet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bouquet_flowers" EntityType="Self.Bouquet_flowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivery_type" EntityType="Self.Delivery_type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Featured" EntityType="Self.Featured" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Flowers" EntityType="Self.Flowers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Liked" EntityType="Self.Liked" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role_user_admin" EntityType="Self.Role_user_admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Self_call" EntityType="Self.Self_call" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сlients" EntityType="Self.Сlients" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Basket_Bouquet" Association="Self.FK_Basket_Bouquet">
@@ -285,6 +378,22 @@
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Liked" EntitySet="Liked" />
           </AssociationSet>
+          <AssociationSet Name="FK_Payment_Basket" Association="Self.FK_Payment_Basket">
+            <End Role="Basket" EntitySet="Basket" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Delivery" Association="Self.FK_Payment_Delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Delivery_type" Association="Self.FK_Payment_Delivery_type">
+            <End Role="Delivery_type" EntitySet="Delivery_type" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Self_call" Association="Self.FK_Payment_Self_call">
+            <End Role="Self_call" EntitySet="Self_call" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Floor_gender" Association="Self.FK_Users_Floor_gender">
             <End Role="Floor_gender" EntitySet="Floor_gender" />
             <End Role="Users" EntitySet="Users" />
@@ -302,112 +411,21 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Floor_gender">
-          <Key>
-            <PropertyRef Name="ID_floor" />
-          </Key>
-          <Property Name="ID_floor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Floor" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Floor_gender" FromRole="Floor_gender" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Role_user_admin">
-          <Key>
-            <PropertyRef Name="ID_role" />
-          </Key>
-          <Property Name="ID_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role_user_admin" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Floor_gender" Relationship="Self.FK_Users_Floor_gender" FromRole="Users" ToRole="Floor_gender" />
-          <NavigationProperty Name="Role_user_admin" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role_user_admin" />
-          <NavigationProperty Name="Сlients" Relationship="Self.FK_Сlients_Users1" FromRole="Users" ToRole="Сlients" />
-        </EntityType>
-        <EntityType Name="Сlients">
-          <Key>
-            <PropertyRef Name="Id_clients" />
-          </Key>
-          <Property Name="Id_clients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_user" Type="Int32" Nullable="false" />
-          <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="points" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
-          <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Сlients" FromRole="Сlients" ToRole="Basket" />
-          <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Сlients" FromRole="Сlients" ToRole="Featured" />
-          <NavigationProperty Name="Liked" Relationship="Model.FK_Liked_Сlients" FromRole="Сlients" ToRole="Liked" />
-        </EntityType>
-        <Association Name="FK_Users_Floor_gender">
-          <End Role="Floor_gender" Type="Self.Floor_gender" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Floor_gender">
-              <PropertyRef Name="ID_floor" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="Floor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Role">
-          <End Role="Role_user_admin" Type="Self.Role_user_admin" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role_user_admin">
-              <PropertyRef Name="ID_role" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="Role" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Сlients_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Сlients" Type="Self.Сlients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Сlients">
-              <PropertyRef Name="id_user" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Data" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" />
-          <EntitySet Name="Role_user_admin" EntityType="Self.Role_user_admin" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="Сlients" EntityType="Self.Сlients" />
-          <AssociationSet Name="FK_Users_Floor_gender" Association="Self.FK_Users_Floor_gender">
-            <End Role="Floor_gender" EntitySet="Floor_gender" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
-            <End Role="Role_user_admin" EntitySet="Role_user_admin" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Сlients_Users1" Association="Self.FK_Сlients_Users1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Сlients" EntitySet="Сlients" />
-          </AssociationSet>
           <EntitySet Name="Basket" EntityType="Model.Basket" />
           <EntitySet Name="Bouquet" EntityType="Model.Bouquet" />
           <EntitySet Name="Bouquet_flowers" EntityType="Model.Bouquet_flowers" />
+          <EntitySet Name="Delivery" EntityType="Model.Delivery" />
+          <EntitySet Name="Delivery_type" EntityType="Model.Delivery_type" />
           <EntitySet Name="Featured" EntityType="Model.Featured" />
+          <EntitySet Name="Floor_gender" EntityType="Model.Floor_gender" />
           <EntitySet Name="Flowers" EntityType="Model.Flowers" />
+          <EntitySet Name="Liked" EntityType="Model.Liked" />
+          <EntitySet Name="Payment" EntityType="Model.Payment" />
+          <EntitySet Name="Role_user_admin" EntityType="Model.Role_user_admin" />
+          <EntitySet Name="Self_call" EntityType="Model.Self_call" />
+          <EntitySet Name="Users" EntityType="Model.Users" />
+          <EntitySet Name="Сlients" EntityType="Model.Сlients" />
           <AssociationSet Name="FK_Basket_Bouquet" Association="Model.FK_Basket_Bouquet">
             <End Role="Bouquet" EntitySet="Bouquet" />
             <End Role="Basket" EntitySet="Basket" />
@@ -415,6 +433,10 @@
           <AssociationSet Name="FK_Basket_Сlients" Association="Model.FK_Basket_Сlients">
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Basket" EntitySet="Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Basket" Association="Model.FK_Payment_Basket">
+            <End Role="Basket" EntitySet="Basket" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_Bouquet_flowers_Bouquet" Association="Model.FK_Bouquet_flowers_Bouquet">
             <End Role="Bouquet" EntitySet="Bouquet" />
@@ -424,22 +446,45 @@
             <End Role="Bouquet" EntitySet="Bouquet" />
             <End Role="Featured" EntitySet="Featured" />
           </AssociationSet>
+          <AssociationSet Name="FK_Liked_Bouquet" Association="Model.FK_Liked_Bouquet">
+            <End Role="Bouquet" EntitySet="Bouquet" />
+            <End Role="Liked" EntitySet="Liked" />
+          </AssociationSet>
           <AssociationSet Name="FK_Bouquet_flowers_Flowers" Association="Model.FK_Bouquet_flowers_Flowers">
             <End Role="Flowers" EntitySet="Flowers" />
             <End Role="Bouquet_flowers" EntitySet="Bouquet_flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Delivery" Association="Model.FK_Payment_Delivery">
+            <End Role="Delivery" EntitySet="Delivery" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Delivery_type" Association="Model.FK_Payment_Delivery_type">
+            <End Role="Delivery_type" EntitySet="Delivery_type" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_Featured_Сlients" Association="Model.FK_Featured_Сlients">
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Featured" EntitySet="Featured" />
           </AssociationSet>
-          <EntitySet Name="Liked" EntityType="Model.Liked" />
-          <AssociationSet Name="FK_Liked_Bouquet" Association="Model.FK_Liked_Bouquet">
-            <End Role="Bouquet" EntitySet="Bouquet" />
-            <End Role="Liked" EntitySet="Liked" />
+          <AssociationSet Name="FK_Users_Floor_gender" Association="Model.FK_Users_Floor_gender">
+            <End Role="Floor_gender" EntitySet="Floor_gender" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Liked_Сlients" Association="Model.FK_Liked_Сlients">
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Liked" EntitySet="Liked" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Self_call" Association="Model.FK_Payment_Self_call">
+            <End Role="Self_call" EntitySet="Self_call" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Model.FK_Users_Role">
+            <End Role="Role_user_admin" EntitySet="Role_user_admin" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сlients_Users1" Association="Model.FK_Сlients_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Сlients" EntitySet="Сlients" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Basket">
@@ -449,8 +494,10 @@
           <Property Name="Id_Basket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Client" Type="Int32" Nullable="false" />
           <Property Name="Id_Bouquet" Type="Int32" Nullable="false" />
+          <Property Name="Show" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bouquet" Relationship="Model.FK_Basket_Bouquet" FromRole="Basket" ToRole="Bouquet" />
           <NavigationProperty Name="Сlients" Relationship="Model.FK_Basket_Сlients" FromRole="Basket" ToRole="Сlients" />
+          <NavigationProperty Name="Payment" Relationship="Model.FK_Payment_Basket" FromRole="Basket" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Bouquet">
           <Key>
@@ -472,9 +519,28 @@
           <Property Name="Id_Bouquet_flowers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_flower" Type="Int32" Nullable="false" />
           <Property Name="Id_bouquet" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bouquet" Relationship="Model.FK_Bouquet_flowers_Bouquet" FromRole="Bouquet_flowers" ToRole="Bouquet" />
           <NavigationProperty Name="Flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Bouquet_flowers" ToRole="Flowers" />
-          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Delivery">
+          <Key>
+            <PropertyRef Name="Id_delivery" />
+          </Key>
+          <Property Name="Id_delivery" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_delivery" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Street_delivery" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Home_delivery" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kv_delivery" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Payment" Relationship="Model.FK_Payment_Delivery" FromRole="Delivery" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Delivery_type">
+          <Key>
+            <PropertyRef Name="Id_delivery_type" />
+          </Key>
+          <Property Name="Id_delivery_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_delivery_type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Payment" Relationship="Model.FK_Payment_Delivery_type" FromRole="Delivery_type" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Featured">
           <Key>
@@ -486,6 +552,14 @@
           <NavigationProperty Name="Bouquet" Relationship="Model.FK_Featured_Bouquet" FromRole="Featured" ToRole="Bouquet" />
           <NavigationProperty Name="Сlients" Relationship="Model.FK_Featured_Сlients" FromRole="Featured" ToRole="Сlients" />
         </EntityType>
+        <EntityType Name="Floor_gender">
+          <Key>
+            <PropertyRef Name="ID_floor" />
+          </Key>
+          <Property Name="ID_floor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Floor" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Users_Floor_gender" FromRole="Floor_gender" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Flowers">
           <Key>
             <PropertyRef Name="Id_Flower" />
@@ -494,11 +568,91 @@
           <Property Name="Name_flower" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Kolvo" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Flowers" ToRole="Bouquet_flowers" />
           <Property Name="Pfoto_flower" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Flowers" ToRole="Bouquet_flowers" />
+        </EntityType>
+        <EntityType Name="Liked">
+          <Key>
+            <PropertyRef Name="Id_Liked" />
+          </Key>
+          <Property Name="Id_Liked" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Client" Type="Int32" Nullable="false" />
+          <Property Name="Id_Bouquet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bouquet" Relationship="Model.FK_Liked_Bouquet" FromRole="Liked" ToRole="Bouquet" />
+          <NavigationProperty Name="Сlients" Relationship="Model.FK_Liked_Сlients" FromRole="Liked" ToRole="Сlients" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id_payment" />
+          </Key>
+          <Property Name="Id_payment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_basket" Type="Int32" Nullable="false" />
+          <Property Name="Id_delivery_type" Type="Int32" Nullable="false" />
+          <Property Name="Id_self_call" Type="Int32" />
+          <Property Name="Id_delivery" Type="Int32" />
+          <Property Name="Date_of_registration" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Order_term" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Price_payment" Type="Int32" Nullable="false" />
+          <Property Name="Stage_of_work" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Basket" Relationship="Model.FK_Payment_Basket" FromRole="Payment" ToRole="Basket" />
+          <NavigationProperty Name="Delivery" Relationship="Model.FK_Payment_Delivery" FromRole="Payment" ToRole="Delivery" />
+          <NavigationProperty Name="Delivery_type" Relationship="Model.FK_Payment_Delivery_type" FromRole="Payment" ToRole="Delivery_type" />
+          <NavigationProperty Name="Self_call" Relationship="Model.FK_Payment_Self_call" FromRole="Payment" ToRole="Self_call" />
+        </EntityType>
+        <EntityType Name="Role_user_admin">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Users_Role" FromRole="Role_user_admin" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Self_call">
+          <Key>
+            <PropertyRef Name="Id_self_call" />
+          </Key>
+          <Property Name="Id_self_call" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_self_call" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Street_self_call" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Home_self_call" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Payment" Relationship="Model.FK_Payment_Self_call" FromRole="Self_call" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Floor_gender" Relationship="Model.FK_Users_Floor_gender" FromRole="Users" ToRole="Floor_gender" />
+          <NavigationProperty Name="Role_user_admin" Relationship="Model.FK_Users_Role" FromRole="Users" ToRole="Role_user_admin" />
+          <NavigationProperty Name="Сlients" Relationship="Model.FK_Сlients_Users1" FromRole="Users" ToRole="Сlients" />
+        </EntityType>
+        <EntityType Name="Сlients">
+          <Key>
+            <PropertyRef Name="Id_clients" />
+          </Key>
+          <Property Name="Id_clients" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Сlients" FromRole="Сlients" ToRole="Basket" />
+          <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Сlients" FromRole="Сlients" ToRole="Featured" />
+          <NavigationProperty Name="Liked" Relationship="Model.FK_Liked_Сlients" FromRole="Сlients" ToRole="Liked" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
         </EntityType>
         <Association Name="FK_Basket_Bouquet">
-          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1" />
+          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Basket" Role="Basket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bouquet">
@@ -510,7 +664,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Basket_Сlients">
-          <End Type="Model.Сlients" Role="Сlients" Multiplicity="1" />
+          <End Type="Model.Сlients" Role="Сlients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Basket" Role="Basket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Сlients">
@@ -518,6 +674,18 @@
             </Principal>
             <Dependent Role="Basket">
               <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Basket">
+          <End Type="Model.Basket" Role="Basket" Multiplicity="1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basket">
+              <PropertyRef Name="Id_Basket" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_basket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -534,7 +702,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Featured_Bouquet">
-          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1" />
+          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Featured" Role="Featured" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bouquet">
@@ -545,8 +715,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Liked_Bouquet">
+          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Liked" Role="Liked" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bouquet">
+              <PropertyRef Name="Id_bouquet" />
+            </Principal>
+            <Dependent Role="Liked">
+              <PropertyRef Name="Id_Bouquet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Bouquet_flowers_Flowers">
-          <End Type="Model.Flowers" Role="Flowers" Multiplicity="1" />
+          <End Type="Model.Flowers" Role="Flowers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Bouquet_flowers" Role="Bouquet_flowers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Flowers">
@@ -554,6 +740,30 @@
             </Principal>
             <Dependent Role="Bouquet_flowers">
               <PropertyRef Name="Id_flower" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Delivery">
+          <End Type="Model.Delivery" Role="Delivery" Multiplicity="0..1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery">
+              <PropertyRef Name="Id_delivery" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_delivery" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Delivery_type">
+          <End Type="Model.Delivery_type" Role="Delivery_type" Multiplicity="1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Delivery_type">
+              <PropertyRef Name="Id_delivery_type" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_delivery_type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -569,27 +779,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Liked">
-          <Key>
-            <PropertyRef Name="Id_Liked" />
-          </Key>
-          <Property Name="Id_Liked" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Client" Type="Int32" Nullable="false" />
-          <Property Name="Id_Bouquet" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bouquet" Relationship="Model.FK_Liked_Bouquet" FromRole="Liked" ToRole="Bouquet" />
-          <NavigationProperty Name="Сlients" Relationship="Model.FK_Liked_Сlients" FromRole="Liked" ToRole="Сlients" />
-        </EntityType>
-        <Association Name="FK_Liked_Bouquet">
-          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.Liked" Role="Liked" Multiplicity="*" />
+        <Association Name="FK_Users_Floor_gender">
+          <End Type="Model.Floor_gender" Role="Floor_gender" Multiplicity="1" />
+          <End Type="Model.Users" Role="Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Bouquet">
-              <PropertyRef Name="Id_bouquet" />
+            <Principal Role="Floor_gender">
+              <PropertyRef Name="ID_floor" />
             </Principal>
-            <Dependent Role="Liked">
-              <PropertyRef Name="Id_Bouquet" />
+            <Dependent Role="Users">
+              <PropertyRef Name="Floor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -607,58 +805,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Payment_Self_call">
+          <End Type="Model.Self_call" Role="Self_call" Multiplicity="0..1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Self_call">
+              <PropertyRef Name="Id_self_call" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Id_self_call" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Role">
+          <End Type="Model.Role_user_admin" Role="Role_user_admin" Multiplicity="1" />
+          <End Type="Model.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role_user_admin">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сlients_Users1">
+          <End Type="Model.Users" Role="Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Сlients" Role="Сlients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сlients">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Data">
-          <EntitySetMapping Name="Floor_gender">
-            <EntityTypeMapping TypeName="Model.Floor_gender">
-              <MappingFragment StoreEntitySet="Floor_gender">
-                <ScalarProperty Name="ID_floor" ColumnName="ID_floor" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Role_user_admin">
-            <EntityTypeMapping TypeName="Model.Role_user_admin">
-              <MappingFragment StoreEntitySet="Role_user_admin">
-                <ScalarProperty Name="ID_role" ColumnName="ID_role" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Сlients">
-            <EntityTypeMapping TypeName="Model.Сlients">
-              <MappingFragment StoreEntitySet="Сlients">
-                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="points" ColumnName="points" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Basket">
             <EntityTypeMapping TypeName="Model.Basket">
               <MappingFragment StoreEntitySet="Basket">
+                <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="Id_Bouquet" ColumnName="Id_Bouquet" />
                 <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
                 <ScalarProperty Name="Id_Basket" ColumnName="Id_Basket" />
@@ -685,12 +879,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Delivery">
+            <EntityTypeMapping TypeName="Model.Delivery">
+              <MappingFragment StoreEntitySet="Delivery">
+                <ScalarProperty Name="Kv_delivery" ColumnName="Kv_delivery" />
+                <ScalarProperty Name="Home_delivery" ColumnName="Home_delivery" />
+                <ScalarProperty Name="Street_delivery" ColumnName="Street_delivery" />
+                <ScalarProperty Name="City_delivery" ColumnName="City_delivery" />
+                <ScalarProperty Name="Id_delivery" ColumnName="Id_delivery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delivery_type">
+            <EntityTypeMapping TypeName="Model.Delivery_type">
+              <MappingFragment StoreEntitySet="Delivery_type">
+                <ScalarProperty Name="Name_delivery_type" ColumnName="Name_delivery_type" />
+                <ScalarProperty Name="Id_delivery_type" ColumnName="Id_delivery_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Featured">
             <EntityTypeMapping TypeName="Model.Featured">
               <MappingFragment StoreEntitySet="Featured">
                 <ScalarProperty Name="Id_Bouquet" ColumnName="Id_Bouquet" />
                 <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
                 <ScalarProperty Name="Id_Featured" ColumnName="Id_Featured" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Floor_gender">
+            <EntityTypeMapping TypeName="Model.Floor_gender">
+              <MappingFragment StoreEntitySet="Floor_gender">
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="ID_floor" ColumnName="ID_floor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -711,6 +932,66 @@
                 <ScalarProperty Name="Id_Bouquet" ColumnName="Id_Bouquet" />
                 <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
                 <ScalarProperty Name="Id_Liked" ColumnName="Id_Liked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="Model.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Stage_of_work" ColumnName="Stage_of_work" />
+                <ScalarProperty Name="Price_payment" ColumnName="Price_payment" />
+                <ScalarProperty Name="Order_term" ColumnName="Order_term" />
+                <ScalarProperty Name="Date_of_registration" ColumnName="Date_of_registration" />
+                <ScalarProperty Name="Id_delivery" ColumnName="Id_delivery" />
+                <ScalarProperty Name="Id_self_call" ColumnName="Id_self_call" />
+                <ScalarProperty Name="Id_delivery_type" ColumnName="Id_delivery_type" />
+                <ScalarProperty Name="Id_basket" ColumnName="Id_basket" />
+                <ScalarProperty Name="Id_payment" ColumnName="Id_payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_user_admin">
+            <EntityTypeMapping TypeName="Model.Role_user_admin">
+              <MappingFragment StoreEntitySet="Role_user_admin">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ID_role" ColumnName="ID_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Self_call">
+            <EntityTypeMapping TypeName="Model.Self_call">
+              <MappingFragment StoreEntitySet="Self_call">
+                <ScalarProperty Name="Home_self_call" ColumnName="Home_self_call" />
+                <ScalarProperty Name="Street_self_call" ColumnName="Street_self_call" />
+                <ScalarProperty Name="City_self_call" ColumnName="City_self_call" />
+                <ScalarProperty Name="Id_self_call" ColumnName="Id_self_call" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сlients">
+            <EntityTypeMapping TypeName="Model.Сlients">
+              <MappingFragment StoreEntitySet="Сlients">
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

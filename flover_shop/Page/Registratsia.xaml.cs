@@ -20,7 +20,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Registratsia.xaml
     /// </summary>
-    public partial class Registratsia : Page
+    public partial class Registratsia 
     {
        
         public Registratsia()

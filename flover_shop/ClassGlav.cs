@@ -14,6 +14,7 @@ namespace flover_shop
         public static Frame shapka;
         public static Frame Admin;
         public static Frame Glav;
+        public static Frame delivery_type;
     }
 
 }

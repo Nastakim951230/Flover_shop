@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Hat.xaml
     /// </summary>
-    public partial class Hat : Page
+    public partial class Hat 
     {
         public Hat()
         {

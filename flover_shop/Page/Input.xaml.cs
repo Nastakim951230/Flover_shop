@@ -18,7 +18,7 @@ namespace flover_shop
     /// <summary>
     /// Логика взаимодействия для Input.xaml
     /// </summary>
-    public partial class Input : Page
+    public partial class Input 
     {
         public Input()
         {

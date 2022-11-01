@@ -25,15 +25,19 @@ namespace flover_shop
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Floor_gender> Floor_gender { get; set; }
-        public virtual DbSet<Role_user_admin> Role_user_admin { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Сlients> Сlients { get; set; }
         public virtual DbSet<Basket> Basket { get; set; }
         public virtual DbSet<Bouquet> Bouquet { get; set; }
         public virtual DbSet<Bouquet_flowers> Bouquet_flowers { get; set; }
+        public virtual DbSet<Delivery> Delivery { get; set; }
+        public virtual DbSet<Delivery_type> Delivery_type { get; set; }
         public virtual DbSet<Featured> Featured { get; set; }
+        public virtual DbSet<Floor_gender> Floor_gender { get; set; }
         public virtual DbSet<Flowers> Flowers { get; set; }
         public virtual DbSet<Liked> Liked { get; set; }
+        public virtual DbSet<Payment> Payment { get; set; }
+        public virtual DbSet<Role_user_admin> Role_user_admin { get; set; }
+        public virtual DbSet<Self_call> Self_call { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Сlients> Сlients { get; set; }
     }
 }
