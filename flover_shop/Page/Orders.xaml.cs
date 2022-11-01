@@ -35,7 +35,7 @@ namespace flover_shop.Page
 
         private void Self_call_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassGlav.delivery_type.Navigate(new Page.Self_call());
         }
     }
 }

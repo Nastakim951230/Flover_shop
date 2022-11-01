@@ -47,5 +47,19 @@ namespace flover_shop
         {
 
         }
+
+        private void flover_id_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            int index = Convert.ToInt32(tb.Uid);
+            List<Bouquet_flowers> FCT = Base.BD.Bouquet_flowers.Where(x => x.Id_bouquet == index).ToList();
+            
+            string flower = "";
+            foreach (Bouquet_flowers ftc in FCT)
+            {
+                flower +=" "+ ftc.Flowers.Name_flower + ",кол-во:"+ftc.Kolvo+" \n";
+            }
+            tb.Text = "Букет состоит:\n"+ flower.Substring(0, flower.Length - 2); 
+        }
     }
 }

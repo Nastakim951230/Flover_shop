@@ -70,6 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Adres.cs" />
+    <Compile Include="Adres_Self_call.cs" />
     <Compile Include="Delivery.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
@@ -149,6 +150,9 @@
     <Compile Include="Page\Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Self_call.xaml.cs">
+      <DependentUpon>Self_call.xaml</DependentUpon>
+    </Compile>
     <Compile Include="password.cs" />
     <Compile Include="Page\Registratsia.xaml.cs">
       <DependentUpon>Registratsia.xaml</DependentUpon>
@@ -226,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page\Registratsia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\Self_call.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

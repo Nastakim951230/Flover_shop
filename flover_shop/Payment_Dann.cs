@@ -27,7 +27,7 @@ namespace flover_shop
 
                 if (Stage_of_work == 0)
                 {
-                    return (SolidColorBrush)(Brush)brushConverter.ConvertFrom("#FFF7A6A6");
+                    return (SolidColorBrush)(Brush)brushConverter.ConvertFrom("#FFF9DFF5");
                 }
                 else if (Stage_of_work == 1)
                 {

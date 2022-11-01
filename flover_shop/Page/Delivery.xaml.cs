@@ -24,8 +24,8 @@ namespace flover_shop.Page
         {
             //((s => s.Stage_of_work == 1) || (s => s.Stage_of_work == 0))
             InitializeComponent();
-            delivery.ItemsSource = Base.BD.Payment.Where((s=>s.Id_delivery!=null)&&(s=>s.Stage_of_work != 2)).ToList();
-       
+            delivery.ItemsSource = Base.BD.Payment.Where((s => s.Id_delivery != null && s.Stage_of_work != 2)).ToList();
+        }
 
         private void FIO_Loaded(object sender, RoutedEventArgs e)
         {

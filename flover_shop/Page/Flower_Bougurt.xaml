@@ -36,8 +36,8 @@
 
                                     <Image Width="120" Height="120" Source="{Binding Photo_bouquet, TargetNullValue={StaticResource defaultImage}}"></Image>
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding name_bouquet}" Style="{StaticResource TBMaska}"/>
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding price_bouquet}" Style="{StaticResource TBMaska}"/>
-                                    
+                                    <TextBlock  Text="{Binding price_bouquet}" Style="{StaticResource TBMaska}"/>
+                                    <TextBlock Uid="{Binding Id_bouquet}" TextWrapping="Wrap" Name="flover_id" Loaded="flover_id_Loaded" Style="{StaticResource TBMaskaSostav}"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
