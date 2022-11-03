@@ -24,6 +24,7 @@ namespace flover_shop
         public Hat_menu_admin()
         {
             InitializeComponent();
+            Registratsia.id_role = 1;
             Users users = Base.BD.Users.FirstOrDefault(i => i.ID == id_user);
             if (users != null)
             {

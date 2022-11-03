@@ -110,7 +110,7 @@ namespace flover_shop
 
         private void Add_users_Click(object sender, RoutedEventArgs e)
         {
-            Registratsia.id_role = 1;
+           
             ClassGlav.perehod.Navigate(new Registratsia());
         }
     }

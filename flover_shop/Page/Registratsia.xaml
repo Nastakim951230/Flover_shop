@@ -40,11 +40,8 @@
             <Grid Grid.Row="3">
                 
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.ColumnSpan="2" >
-                    <StackPanel Name="admin" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
-                        <TextBlock Style="{StaticResource TextStyle}">Роль:</TextBlock>
-                        <ComboBox Name="ComboBox_Roly" Width="150" ></ComboBox>
-                    </StackPanel>
-                    <StackPanel Name="polzovatel" Visibility="Visible">
+               
+                    <StackPanel>
                         <TextBlock Style="{StaticResource TextStyle}">Номер телефона:</TextBlock>
                     <TextBox  Name="Telefon"></TextBox>
                     <TextBlock Style="{StaticResource TextStyle}">Email:</TextBlock>
@@ -60,6 +57,10 @@
                     <RadioButton Name="Male">Муж</RadioButton>
                     <TextBlock Style="{StaticResource TextStyle}">Дата рождения:</TextBlock>
                     <DatePicker Name="Dateofbirth"></DatePicker>
+                    <StackPanel Orientation="Horizontal" Name="admin" Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource TextStyle}">Роль:</TextBlock>
+                        <ComboBox Name="ComboBox_Roly" Width="150" ></ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" VerticalAlignment="Center">

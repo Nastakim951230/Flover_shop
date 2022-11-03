@@ -80,6 +80,9 @@
     <Compile Include="Liked.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Page\Add_flower.xaml.cs">
+      <DependentUpon>Add_flower.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
     <Compile Include="Сlients.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Page Include="Page\Add_flower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page\Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
