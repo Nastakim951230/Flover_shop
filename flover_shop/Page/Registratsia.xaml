@@ -38,13 +38,18 @@
                 
             </Grid>
             <Grid Grid.Row="3">
-                <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
-                   
+                
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.ColumnSpan="2" >
+                    <StackPanel Name="admin" Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource TextStyle}">Роль:</TextBlock>
+                        <ComboBox Name="ComboBox_Roly" Width="150" ></ComboBox>
+                    </StackPanel>
+                    <StackPanel Name="polzovatel" Visibility="Visible">
                         <TextBlock Style="{StaticResource TextStyle}">Номер телефона:</TextBlock>
                     <TextBox  Name="Telefon"></TextBox>
                     <TextBlock Style="{StaticResource TextStyle}">Email:</TextBlock>
                         <TextBox Name="Email"></TextBox>
-                 
+                    </StackPanel>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="2">

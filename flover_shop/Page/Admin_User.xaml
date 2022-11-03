@@ -31,7 +31,8 @@
                         <Image  Source="../Image/search.png" ></Image>
                     </Button>
                 <Button Name="Viewbd" Click="Viewbd_Click">Очистить</Button>
-                </StackPanel>
+                <Button Name="Add_users" Click="Add_users_Click">Добавить</Button>
+            </StackPanel>
          
            
         </Grid>

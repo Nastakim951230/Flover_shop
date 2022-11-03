@@ -22,11 +22,34 @@ namespace flover_shop
     /// </summary>
     public partial class Registratsia 
     {
-       
-        public Registratsia()
+        public static int id_role;
+        public void uploadFields()  // метод для заполнения списков
+        {
+            ComboBox_Roly.ItemsSource = Base.BD.Role_user_admin.ToList();
+            ComboBox_Roly.SelectedValuePath = "ID_role";
+            ComboBox_Roly.DisplayMemberPath = "Role";
+            
+        }
+
+
+            public Registratsia()
         {
             InitializeComponent();
             Base.BD = new Data();
+            uploadFields();
+            if (id_role == 1)
+            {
+                polzovatel.Visibility=Visibility.Collapsed;
+                admin.Visibility=Visibility.Visible;
+            }
+            else
+            {
+                polzovatel.Visibility = Visibility.Visible;
+                admin.Visibility=Visibility.Collapsed;
+               
+            }
+
+
         }
   
        public bool isFormEmail(string a)
@@ -127,23 +150,57 @@ namespace flover_shop
         }
             private void Add_Click(object sender, RoutedEventArgs e)
         {
-           
-
-            if (Surname.Text=="" || Name.Text==""|| Dateofbirth.Text=="" || Login.Text=="" || Female.IsChecked == false && Male.IsChecked==false|| Password.Password.ToString()=="" || Telefon.Text=="")
+           if(id_role==1)
             {
-                    MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-            }
-            else
-            {
-                if (isFormLogin(Login.Text))
+                if (Surname.Text == "" || Name.Text == "" || Dateofbirth.Text == "" || Login.Text == "" || Female.IsChecked == false && Male.IsChecked == false || Password.Password.ToString() == "" || ComboBox_Roly.SelectedValue == null)
                 {
-                    if (isFormTelef(Telefon.Text))
+                    MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                }
+            }
+           else
+            {
+                if (Surname.Text == "" || Name.Text == "" || Dateofbirth.Text == "" || Login.Text == "" || Female.IsChecked == false && Male.IsChecked == false || Password.Password.ToString() == "" || Telefon.Text == "")
+                {
+                    MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                }
+                else
+                {
+                    if (isFormLogin(Login.Text))
                     {
-                        if (Email.Text != "")
+                        if (isFormTelef(Telefon.Text))
                         {
-                            if (isFormEmail(Email.Text))
+                            if (Email.Text != "")
                             {
+                                if (isFormEmail(Email.Text))
+                                {
 
+                                    string s = Password.Password.ToString();
+                                    if (isFormPassword(s))
+                                    {
+                                        int gender = 0;
+                                        if (Female.IsChecked == true)
+                                        {
+                                            gender = 1;
+                                        }
+                                        else if (Male.IsChecked == true)
+                                        {
+                                            gender = 2;
+                                        }
+                                        string parol = password.HasPassword(Password.Password.ToString());
+                                        Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = 2 };
+                                        Base.BD.Users.Add(users);
+                                        Base.BD.SaveChanges();
+
+                                        Сlients client = new Сlients() { id_user = users.ID, Telefon = Telefon.Text, email = Email.Text, image = null, points = 0 };
+                                        Base.BD.Сlients.Add(client);
+                                        Base.BD.SaveChanges();
+                                        MessageBox.Show("Пользователь зарегестрирован");
+                                        ClassGlav.perehod.Navigate(new Input());
+                                    }
+                                }
+                            }
+                            else
+                            {
                                 string s = Password.Password.ToString();
                                 if (isFormPassword(s))
                                 {
@@ -156,6 +213,9 @@ namespace flover_shop
                                     {
                                         gender = 2;
                                     }
+
+
+
                                     string parol = password.HasPassword(Password.Password.ToString());
                                     Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = 2 };
                                     Base.BD.Users.Add(users);
@@ -165,44 +225,16 @@ namespace flover_shop
                                     Base.BD.Сlients.Add(client);
                                     Base.BD.SaveChanges();
                                     MessageBox.Show("Пользователь зарегестрирован");
-                                    ClassGlav.perehod.Navigate(new Input());
+                                    ClassGlav.perehod.GoBack();
                                 }
                             }
+
                         }
-                        else
-                        {
-                            string s = Password.Password.ToString();
-                            if (isFormPassword(s))
-                            {
-                                int gender = 0;
-                                if (Female.IsChecked == true)
-                                {
-                                    gender = 1;
-                                }
-                                else if (Male.IsChecked == true)
-                                {
-                                    gender = 2;
-                                }
-
-
-
-                                string parol = password.HasPassword(Password.Password.ToString());
-                                Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = 2 };
-                                Base.BD.Users.Add(users);
-                                Base.BD.SaveChanges();
-
-                                Сlients client = new Сlients() { id_user = users.ID, Telefon = Telefon.Text, email = Email.Text, image = null, points = 0 };
-                                Base.BD.Сlients.Add(client);
-                                Base.BD.SaveChanges();
-                                MessageBox.Show("Пользователь зарегестрирован");
-                                ClassGlav.perehod.GoBack();
-                            }
-                        }
-
                     }
+
                 }
-                
             }
+            
                 
         }
 

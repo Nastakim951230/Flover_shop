@@ -23,6 +23,7 @@ namespace flover_shop
         public Hat()
         {
             InitializeComponent();
+            Registratsia.id_role = 0;
         }
         private void Registration_Click(object sender, RoutedEventArgs e)
         {

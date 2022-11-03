@@ -50,6 +50,7 @@ namespace flover_shop
 
         private void btBoequet_Click(object sender, RoutedEventArgs e)
         {
+            
             Flower_Bougurt.id_role = 1;
             ClassGlav.Admin.Navigate(new Flower_Bougurt());
         }
