@@ -1,0 +1,62 @@
+﻿<Page x:Class="flover_shop.Page.Add_Bougurt"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:flover_shop.Page"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="560"
+      Title="Add_Bougurt">
+    <Page.Resources>
+        <BitmapImage x:Key="defaultImage" UriSource="..\Image/not-image.png"></BitmapImage>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Name="pfoto_bougurt_add" Source="..\Image/not-image.png" Width="150" Height="120"></Image>
+                    <Button Name="add_photo_bougurt" Click="add_photo_bougurt_Click">Добавить фотографию</Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource TBMaska}">Название букета:</TextBlock>
+                    <TextBox Name="add_name_bougurt"></TextBox>
+                    <TextBlock Style="{StaticResource TBMaska}">Цена букета:</TextBlock>
+                    <TextBox Name="add_price_bougurt"></TextBox>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <GroupBox Header="Букет состоит из:">
+                <ListBox  Name="Flower_bougurt" SelectionMode="Multiple" HorizontalContentAlignment="Left">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel Orientation="Horizontal">
+                                <Image Width="80" Height="50" Source="{Binding Pfoto_flower, TargetNullValue={StaticResource defaultImage}}"/>
+                                <TextBlock Width="250" Text="{Binding Name_flower}" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                                <TextBox Width="50" VerticalAlignment="Center" ></TextBox>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel >
+                <Button Name="add_bougurt" Click="add_bougurt_Click">Добавить букет</Button>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Page>

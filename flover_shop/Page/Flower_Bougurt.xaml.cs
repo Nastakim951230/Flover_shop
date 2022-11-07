@@ -45,7 +45,7 @@ namespace flover_shop
 
         private void Add_Bouquet_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassGlav.Admin.Navigate(new Page.Add_Bougurt());
         }
 
         private void flover_id_Loaded(object sender, RoutedEventArgs e)
