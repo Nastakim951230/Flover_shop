@@ -39,7 +39,5 @@ namespace flover_shop
         public virtual DbSet<Self_call> Self_call { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Сlients> Сlients { get; set; }
-
-       
     }
 }

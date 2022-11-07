@@ -33,7 +33,7 @@
                         <Border Padding="5" CornerRadius="10" BorderBrush="#FFE25ED5" BorderThickness="1" Background="{Binding KolvoFlowerColor}">
                             <Grid Width="250" Height="250" Background="{Binding KolvoFlowerColor}">
                                 <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
-                                    <Image Width="150" Height="150" Source="{Binding Pfoto_flower, TargetNullValue={StaticResource defaultImage}}"></Image>
+                                    <Image Width="150" Height="150" Source="{Binding Pfoto_flower, TargetNullValue={StaticResource defaultImage}}"/>
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding name_flowers}" Style="{StaticResource TBMaska}"/>
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding kolvo_flower}" Style="{StaticResource TBMaska}"/>
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding price_flower}" Style="{StaticResource TBMaska}"/>

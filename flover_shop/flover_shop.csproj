@@ -300,6 +300,7 @@
       <DependentUpon>BaseData.edmx</DependentUpon>
       <LastGenOutput>BaseData.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\Ирис.jpg" />
     <Resource Include="Image\not-image.png" />
     <Resource Include="Image\search.png" />
   </ItemGroup>

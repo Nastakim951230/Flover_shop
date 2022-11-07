@@ -8,16 +8,17 @@
       d:DesignHeight="450" d:DesignWidth="560"
       Title="Add_flower">
 
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="Add_pfoto_flower" Width="250" Height="220"></Image>
-                <Button Name="add_photo_flower">Добавить фотографию</Button>
+                <Image Name="pfoto_flower_add"  Width="150" Height="150"></Image>
+                <Button Name="add_photo_flower" Click="add_photo_flower_Click">Добавить фотографию</Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -34,7 +35,7 @@
         </Grid>
         <Grid Grid.Row="2">
             <StackPanel >
-                <Button Name="add_flower">Добавить цветок</Button>
+                <Button Name="add_flower" Click="add_flower_Click">Добавить цветок</Button>
             </StackPanel>
         </Grid>
     </Grid>

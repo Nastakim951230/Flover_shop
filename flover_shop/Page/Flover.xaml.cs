@@ -29,7 +29,7 @@ namespace flover_shop
 
         private void Add_Flover_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassGlav.Admin.Navigate(new Page.Add_flower());
         }
     }
 }

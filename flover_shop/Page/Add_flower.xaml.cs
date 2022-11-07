@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,60 @@ namespace flover_shop.Page
     /// <summary>
     /// Логика взаимодействия для Add_flower.xaml
     /// </summary>
-    public partial class Add_flower : Page
+    public partial class Add_flower
     {
+        Flowers flow;  // объект, в котором будет хранится данные о новом или отредактированном коте
+        bool flagUpdate = false; // для определения, создаем мы новый объект или редактируем старый
+        string path=null;  // путь к картинке/
+        
         public Add_flower()
         {
+
             InitializeComponent();
+            //if(path != null)
+            //{
+            //    BitmapImage img = new BitmapImage(new Uri(".//Image//not-image.png", UriKind.RelativeOrAbsolute));
+            //    pfoto_flower_add.Source = img;
+            //}
+        }
+
+        private void add_flower_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (flagUpdate == false)
+                {
+                    flow = new Flowers();
+                }
+                flow.Name_flower = add_name_flower.Text;
+                flow.Kolvo = Convert.ToInt32(add_kolvo_flower.Text);
+                flow.Price = Convert.ToInt32(add_price_flower.Text);
+                flow.Pfoto_flower = path;
+                if (flagUpdate == false)
+                {
+                    Base.BD.Flowers.Add(flow);
+                }
+                Base.BD.SaveChanges();
+                MessageBox.Show("Информация добавлена");
+                ClassGlav.Admin.Navigate(new Flover());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка");
+            }
+        }
+
+        private void add_photo_flower_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog OFD = new OpenFileDialog();  // создаем объект диалогового окна
+            OFD.ShowDialog();  // открываем диалоговое окно
+            path = OFD.FileName;  // извлекаем полный путь к картинке
+            string[] arrayPath = path.Split('\\');  // разделяем путь к картинке в массив
+            path = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
+
+            //BitmapImage img = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
+            //pfoto_flower_add.Source = img;
+           
         }
     }
 }
