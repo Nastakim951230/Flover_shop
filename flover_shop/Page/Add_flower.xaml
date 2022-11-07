@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="560"
       Title="Add_flower">
-
+   
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image Name="pfoto_flower_add"  Width="150" Height="150"></Image>
+                <Image Name="pfoto_flower_add" Source="..\Image/not-image.png" Width="150" Height="150"></Image>
                 <Button Name="add_photo_flower" Click="add_photo_flower_Click">Добавить фотографию</Button>
             </StackPanel>
         </Grid>

@@ -29,11 +29,7 @@ namespace flover_shop.Page
         {
 
             InitializeComponent();
-            //if(path != null)
-            //{
-            //    BitmapImage img = new BitmapImage(new Uri(".//Image//not-image.png", UriKind.RelativeOrAbsolute));
-            //    pfoto_flower_add.Source = img;
-            //}
+            
         }
 
         private void add_flower_Click(object sender, RoutedEventArgs e)
@@ -70,9 +66,9 @@ namespace flover_shop.Page
             string[] arrayPath = path.Split('\\');  // разделяем путь к картинке в массив
             path = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
 
-            //BitmapImage img = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
-            //pfoto_flower_add.Source = img;
-           
+            BitmapImage img = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
+            pfoto_flower_add.Source = img;
+
         }
     }
 }
