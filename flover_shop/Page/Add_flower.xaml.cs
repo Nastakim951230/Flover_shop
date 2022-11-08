@@ -32,25 +32,34 @@ namespace flover_shop.Page
             
         }
 
+      
         private void add_flower_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
-                if (flagUpdate == false)
+                if (add_kolvo_flower.Text == "" || add_name_flower.Text == "" || add_price_flower.Text == "")
                 {
-                    flow = new Flowers();
+                    MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK);
                 }
-                flow.Name_flower = add_name_flower.Text;
-                flow.Kolvo = Convert.ToInt32(add_kolvo_flower.Text);
-                flow.Price = Convert.ToInt32(add_price_flower.Text);
-                flow.Pfoto_flower = path;
-                if (flagUpdate == false)
+                else
                 {
-                    Base.BD.Flowers.Add(flow);
+                    if (flagUpdate == false)
+                    {
+                        flow = new Flowers();
+                    }
+                    flow.Name_flower = add_name_flower.Text;
+                    flow.Kolvo = Convert.ToInt32(add_kolvo_flower.Text);
+                    flow.Price = Convert.ToInt32(add_price_flower.Text);
+                    flow.Pfoto_flower = path;
+                    if (flagUpdate == false)
+                    {
+                        Base.BD.Flowers.Add(flow);
+                    }
+                    Base.BD.SaveChanges();
+                    MessageBox.Show("Информация добавлена");
+                    ClassGlav.Admin.Navigate(new Flover());
                 }
-                Base.BD.SaveChanges();
-                MessageBox.Show("Информация добавлена");
-                ClassGlav.Admin.Navigate(new Flover());
             }
             catch (Exception ex)
             {

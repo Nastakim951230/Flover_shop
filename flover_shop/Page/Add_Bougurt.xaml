@@ -38,14 +38,14 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <GroupBox Header="Букет состоит из:">
-                <ListBox  Name="Flower_bougurt" SelectionMode="Multiple" HorizontalContentAlignment="Left">
+            <GroupBox Header="Букет состоит из:"  Background="{x:Null}" BorderBrush="{x:Null}">
+                <ListBox Width="450" Name="Flower_bougurt" SelectionMode="Multiple">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <WrapPanel Orientation="Horizontal">
                                 <Image Width="80" Height="50" Source="{Binding Pfoto_flower, TargetNullValue={StaticResource defaultImage}}"/>
-                                <TextBlock Width="250" Text="{Binding Name_flower}" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
-                                <TextBox Width="50" VerticalAlignment="Center" ></TextBox>
+                                <TextBlock Width="250" Text="{Binding Name_flower}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                                <TextBox Width="50" Text="{Binding kolvo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" ></TextBox>
                             </WrapPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

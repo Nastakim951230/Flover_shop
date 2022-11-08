@@ -159,6 +159,7 @@
     <Compile Include="Page\Self_call.xaml.cs">
       <DependentUpon>Self_call.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartalFlowerClass.cs" />
     <Compile Include="password.cs" />
     <Compile Include="Page\Registratsia.xaml.cs">
       <DependentUpon>Registratsia.xaml</DependentUpon>

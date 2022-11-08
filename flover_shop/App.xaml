@@ -14,7 +14,10 @@
             <Setter Property="FontFamily" Value="Cascadia Mono ExtraLight"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
-
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#FFF8E4FB"/>
+           
+        </Style>
         
         <Style x:Key="TBMaskaSostav" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Cascadia Mono ExtraLight"/>

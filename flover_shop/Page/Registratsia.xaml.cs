@@ -153,7 +153,7 @@ namespace flover_shop
 
             if (Surname.Text == "" || Name.Text == "" || Dateofbirth.Text == "" || Login.Text == "" || Female.IsChecked == false && Male.IsChecked == false || Password.Password.ToString() == "" || Telefon.Text == "")
             {
-                MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK);
             }
             else
             {
