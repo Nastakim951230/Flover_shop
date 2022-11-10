@@ -36,32 +36,32 @@ namespace flover_shop
                     {
 
                       
-                        poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Surname == poisk).ToList();
+                        
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Surname.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
                     }
                     break;
                 case 1:
                     {
                         poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Name == poisk).ToList();
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Name.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
                     }
                     break;
                 case 2:
                     {
                         poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Otchestvo == poisk).ToList();
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Otchestvo.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
                     }
                     break;
                 case 3:
                     {
                         poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Login == poisk).ToList();
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Login.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
                     }
                     break;
                 case 4:
                     {
                         poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor_gender.Floor == poisk).ToList();
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor_gender.Floor.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
 
                     }
                     break;
@@ -70,7 +70,7 @@ namespace flover_shop
                 case 5:
                     {
                         poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Role_user_admin.Role == poisk).ToList();
+                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Role_user_admin.Role.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
                     }
                     break;
             }

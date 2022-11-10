@@ -30,6 +30,9 @@ namespace flover_shop
             if (id_role==2)
             {
                 Add_Bouquet.Visibility = Visibility.Collapsed;
+                
+
+
             }
             if (id_role==1)
             {
@@ -53,13 +56,44 @@ namespace flover_shop
             TextBlock tb = (TextBlock)sender;
             int index = Convert.ToInt32(tb.Uid);
             List<Bouquet_flowers> FCT = Base.BD.Bouquet_flowers.Where(x => x.Id_bouquet == index).ToList();
-            
+          int i=FCT.Count;
             string flower = "";
-            foreach (Bouquet_flowers ftc in FCT)
+            if (i==0)
             {
-                flower +=" "+ ftc.Flowers.Name_flower + ",кол-во:"+ftc.Kolvo+" \n";
+                tb.Text = "Данного букета нет в продаже";
+                
             }
-            tb.Text = "Букет состоит:\n"+ flower.Substring(0, flower.Length - 2); 
+            else
+            {
+                foreach (Bouquet_flowers ftc in FCT)
+                {
+
+                    flower += " " + ftc.Flowers.Name_flower + ",кол-во:" + ftc.Kolvo + " \n";
+                }
+                tb.Text = "Букет состоит:\n" + flower.Substring(0, flower.Length - 2);
+            }
         }
+
+        //private void Delet_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+        //    //int index = Convert.ToInt32(btn.Uid);  // получаем числовой Uid элемента списка (в разметке предварительно нужно связать номер ячейки с номером кота в базе данных)
+
+
+        //    //// создаем объект, который содержит информацию о коте, который нужно удалить
+        //    //Bouquet bouquet = Base.BD.Bouquet.FirstOrDefault(x => x.Id_bouquet == index);
+
+        //    //Base.BD.Bouquet.Remove(bouquet); // удаление кота из базы            
+        //    //Base.BD.SaveChanges();  // сохранение изменений в базе данных
+
+        //    //ClassGlav.Admin.Navigate(new Flower_Bougurt());
+        //}
+
+        //private void btnupdate_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
+      
     }
 }

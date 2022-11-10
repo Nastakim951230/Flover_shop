@@ -38,6 +38,10 @@
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding kolvo_flower}" Style="{StaticResource TBMaska}"/>
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding price_flower}" Style="{StaticResource TBMaska}"/>
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding Itog}" Style="{StaticResource TBMaska}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Uid="{Binding Id_Flower}" Content="Удалить" Name="Delet" Click="Delet_Click"></Button>
+                                    <Button Uid="{Binding Id_Flower}" Content="Редактировать" Name="btnupdate" Click="btnupdate_Click"></Button>
+                                </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </Border>
