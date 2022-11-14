@@ -114,17 +114,6 @@ namespace flover_shop
             ClassGlav.perehod.Navigate(new Registratsia());
         }
 
-        private void btnUpdateUser_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("Вы точно хотите удалить этого пользователя?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-            }
-            else
-            {
-
-            }
-
-        }
 
         private void btnDeletUser_Click(object sender, RoutedEventArgs e)
         {

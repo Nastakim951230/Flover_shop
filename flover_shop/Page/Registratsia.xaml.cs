@@ -22,6 +22,9 @@ namespace flover_shop
     /// </summary>
     public partial class Registratsia 
     {
+        Users usersadd;
+        Сlients client;// объект, в котором будет хранится данные о новом или отредактированном коте
+       
         public static int id_role;
         public void uploadFields()  // метод для заполнения списков
         {
@@ -32,7 +35,8 @@ namespace flover_shop
         }
 
 
-            public Registratsia()
+       
+        public Registratsia()
         {
             InitializeComponent();
             Base.BD = new Data();
@@ -190,12 +194,36 @@ namespace flover_shop
                                     }
 
                                     string parol = password.HasPassword(Password.Password.ToString());
-                                    Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = idRole };
-                                    Base.BD.Users.Add(users);
+
+                                  
+                                        usersadd = new Users();
+                                    
+                                    usersadd.Surname = Surname.Text;
+                                    usersadd.Name = Name.Text;
+                                    usersadd.Otchestvo = Othestvo.Text;
+                                    usersadd.Floor = gender;
+                                    usersadd.Login= Login.Text;
+                                    usersadd.Password = parol;
+                                    usersadd.Role=idRole;
+                                    usersadd.Date_of_Birth = (DateTime)Dateofbirth.SelectedDate;
+                                
+                                        Base.BD.Users.Add(usersadd);
+                                    
+                                   
                                     Base.BD.SaveChanges();
 
-                                    Сlients client = new Сlients() { id_user = users.ID, Telefon = Telefon.Text, email = Email.Text, image = null, points = 0 };
-                                    Base.BD.Сlients.Add(client);
+                                   
+                                        client = new Сlients();
+                                    
+                                    client.id_user = usersadd.ID;
+                                    client.Telefon = Telefon.Text;
+                                    client.email= Email.Text;
+                                    client.image = null;
+                                    client.points = 0;
+                                  
+                                        Base.BD.Сlients.Add(client);
+                                    
+                                   
                                     Base.BD.SaveChanges();
                                     MessageBox.Show("Пользователь зарегестрирован");
                                     ClassGlav.perehod.Navigate(new Input());
@@ -228,12 +256,34 @@ namespace flover_shop
 
 
                                 string parol = password.HasPassword(Password.Password.ToString());
-                                Users users = new Users() { Surname = Surname.Text, Name = Name.Text, Otchestvo = Othestvo.Text, Floor = gender, Date_of_Birth = (DateTime)Dateofbirth.SelectedDate, Login = Login.Text, Password = parol, Role = idRole };
-                                Base.BD.Users.Add(users);
-                                Base.BD.SaveChanges();
+                               
+                                    usersadd = new Users();
+                                
+                                usersadd.Surname = Surname.Text;
+                                usersadd.Name = Name.Text;
+                                usersadd.Otchestvo = Othestvo.Text;
+                                usersadd.Floor = gender;
+                                usersadd.Login = Login.Text;
+                                usersadd.Password = parol;
+                                usersadd.Role = idRole;
+                               
+                                usersadd.Date_of_Birth = (DateTime)Dateofbirth.SelectedDate;
+                               
+                                    Base.BD.Users.Add(usersadd);
+                                
 
-                                Сlients client = new Сlients() { id_user = users.ID, Telefon = Telefon.Text, email = Email.Text, image = null, points = 0 };
-                                Base.BD.Сlients.Add(client);
+                                Base.BD.SaveChanges();
+                               
+                                    client = new Сlients();
+                                
+                                client.id_user = usersadd.ID;
+                                client.Telefon = Telefon.Text;
+                                client.email = Email.Text;
+                                client.image = null;
+                                client.points = 0;
+                                
+                                    Base.BD.Сlients.Add(client);
+                                
                                 Base.BD.SaveChanges();
                                 MessageBox.Show("Пользователь зарегестрирован");
                                 ClassGlav.perehod.GoBack();

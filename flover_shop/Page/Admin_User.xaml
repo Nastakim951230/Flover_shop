@@ -47,14 +47,7 @@
                     <DataGridTextColumn Header="Пол" Binding="{Binding Floor_gender.Floor}"/>
                         <DataGridTextColumn Header="Дата рождения" Binding="{Binding Date_of_Birth, StringFormat={}dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Роль" Binding="{Binding Role_user_admin.Role}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Редактировать">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Uid="{Binding ID}" Name="btnUpdateUser" Content="Редактировать" Click="btnUpdateUser_Click"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        
-                    </DataGridTemplateColumn>
+                   
                     <DataGridTemplateColumn Header="Удалить">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
