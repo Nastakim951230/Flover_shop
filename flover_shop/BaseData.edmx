@@ -166,7 +166,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Bouquet_flowers_Bouquet">
-          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1" />
+          <End Role="Bouquet" Type="Self.Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Bouquet_flowers" Type="Self.Bouquet_flowers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bouquet">
@@ -690,7 +692,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Bouquet_flowers_Bouquet">
-          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1" />
+          <End Type="Model.Bouquet" Role="Bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.Bouquet_flowers" Role="Bouquet_flowers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bouquet">

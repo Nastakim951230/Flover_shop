@@ -88,6 +88,8 @@ namespace flover_shop.Page
                     }
                     Base.BD.SaveChanges();
                     MessageBox.Show("Информация добавлена");
+                 
+                    ClassGlav.Admin.Navigate(new Flower_Bougurt());
                 }
             }
             catch (Exception ex)

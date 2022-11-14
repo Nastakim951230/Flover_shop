@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="af586e0d5ec84f93b60c93f9f18f5c6b" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="7.5" PointY="9.625" />
+        <EntityTypeShape EntityType="Model.Basket" Width="1.5" PointX="7.5" PointY="3.625" />
         <EntityTypeShape EntityType="Model.Bouquet" Width="1.5" PointX="5.25" PointY="2.5" />
         <EntityTypeShape EntityType="Model.Bouquet_flowers" Width="1.5" PointX="7.5" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.Delivery" Width="1.5" PointX="7.5" PointY="18.25" />
-        <EntityTypeShape EntityType="Model.Delivery_type" Width="1.5" PointX="7.5" PointY="16" />
+        <EntityTypeShape EntityType="Model.Delivery" Width="1.5" PointX="7.5" PointY="16.5" />
+        <EntityTypeShape EntityType="Model.Delivery_type" Width="1.5" PointX="7.5" PointY="14.125" />
         <EntityTypeShape EntityType="Model.Featured" Width="1.5" PointX="7.5" PointY="6.875" />
-        <EntityTypeShape EntityType="Model.Floor_gender" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="Model.Floor_gender" Width="1.5" PointX="0.75" PointY="7" />
         <EntityTypeShape EntityType="Model.Flowers" Width="1.5" PointX="5.25" PointY="10.375" />
-        <EntityTypeShape EntityType="Model.Liked" Width="1.5" PointX="7.5" PointY="3.875" />
-        <EntityTypeShape EntityType="Model.Payment" Width="1.5" PointX="9.75" PointY="9.125" />
-        <EntityTypeShape EntityType="Model.Role_user_admin" Width="1.5" PointX="0.75" PointY="7" />
-        <EntityTypeShape EntityType="Model.Self_call" Width="1.5" PointX="7.5" PointY="13.25" />
+        <EntityTypeShape EntityType="Model.Liked" Width="1.5" PointX="7.5" PointY="9.875" />
+        <EntityTypeShape EntityType="Model.Payment" Width="1.5" PointX="9.75" PointY="3.125" />
+        <EntityTypeShape EntityType="Model.Role_user_admin" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="Model.Self_call" Width="1.5" PointX="7.5" PointY="19.5" />
         <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="6.125" />
         <EntityTypeShape EntityType="Model.Сlients" Width="1.5" PointX="5.25" PointY="6.375" />
         <AssociationConnector Association="Model.FK_Basket_Bouquet" />
