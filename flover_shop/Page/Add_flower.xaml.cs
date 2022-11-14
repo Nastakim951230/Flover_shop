@@ -52,39 +52,48 @@ namespace flover_shop.Page
         private void add_flower_Click(object sender, RoutedEventArgs e)
         {
 
-            try
+            if (MessageBox.Show("Вы точно хотите добавить этот цветок?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                if (add_kolvo_flower.Text == "" || add_name_flower.Text == "" || add_price_flower.Text == "")
+
+                try
                 {
-                    MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK);
+                    if (add_kolvo_flower.Text == "" || add_name_flower.Text == "" || add_price_flower.Text == "")
+                    {
+                        MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        if (flagUpdate == false)
+                        {
+                            flow = new Flowers();
+                        }
+                        if (flagUpdate == true && path == null)
+                        {
+                            path = flow.Pfoto_flower;
+                        }
+                        flow.Name_flower = add_name_flower.Text;
+                        flow.Kolvo = Convert.ToInt32(add_kolvo_flower.Text);
+                        flow.Price = Convert.ToInt32(add_price_flower.Text);
+                        flow.Pfoto_flower = path;
+                        if (flagUpdate == false)
+                        {
+                            Base.BD.Flowers.Add(flow);
+                        }
+                        Base.BD.SaveChanges();
+                        MessageBox.Show("Информация добавлена");
+                        ClassGlav.Admin.Navigate(new Flover());
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    if (flagUpdate == false)
-                    {
-                        flow = new Flowers();
-                    }
-                    if(flagUpdate == true && path==null)
-                    {
-                        path = flow.Pfoto_flower;
-                    }
-                    flow.Name_flower = add_name_flower.Text;
-                    flow.Kolvo = Convert.ToInt32(add_kolvo_flower.Text);
-                    flow.Price = Convert.ToInt32(add_price_flower.Text);
-                    flow.Pfoto_flower = path;
-                    if (flagUpdate == false)
-                    {
-                        Base.BD.Flowers.Add(flow);
-                    }
-                    Base.BD.SaveChanges();
-                    MessageBox.Show("Информация добавлена");
-                    ClassGlav.Admin.Navigate(new Flover());
+                    MessageBox.Show("Ошибка");
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ошибка");
+
             }
+
         }
 
         private void add_photo_flower_Click(object sender, RoutedEventArgs e)

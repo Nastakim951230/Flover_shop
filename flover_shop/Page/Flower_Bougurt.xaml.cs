@@ -78,18 +78,25 @@ namespace flover_shop
 
         private void Delet_bouquet_Click(object sender, RoutedEventArgs e)
         {
+            if (MessageBox.Show("Вы точно хотите удалить этот букет?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+                int index = Convert.ToInt32(btn.Uid);  // получаем числовой Uid элемента списка (в разметке предварительно нужно связать номер ячейки с номером кота в базе данных)
 
-            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
-            int index = Convert.ToInt32(btn.Uid);  // получаем числовой Uid элемента списка (в разметке предварительно нужно связать номер ячейки с номером кота в базе данных)
 
+                // создаем объект, который содержит информацию о коте, который нужно удалить
+                Bouquet bouq = Base.BD.Bouquet.FirstOrDefault(x => x.Id_bouquet == index);
 
-            // создаем объект, который содержит информацию о коте, который нужно удалить
-            Bouquet bouq = Base.BD.Bouquet.FirstOrDefault(x => x.Id_bouquet == index);
+                Base.BD.Bouquet.Remove(bouq); // удаление кота из базы            
+                Base.BD.SaveChanges();  // сохранение изменений в базе данных
 
-            Base.BD.Bouquet.Remove(bouq); // удаление кота из базы            
-            Base.BD.SaveChanges();  // сохранение изменений в базе данных
+                ClassGlav.Admin.Navigate(new Flower_Bougurt());
+            }
+            else
+            {
 
-            ClassGlav.Admin.Navigate(new Flower_Bougurt());
+            }
+           
         }
 
         private void btnupdate_bouquet_Click(object sender, RoutedEventArgs e)

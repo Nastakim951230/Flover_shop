@@ -81,65 +81,74 @@ namespace flover_shop.Page
         private void add_bougurt_Click(object sender, RoutedEventArgs e)
         {
          
-            try
-            {
-                if (add_name_bougurt.Text == "" || add_price_bougurt.Text == "")
+            
+                if (MessageBox.Show("Вы точно хотите добавить этот букет?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK);
-                }
-                else
+                try
                 {
-                    if (bouquetUpdate == false)
+                    if (add_name_bougurt.Text == "" || add_price_bougurt.Text == "")
                     {
-                        bouq = new Bouquet();
+                        MessageBox.Show("Обязательные поля не заполнены", "Ошибка", MessageBoxButton.OK);
                     }
-                    if (bouquetUpdate == true && path_bouquet == null)
+                    else
                     {
-                        path_bouquet = bouq.Photo_bouquet;
-                    }
-                    bouq.Name_bouquet = add_name_bougurt.Text;
-                    bouq.Price = Convert.ToInt32(add_price_bougurt.Text);
-                    bouq.Photo_bouquet = path_bouquet;
-                    if (bouquetUpdate == false)
-                    {
-                        Base.BD.Bouquet.Add(bouq);
-                    }
-
-                    List<Bouquet_flowers> feed = Base.BD.Bouquet_flowers.Where(x => bouq.Id_bouquet == x.Id_bouquet).ToList();
-
-                    // если список не пустой, удаляем из него все корма для  этого кота
-                    if (feed.Count > 0)
-                    {
-                        foreach (Bouquet_flowers t in feed)
+                        if (bouquetUpdate == false)
                         {
-                            Base.BD.Bouquet_flowers.Remove(t);
+                            bouq = new Bouquet();
                         }
-                    }
-
-
-                    foreach (Flowers bf in Flower_bougurt.Items)
-                    {
-                        if (bf.kolvo > 0)
+                        if (bouquetUpdate == true && path_bouquet == null)
                         {
-                            Bouquet_flowers FCT = new Bouquet_flowers() 
+                            path_bouquet = bouq.Photo_bouquet;
+                        }
+                        bouq.Name_bouquet = add_name_bougurt.Text;
+                        bouq.Price = Convert.ToInt32(add_price_bougurt.Text);
+                        bouq.Photo_bouquet = path_bouquet;
+                        if (bouquetUpdate == false)
+                        {
+                            Base.BD.Bouquet.Add(bouq);
+                        }
+
+                        List<Bouquet_flowers> feed = Base.BD.Bouquet_flowers.Where(x => bouq.Id_bouquet == x.Id_bouquet).ToList();
+
+                        // если список не пустой, удаляем из него все корма для  этого кота
+                        if (feed.Count > 0)
+                        {
+                            foreach (Bouquet_flowers t in feed)
                             {
-                                Id_bouquet = bouq.Id_bouquet,
-                                Id_flower = bf.Id_Flower,
-                                Kolvo = bf.kolvo
-                            };
-                            Base.BD.Bouquet_flowers.Add(FCT);
+                                Base.BD.Bouquet_flowers.Remove(t);
+                            }
                         }
+
+
+                        foreach (Flowers bf in Flower_bougurt.Items)
+                        {
+                            if (bf.kolvo > 0)
+                            {
+                                Bouquet_flowers FCT = new Bouquet_flowers()
+                                {
+                                    Id_bouquet = bouq.Id_bouquet,
+                                    Id_flower = bf.Id_Flower,
+                                    Kolvo = bf.kolvo
+                                };
+                                Base.BD.Bouquet_flowers.Add(FCT);
+                            }
+                        }
+                        Base.BD.SaveChanges();
+                        MessageBox.Show("Информация добавлена");
+
+                        ClassGlav.Admin.Navigate(new Flower_Bougurt());
                     }
-                    Base.BD.SaveChanges();
-                    MessageBox.Show("Информация добавлена");
-                 
-                    ClassGlav.Admin.Navigate(new Flower_Bougurt());
                 }
-            }
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка");
             }
+        }
+                else
+                {
+
+                }
+               
         }
 
         private void Nazad_bougurt_Click(object sender, RoutedEventArgs e)

@@ -113,5 +113,40 @@ namespace flover_shop
            
             ClassGlav.perehod.Navigate(new Registratsia());
         }
+
+        private void btnUpdateUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы точно хотите удалить этого пользователя?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+            }
+            else
+            {
+
+            }
+
+        }
+
+        private void btnDeletUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы точно хотите удалить этого пользователя?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+                int index = Convert.ToInt32(btn.Uid);  // получаем числовой Uid элемента списка (в разметке предварительно нужно связать номер ячейки с номером кота в базе данных)
+
+
+                // создаем объект, который содержит информацию о коте, который нужно удалить
+                Users user = Base.BD.Users.FirstOrDefault(x => x.ID == index);
+
+                Base.BD.Users.Remove(user); // удаление кота из базы            
+                Base.BD.SaveChanges();  // сохранение изменений в базе данных
+
+                ClassGlav.Admin.Navigate(new Admin_User());
+            }
+            else
+            {
+                
+            }
+           
+        }
     }
 }
