@@ -30,6 +30,33 @@ namespace flover_shop.Page
             Flower_bougurt.ItemsSource = Base.BD.Flowers.ToList();
 
         }
+        public Add_Bougurt(Bouquet bouquet)
+        {
+            InitializeComponent();
+            uploadFields();
+            bouquetUpdate = true;  // отметка о том, что кота редактируем
+            bouq = bouquet;  // ассоциируем выше созданный глобавльный объект с объектом в кострукторе для дальнейшего редактирования этих данных
+            add_name_bougurt.Text = bouq.Name_bouquet;
+            add_price_bougurt.Text=Convert.ToString(bouq.Price);
+
+            List<Bouquet_flowers> fct = Base.BD.Bouquet_flowers.Where(x => x.Id_bouquet == bouq.Id_bouquet).ToList();
+
+            // цикл для отображения кормов и их количества для кота:
+            foreach (Flowers t in Flower_bougurt.Items)
+            {
+                if (fct.FirstOrDefault(x => x.Id_flower == t.Id_Flower) != null)
+                {
+                    t.kolvo = fct.Count;
+                }
+            }
+            if (bouq.Photo_bouquet != null)
+            {
+                BitmapImage img = new BitmapImage(new Uri(bouq.Photo_bouquet, UriKind.RelativeOrAbsolute));
+                pfoto_bougurt_add.Source = img;
+            }
+        }
+
+        
 
         public Add_Bougurt()
         {
@@ -66,6 +93,10 @@ namespace flover_shop.Page
                     {
                         bouq = new Bouquet();
                     }
+                    if (bouquetUpdate == true && path_bouquet == null)
+                    {
+                        path_bouquet = bouq.Photo_bouquet;
+                    }
                     bouq.Name_bouquet = add_name_bougurt.Text;
                     bouq.Price = Convert.ToInt32(add_price_bougurt.Text);
                     bouq.Photo_bouquet = path_bouquet;
@@ -73,11 +104,24 @@ namespace flover_shop.Page
                     {
                         Base.BD.Bouquet.Add(bouq);
                     }
+
+                    List<Bouquet_flowers> feed = Base.BD.Bouquet_flowers.Where(x => bouq.Id_bouquet == x.Id_bouquet).ToList();
+
+                    // если список не пустой, удаляем из него все корма для  этого кота
+                    if (feed.Count > 0)
+                    {
+                        foreach (Bouquet_flowers t in feed)
+                        {
+                            Base.BD.Bouquet_flowers.Remove(t);
+                        }
+                    }
+
+
                     foreach (Flowers bf in Flower_bougurt.Items)
                     {
                         if (bf.kolvo > 0)
                         {
-                            Bouquet_flowers FCT = new Bouquet_flowers()  // объект для записи в таблицу FeedCatTable
+                            Bouquet_flowers FCT = new Bouquet_flowers() 
                             {
                                 Id_bouquet = bouq.Id_bouquet,
                                 Id_flower = bf.Id_Flower,
@@ -96,6 +140,20 @@ namespace flover_shop.Page
             {
                 MessageBox.Show("Ошибка");
             }
+        }
+
+        private void Nazad_bougurt_Click(object sender, RoutedEventArgs e)
+        {
+            List<Bouquet_flowers> fct = Base.BD.Bouquet_flowers.Where(x => x.Id_bouquet == bouq.Id_bouquet).ToList();
+
+            // цикл для отображения кормов и их количества для кота:
+            foreach (Flowers t in Flower_bougurt.Items)
+            {
+
+                t.kolvo = 0;
+                
+            }
+            ClassGlav.Admin.Navigate(new Flower_Bougurt());
         }
     }
 }

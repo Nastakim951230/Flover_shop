@@ -52,10 +52,17 @@
                 </ListBox>
             </GroupBox>
         </Grid>
-        <Grid Grid.Row="2">
-            <StackPanel >
+        <Grid Grid.Row="2"  VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Button Name="Nazad_bougurt" Click="Nazad_bougurt_Click">Назад</Button>
+            </Grid>
+            <Grid Grid.Column="1">
                 <Button Name="add_bougurt" Click="add_bougurt_Click">Добавить букет</Button>
-            </StackPanel>
+            </Grid>
         </Grid>
         
     </Grid>

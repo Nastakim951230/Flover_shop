@@ -33,10 +33,18 @@
             </StackPanel>
             
         </Grid>
-        <Grid Grid.Row="2">
-            <StackPanel >
+        <Grid Grid.Row="2" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Button Name="Nazad_flower" Click="Nazad_flower_Click">Назад</Button>
+            </Grid>
+            <Grid Grid.Column="1">
                 <Button Name="add_flower" Click="add_flower_Click">Добавить цветок</Button>
-            </StackPanel>
+            </Grid>
+            
         </Grid>
     </Grid>
 </Page>

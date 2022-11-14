@@ -24,7 +24,23 @@ namespace flover_shop.Page
         Flowers flow;  // объект, в котором будет хранится данные о новом или отредактированном коте
         bool flagUpdate = false; // для определения, создаем мы новый объект или редактируем старый
         string path=null;  // путь к картинке/
-        
+
+        public Add_flower(Flowers flowers)
+        {
+
+            InitializeComponent();
+            flagUpdate = true;
+            flow = flowers;
+            add_name_flower.Text = flow.Name_flower;
+            add_kolvo_flower.Text = Convert.ToString(flow.Kolvo);
+            add_price_flower.Text= Convert.ToString(flow.Price);
+            if (flow.Pfoto_flower != null)
+            {
+                BitmapImage img = new BitmapImage(new Uri(flow.Pfoto_flower, UriKind.RelativeOrAbsolute));
+                pfoto_flower_add.Source = img;
+            }
+
+        }
         public Add_flower()
         {
 
@@ -47,6 +63,10 @@ namespace flover_shop.Page
                     if (flagUpdate == false)
                     {
                         flow = new Flowers();
+                    }
+                    if(flagUpdate == true && path==null)
+                    {
+                        path = flow.Pfoto_flower;
                     }
                     flow.Name_flower = add_name_flower.Text;
                     flow.Kolvo = Convert.ToInt32(add_kolvo_flower.Text);
@@ -78,6 +98,11 @@ namespace flover_shop.Page
             BitmapImage img = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
             pfoto_flower_add.Source = img;
 
+        }
+
+        private void Nazad_flower_Click(object sender, RoutedEventArgs e)
+        {
+            ClassGlav.Admin.Navigate(new Flover());
         }
     }
 }

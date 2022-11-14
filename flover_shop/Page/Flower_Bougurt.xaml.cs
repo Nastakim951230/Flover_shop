@@ -94,7 +94,14 @@ namespace flover_shop
 
         private void btnupdate_bouquet_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = (Button)sender;  // получаем доступ к Button из шаблона
+            int index = Convert.ToInt32(btn.Uid);   // получаем числовой Uid элемента списка (в разметке предварительно нужно связать номер ячейки с номером кота в базе данных)
 
+            // создаем объект, который содержит кота, информацию о котором нужно отредактировать
+            Bouquet bouquet = Base.BD.Bouquet.FirstOrDefault(x => x.Id_bouquet == index);
+
+            // переход на страницу с редактированием (на ту же самую, где и добавляли кота)
+            ClassGlav.Admin.Navigate(new Page.Add_Bougurt(bouquet)); // в конструктор страницы передаем объект, который был создан строкой выше
         }
     }
 }
