@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,24 @@ namespace flover_shop.Page
         Bouquet bouq;  // объект, в котором будет хранится данные о новом или отредактированном коте
         bool bouquetUpdate = false; // для определения, создаем мы новый объект или редактируем старый
         string path_bouquet = null;  // путь к картинке/
-
+        byte[] Barray=null;
         public void uploadFields()  // метод для заполнения списков
         {
             Flower_bougurt.ItemsSource = Base.BD.Flowers.ToList();
 
+        }
+        void showImage(byte[] Barray, System.Windows.Controls.Image img)
+        {
+            BitmapImage BI = new BitmapImage();  // создаем объект для загрузки изображения
+            using (MemoryStream m = new MemoryStream(Barray))  // для считывания байтового потока
+            {
+                BI.BeginInit();  // начинаем считывание
+                BI.StreamSource = m;  // задаем источник потока
+                BI.CacheOption = BitmapCacheOption.OnLoad;  // переводим изображение
+                BI.EndInit();  // заканчиваем считывание
+            }
+            img.Source = BI;  // показываем картинку на экране (imUser – имя картиник в разметке)
+            img.Stretch = Stretch.Uniform;
         }
         public Add_Bougurt(Bouquet bouquet)
         {
@@ -49,10 +63,12 @@ namespace flover_shop.Page
                     t.kolvo = fct.Count;
                 }
             }
+            List<Bouquet> u = Base.BD.Bouquet.Where(x => x.Id_bouquet == bouq.Id_bouquet).ToList();
             if (bouq.Photo_bouquet != null)
             {
-                BitmapImage img = new BitmapImage(new Uri(bouq.Photo_bouquet, UriKind.RelativeOrAbsolute));
-                pfoto_bougurt_add.Source = img;
+                byte[] Bar = u[u.Count - 1].Photo_bouquet;   
+                showImage(Bar, pfoto_bougurt_add);  
+ 
             }
         }
 
@@ -66,14 +82,32 @@ namespace flover_shop.Page
 
         private void add_photo_bougurt_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog OFD = new OpenFileDialog();  // создаем объект диалогового окна
-            OFD.ShowDialog();  // открываем диалоговое окно
-            path_bouquet = OFD.FileName;  // извлекаем полный путь к картинке
-            string[] arrayPath = path_bouquet.Split('\\');  // разделяем путь к картинке в массив
-            path_bouquet = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
+            try
+            {
+               
+                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
+                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
+                OFD.ShowDialog();  // открываем диалоговое окно             
+                path_bouquet = OFD.FileName;  // считываем путь выбранного изображения
+                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path_bouquet);  // создаем объект для загрузки изображения в базу
+                ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
+                Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
+               
+                MessageBox.Show("Фото добавлено");
+               
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+            //OpenFileDialog OFD = new OpenFileDialog();  // создаем объект диалогового окна
+            //OFD.ShowDialog();  // открываем диалоговое окно
+            //path_bouquet = OFD.FileName;  // извлекаем полный путь к картинке
+            //string[] arrayPath = path_bouquet.Split('\\');  // разделяем путь к картинке в массив
+            //path_bouquet = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
 
-            BitmapImage img = new BitmapImage(new Uri(path_bouquet, UriKind.RelativeOrAbsolute));
-            pfoto_bougurt_add.Source = img;
+            //BitmapImage img = new BitmapImage(new Uri(path_bouquet, UriKind.RelativeOrAbsolute));
+            //pfoto_bougurt_add.Source = img;
 
 
         }
@@ -96,13 +130,13 @@ namespace flover_shop.Page
                         {
                             bouq = new Bouquet();
                         }
-                        if (bouquetUpdate == true && path_bouquet == null)
+                        if (bouquetUpdate == true && Barray == null)
                         {
-                            path_bouquet = bouq.Photo_bouquet;
+                            Barray = bouq.Photo_bouquet;
                         }
                         bouq.Name_bouquet = add_name_bougurt.Text;
                         bouq.Price = Convert.ToInt32(add_price_bougurt.Text);
-                        bouq.Photo_bouquet = path_bouquet;
+                        bouq.Photo_bouquet = Barray;
                         if (bouquetUpdate == false)
                         {
                             Base.BD.Bouquet.Add(bouq);

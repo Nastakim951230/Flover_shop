@@ -21,7 +21,7 @@
           <Property Name="Id_bouquet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_bouquet" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Photo_bouquet" Type="nvarchar(max)" />
+          <Property Name="Photo_bouquet" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Bouquet_flowers">
           <Key>
@@ -72,7 +72,7 @@
           <Property Name="Name_flower" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Kolvo" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
-          <Property Name="Pfoto_flower" Type="nvarchar(max)" />
+          <Property Name="Pfoto_flower" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Liked">
           <Key>
@@ -508,7 +508,7 @@
           <Property Name="Id_bouquet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name_bouquet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Photo_bouquet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo_bouquet" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Bouquet" FromRole="Bouquet" ToRole="Basket" />
           <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Bouquet" FromRole="Bouquet" ToRole="Bouquet_flowers" />
           <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Bouquet" FromRole="Bouquet" ToRole="Featured" />
@@ -570,7 +570,7 @@
           <Property Name="Name_flower" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Kolvo" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Pfoto_flower" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pfoto_flower" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Flowers" ToRole="Bouquet_flowers" />
         </EntityType>
         <EntityType Name="Liked">

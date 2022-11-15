@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -153,6 +154,7 @@
     <Compile Include="Page\Hat_menu_admin.xaml.cs">
       <DependentUpon>Hat_menu_admin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\ImageConverter.cs" />
     <Compile Include="Page\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
@@ -177,6 +179,7 @@
     <Compile Include="Self_call.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="System\Drawing\Image.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
