@@ -67,7 +67,33 @@ namespace flover_shop.Page
             
         }
 
-      
+        private byte[] photo()
+        {
+            try
+            {
+                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
+                                                            //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
+                OFD.ShowDialog();  // открываем диалоговое окно             
+                path = OFD.FileName;  // считываем путь выбранного изображения
+
+                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
+                ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
+                Barray_flower = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
+                showImage(Barray_flower, pfoto_flower_add);
+                return Barray_flower;
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так");
+                return null;
+            }
+        }
+        private void add_photo_flower_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            photo();
+        }
         private void add_flower_Click(object sender, RoutedEventArgs e)
         {
 
@@ -114,39 +140,7 @@ namespace flover_shop.Page
             }
 
         }
-
-        private void add_photo_flower_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
-                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
-                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
-                OFD.ShowDialog();  // открываем диалоговое окно             
-                path = OFD.FileName;  // считываем путь выбранного изображения
-               
-                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
-                ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
-                byte[] Barray_flower = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
-                showImage(Barray_flower, pfoto_flower_add);
-                MessageBox.Show("Фото добавлено");
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Что-то пошло не так");
-            }
-            //OpenFileDialog OFD = new OpenFileDialog();  // создаем объект диалогового окна
-            //OFD.ShowDialog();  // открываем диалоговое окно
-            //path = OFD.FileName;  // извлекаем полный путь к картинке
-            //string[] arrayPath = path.Split('\\');  // разделяем путь к картинке в массив
-            //path = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
-
-            //BitmapImage img = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
-            //pfoto_flower_add.Source = img;
-
-        }
+     
 
         private void Nazad_flower_Click(object sender, RoutedEventArgs e)
         {

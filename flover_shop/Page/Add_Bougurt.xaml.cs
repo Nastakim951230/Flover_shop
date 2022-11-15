@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -80,34 +81,32 @@ namespace flover_shop.Page
             uploadFields();
         }
 
-        private void add_photo_bougurt_Click(object sender, RoutedEventArgs e)
+        private byte[] photo_bouque()
         {
             try
             {
-               
                 OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
-                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
+                                                            //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
                 OFD.ShowDialog();  // открываем диалоговое окно             
                 path_bouquet = OFD.FileName;  // считываем путь выбранного изображения
                 System.Drawing.Image SDI = System.Drawing.Image.FromFile(path_bouquet);  // создаем объект для загрузки изображения в базу
                 ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
                 Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
-               
-                MessageBox.Show("Фото добавлено");
-               
+                showImage(Barray, pfoto_bougurt_add);
+                return Barray;
             }
             catch
-            {
+            { 
                 MessageBox.Show("Что-то пошло не так");
+                return null;
+                   
             }
-            //OpenFileDialog OFD = new OpenFileDialog();  // создаем объект диалогового окна
-            //OFD.ShowDialog();  // открываем диалоговое окно
-            //path_bouquet = OFD.FileName;  // извлекаем полный путь к картинке
-            //string[] arrayPath = path_bouquet.Split('\\');  // разделяем путь к картинке в массив
-            //path_bouquet = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
+        }
+        private void add_photo_bougurt_Click(object sender, RoutedEventArgs e)
+        {
+            photo_bouque();
 
-            //BitmapImage img = new BitmapImage(new Uri(path_bouquet, UriKind.RelativeOrAbsolute));
-            //pfoto_bougurt_add.Source = img;
+
 
 
         }
