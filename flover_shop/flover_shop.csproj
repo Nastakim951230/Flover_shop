@@ -161,6 +161,9 @@
     <Compile Include="Page\Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Personal_area.xaml.cs">
+      <DependentUpon>Personal_area.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Self_call.xaml.cs">
       <DependentUpon>Self_call.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Page\Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\Personal_area.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

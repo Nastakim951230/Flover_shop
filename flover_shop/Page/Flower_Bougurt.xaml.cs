@@ -78,7 +78,7 @@ namespace flover_shop
 
         private void Delet_bouquet_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы точно хотите удалить этот букет?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Вы точно хотите удалить этот букет?", "Вопрос", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Button btn = (Button)sender;  // получаем доступ к Button из шаблона
                 int index = Convert.ToInt32(btn.Uid);  // получаем числовой Uid элемента списка (в разметке предварительно нужно связать номер ячейки с номером кота в базе данных)

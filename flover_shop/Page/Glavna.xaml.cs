@@ -20,11 +20,22 @@ namespace flover_shop
     /// </summary>
     public partial class Glavna 
     {
+        public static int id_role;
         public Glavna()
         {
             InitializeComponent();
-            Flower.Navigate(new Flower_Bougurt());
-            ClassGlav.Glav = Flower;
+            if(id_role == 2)
+            {
+                Flower.Navigate(new Page.Personal_area());
+                ClassGlav.Glav = Flower;
+            }
+            else
+            {
+                Flower.Navigate(new Flower_Bougurt());
+                ClassGlav.Glav = Flower;
+            }
+          
+            
         }
     }
 }

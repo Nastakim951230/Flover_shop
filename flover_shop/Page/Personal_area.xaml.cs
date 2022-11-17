@@ -13,27 +13,31 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace flover_shop
+namespace flover_shop.Page
 {
     /// <summary>
-    /// Логика взаимодействия для Hat.xaml
+    /// Логика взаимодействия для Personal_area.xaml
     /// </summary>
-    public partial class Hat 
+    public partial class Personal_area 
     {
-        public Hat()
+        public Personal_area()
         {
             InitializeComponent();
-            Registratsia.id_role = 0;
-            Glavna.id_role = 0;
-        }
-        private void Registration_Click(object sender, RoutedEventArgs e)
-        {
-           ClassGlav.perehod.Navigate(new Registratsia());
         }
 
-        private void Entrance_Click(object sender, RoutedEventArgs e)
+        private void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            ClassGlav.perehod.Navigate(new Input());
+
+        }
+
+        private void AddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPhotosListView_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

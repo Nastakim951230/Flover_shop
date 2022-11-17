@@ -97,7 +97,7 @@ namespace flover_shop.Page
         private void add_flower_Click(object sender, RoutedEventArgs e)
         {
 
-            if (MessageBox.Show("Вы точно хотите добавить этот цветок?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Вы точно хотите добавить этот цветок?", "Вопрос", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
 
                 try

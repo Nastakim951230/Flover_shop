@@ -20,9 +20,27 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" VerticalAlignment="Center">
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" Style="{StaticResource TextStyleZagolovok}">Цветочная лавка</TextBlock>
-            </StackPanel>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource TextStyleZagolovok}">Цветочная лавка</TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button Name="btnBoequet"  Click="btnBoequet_Click">Букет</Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button Name="PersonalArea"  Click="PersonalArea_Click">Личный кабинет</Button>
+                </Grid>
+            </Grid>
         </Grid>
         <Grid Grid.Column="2" >
             <StackPanel Orientation="Vertical">

@@ -115,7 +115,7 @@ namespace flover_shop.Page
         {
          
             
-                if (MessageBox.Show("Вы точно хотите добавить этот букет?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы точно хотите добавить этот букет?", "Вопрос", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                 try
                 {

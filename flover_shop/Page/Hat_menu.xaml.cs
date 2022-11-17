@@ -23,12 +23,24 @@ namespace flover_shop
         public Hat_menu()
         {
             InitializeComponent();
+            Glavna.id_role = 2;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             ClassGlav.shapka.Navigate(new Hat());
             ClassGlav.perehod.Navigate(new Glavna());
+        }
+
+        private void btnBoequet_Click(object sender, RoutedEventArgs e)
+        {
+            Flower_Bougurt.id_role = 2;
+            ClassGlav.Glav.Navigate(new Flower_Bougurt());
+        }
+
+        private void PersonalArea_Click(object sender, RoutedEventArgs e)
+        {
+            ClassGlav.Glav.Navigate(new Page.Personal_area());
         }
     }
 }
