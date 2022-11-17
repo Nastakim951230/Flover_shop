@@ -17,6 +17,17 @@
         <Grid Grid.Column="0">
 
             <StackPanel>
+                <StackPanel>
+                    <Menu Height="20" Width="20" HorizontalAlignment="Left">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source=""></Image>
+                                </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
                 <Image Height="200" Width="200" Name="imUser" VerticalAlignment="Top" Margin="25,10,25,0" Source="../Image/not-image.png"/>
 
                 <Button Name="ChangePhoto" Click="ChangePhoto_Click">Изменить фотографию</Button>

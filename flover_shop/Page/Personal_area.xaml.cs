@@ -39,5 +39,10 @@ namespace flover_shop.Page
         {
 
         }
+
+        private void menu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
