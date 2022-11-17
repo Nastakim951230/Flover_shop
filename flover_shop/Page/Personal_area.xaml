@@ -22,7 +22,7 @@
                         <MenuItem>
                             <MenuItem.Header>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source=""></Image>
+                                    <Image Source=""></Image >
                                 </StackPanel>
                             </MenuItem.Header>
                         </MenuItem>
