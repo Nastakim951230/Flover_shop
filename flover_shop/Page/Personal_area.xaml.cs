@@ -44,5 +44,10 @@ namespace flover_shop.Page
         {
 
         }
+
+        private void Add_Photos_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

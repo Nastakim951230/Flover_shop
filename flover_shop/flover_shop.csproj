@@ -325,6 +325,7 @@
       <DependentUpon>BaseData.edmx</DependentUpon>
       <LastGenOutput>BaseData.cs</LastGenOutput>
     </Content>
+    <Resource Include="Image\три_точки.png" />
     <Resource Include="Image\Ирис.jpg" />
     <Resource Include="Image\not-image.png" />
     <Resource Include="Image\search.png" />

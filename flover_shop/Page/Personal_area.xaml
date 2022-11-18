@@ -9,8 +9,12 @@
       Title="Personal_area">
 
     <Grid>
-        
-        <Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -18,17 +22,20 @@
 
             <StackPanel>
                 <StackPanel>
-                    <Menu Height="20" Width="20" HorizontalAlignment="Left">
+                    <Menu Height="20" Width="20" HorizontalAlignment="Left" >
                         <MenuItem>
-                            <MenuItem.Header>
+                            <MenuItem.Header >
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source=""></Image >
+                                    <Image Source="../Image/три_точки.png"></Image >
                                 </StackPanel>
+                                
                             </MenuItem.Header>
+                            <MenuItem Header="Личные данные"></MenuItem>
+                            <MenuItem Header="Пароли"></MenuItem>
                         </MenuItem>
                     </Menu>
                 </StackPanel>
-                <Image Height="200" Width="200" Name="imUser" VerticalAlignment="Top" Margin="25,10,25,0" Source="../Image/not-image.png"/>
+                <Image Height="120" Width="120" Name="imUser" VerticalAlignment="Top" Margin="25,10,25,0" Source="../Image/not-image.png"/>
 
                 <Button Name="ChangePhoto" Click="ChangePhoto_Click">Изменить фотографию</Button>
                 <Button Name="AddPhoto" Click="AddPhoto_Click">Добавить фотографию</Button>
@@ -36,7 +43,22 @@
 
         </Grid>
         <Grid Grid.Column="1">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="25"/>
+              
+            </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    
+                </Grid> 
+            <Grid Grid.Row="1">
+                    <StackPanel VerticalAlignment="Center" Margin="0,0,0,1">
+                        <Button Name="Add_Photos" Click="Add_Photos_Click" >Оубликовать</Button>
+                    </StackPanel>
+                </Grid>
         </Grid>
+        </Grid>
+        <Grid Grid.Row="1"></Grid>
+       
     </Grid>
 </Page>
