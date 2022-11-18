@@ -24,6 +24,7 @@ namespace flover_shop
         {
             InitializeComponent();
             Flowersof.ItemsSource = Base.BD.Flowers.ToList();
+
             
         }
 

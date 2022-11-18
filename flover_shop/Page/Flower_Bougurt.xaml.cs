@@ -30,17 +30,17 @@ namespace flover_shop
             if (id_role==2)
             {
                 Add_Bouquet.Visibility = Visibility.Collapsed;
-                
-
-
+                Bouquet.btn_admin= Visibility.Collapsed;
             }
             if (id_role==1)
             {
                 Add_Bouquet.Visibility = Visibility.Visible;
+                Bouquet.btn_admin = Visibility.Visible;
             }
             if (vyhod==3)
             {
                 Add_Bouquet.Visibility = Visibility.Collapsed;
+                Bouquet.btn_admin = Visibility.Collapsed;
             }
             
             
