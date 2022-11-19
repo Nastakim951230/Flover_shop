@@ -74,6 +74,15 @@
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Pfoto_flower" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id_Photo" />
+          </Key>
+          <Property Name="Id_Photo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Client" Type="int" Nullable="false" />
+          <Property Name="Path" Type="nvarchar(max)" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Liked">
           <Key>
             <PropertyRef Name="Id_Liked" />
@@ -134,7 +143,7 @@
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
           <Property Name="email" Type="nvarchar(max)" />
-          <Property Name="image" Type="nvarchar(max)" />
+          <Property Name="image" Type="int" />
           <Property Name="points" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Basket_Bouquet">
@@ -215,6 +224,18 @@
               <PropertyRef Name="Id_clients" />
             </Principal>
             <Dependent Role="Featured">
+              <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Сlients">
+          <End Role="Сlients" Type="Self.Сlients" Multiplicity="1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сlients">
+              <PropertyRef Name="Id_clients" />
+            </Principal>
+            <Dependent Role="Image">
               <PropertyRef Name="Id_Client" />
             </Dependent>
           </ReferentialConstraint>
@@ -342,6 +363,7 @@
           <EntitySet Name="Featured" EntityType="Self.Featured" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Floor_gender" EntityType="Self.Floor_gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Flowers" EntityType="Self.Flowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Liked" EntityType="Self.Liked" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role_user_admin" EntityType="Self.Role_user_admin" Schema="dbo" store:Type="Tables" />
@@ -371,6 +393,10 @@
           <AssociationSet Name="FK_Featured_Сlients" Association="Self.FK_Featured_Сlients">
             <End Role="Сlients" EntitySet="Сlients" />
             <End Role="Featured" EntitySet="Featured" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Сlients" Association="Self.FK_Image_Сlients">
+            <End Role="Сlients" EntitySet="Сlients" />
+            <End Role="Image" EntitySet="Image" />
           </AssociationSet>
           <AssociationSet Name="FK_Liked_Bouquet" Association="Self.FK_Liked_Bouquet">
             <End Role="Bouquet" EntitySet="Bouquet" />
@@ -422,6 +448,7 @@
           <EntitySet Name="Featured" EntityType="Model.Featured" />
           <EntitySet Name="Floor_gender" EntityType="Model.Floor_gender" />
           <EntitySet Name="Flowers" EntityType="Model.Flowers" />
+          <EntitySet Name="Image" EntityType="Model.Image" />
           <EntitySet Name="Liked" EntityType="Model.Liked" />
           <EntitySet Name="Payment" EntityType="Model.Payment" />
           <EntitySet Name="Role_user_admin" EntityType="Model.Role_user_admin" />
@@ -471,6 +498,10 @@
           <AssociationSet Name="FK_Users_Floor_gender" Association="Model.FK_Users_Floor_gender">
             <End Role="Floor_gender" EntitySet="Floor_gender" />
             <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Сlients" Association="Model.FK_Image_Сlients">
+            <End Role="Сlients" EntitySet="Сlients" />
+            <End Role="Image" EntitySet="Image" />
           </AssociationSet>
           <AssociationSet Name="FK_Liked_Сlients" Association="Model.FK_Liked_Сlients">
             <End Role="Сlients" EntitySet="Сlients" />
@@ -573,6 +604,16 @@
           <Property Name="Pfoto_flower" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Bouquet_flowers" Relationship="Model.FK_Bouquet_flowers_Flowers" FromRole="Flowers" ToRole="Bouquet_flowers" />
         </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id_Photo" />
+          </Key>
+          <Property Name="Id_Photo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Client" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Сlients" Relationship="Model.FK_Image_Сlients" FromRole="Image" ToRole="Сlients" />
+        </EntityType>
         <EntityType Name="Liked">
           <Key>
             <PropertyRef Name="Id_Liked" />
@@ -644,10 +685,11 @@
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="Telefon" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="Int32" />
           <Property Name="points" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Сlients" FromRole="Сlients" ToRole="Basket" />
           <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Сlients" FromRole="Сlients" ToRole="Featured" />
+          <NavigationProperty Name="Image1" Relationship="Model.FK_Image_Сlients" FromRole="Сlients" ToRole="Image" />
           <NavigationProperty Name="Liked" Relationship="Model.FK_Liked_Сlients" FromRole="Сlients" ToRole="Liked" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
         </EntityType>
@@ -795,6 +837,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Image_Сlients">
+          <End Type="Model.Сlients" Role="Сlients" Multiplicity="1" />
+          <End Type="Model.Image" Role="Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сlients">
+              <PropertyRef Name="Id_clients" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Liked_Сlients">
           <End Type="Model.Сlients" Role="Сlients" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -927,6 +981,16 @@
                 <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
                 <ScalarProperty Name="Name_flower" ColumnName="Name_flower" />
                 <ScalarProperty Name="Id_Flower" ColumnName="Id_Flower" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Image">
+            <EntityTypeMapping TypeName="Model.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="Image1" ColumnName="Image" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
+                <ScalarProperty Name="Id_Photo" ColumnName="Id_Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

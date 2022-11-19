@@ -19,6 +19,7 @@ namespace flover_shop
         {
             this.Basket = new HashSet<Basket>();
             this.Featured = new HashSet<Featured>();
+            this.Image1 = new HashSet<Image>();
             this.Liked = new HashSet<Liked>();
         }
     
@@ -26,13 +27,15 @@ namespace flover_shop
         public int id_user { get; set; }
         public string Telefon { get; set; }
         public string email { get; set; }
-        public string image { get; set; }
+        public Nullable<int> image { get; set; }
         public int points { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Basket> Basket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Featured> Featured { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Image1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Liked> Liked { get; set; }
         public virtual Users Users { get; set; }

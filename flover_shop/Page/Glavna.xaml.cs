@@ -21,11 +21,13 @@ namespace flover_shop
     public partial class Glavna 
     {
         public static int id_role;
+       
         public Glavna()
         {
             InitializeComponent();
             if(id_role == 2)
             {
+              
                 Flower.Navigate(new Page.Personal_area());
                 ClassGlav.Glav = Flower;
             }

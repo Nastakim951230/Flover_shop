@@ -78,6 +78,9 @@
     <Compile Include="Delivery_type.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>BaseData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Liked.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>

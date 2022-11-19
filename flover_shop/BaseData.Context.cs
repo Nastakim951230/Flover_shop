@@ -33,6 +33,7 @@ namespace flover_shop
         public virtual DbSet<Featured> Featured { get; set; }
         public virtual DbSet<Floor_gender> Floor_gender { get; set; }
         public virtual DbSet<Flowers> Flowers { get; set; }
+        public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Liked> Liked { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<Role_user_admin> Role_user_admin { get; set; }

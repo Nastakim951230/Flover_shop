@@ -48,10 +48,11 @@ namespace flover_shop
                 }
                 else if (users.Role == 2)
                 {
-                   
+                    Page.Personal_area.id = users.ID;
                     ClassGlav.shapka.Navigate(new Hat_menu());
                     ClassGlav.perehod.Navigate(new Glavna());
-
+                   
+                    
                 }
             }
             else

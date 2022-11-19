@@ -217,7 +217,14 @@ namespace flover_shop
                                     
                                     client.id_user = usersadd.ID;
                                     client.Telefon = Telefon.Text;
-                                    client.email= Email.Text;
+                                    if (client.email == "")
+                                    {
+                                        client.email = null;
+                                    }
+                                    else
+                                    {
+                                        client.email = Email.Text;
+                                    }
                                     client.image = null;
                                     client.points = 0;
                                   
@@ -278,7 +285,15 @@ namespace flover_shop
                                 
                                 client.id_user = usersadd.ID;
                                 client.Telefon = Telefon.Text;
-                                client.email = Email.Text;
+                                if(client.email=="")
+                                {
+                                    client.email = null;
+                                }
+                                else
+                                {
+                                    client.email = Email.Text;
+                                }
+                               
                                 client.image = null;
                                 client.points = 0;
                                 
