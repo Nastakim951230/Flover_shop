@@ -49,6 +49,16 @@
               
             </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Name="Fio" Style="{StaticResource TBMaska}"></TextBlock>
+                        
+                    </Grid>
                     
                 </Grid> 
             <Grid Grid.Row="1">
