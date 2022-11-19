@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,7 @@ namespace flover_shop.Page
        
         public static int id;
 
+        Сlients client;
         // метод для отображения изображения в личном кабинете. первый аргумент - байтовый массив, в котором хранится изображение в БД, второй аргумент - имя изображения в разметке
         void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
@@ -56,26 +59,31 @@ namespace flover_shop.Page
                 }
                 
                 List<Сlients> FCT = Base.BD.Сlients.Where(x => x.id_user == id).ToList();
+                
                 foreach (Сlients ftc in FCT)
                 {
-                    telefo.Text = "Номер телефона: " + ftc.Telefon;
-                    if (ftc.email == null)
-                    {
-                        email.Text = "Email:Данные отсутствуют";
-                    }
-                    else
-                    {
-                        email.Text = "Email: " + ftc.email;
-                    }
-                    ball.Text = "Ваши баллы: " + ftc.points;
-                    List<Image> k = Base.BD.Image.Where(x => x.Id_Client == ftc.Id_clients).ToList();
-                    if (k.Count !=0 )  // если список с фото не пустой, начинает переводить байтовый массив в изображение
-                    {
-
-                        byte[] Bar = k[k.Count - 1].Image1;   // считываем изображение из базы (считываем байтовый массив двоичных данных) - выбираем последнее добавленное изображение
-                        showImage(Bar, imUser);  // отображаем картинку
-                    }
+                    client = ftc;
+                  
                 }
+                telefo.Text = "Номер телефона: " + client.Telefon;
+                if (client.email == null)
+                {
+                    email.Text = "Email:Данные отсутствуют";
+                }
+                else
+                {
+                    email.Text = "Email: " + client.email;
+                }
+                ball.Text = "Ваши баллы: " + client.points;
+                List<Image> k = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
+                if (k.Count != 0)  // если список с фото не пустой, начинает переводить байтовый массив в изображение
+                {
+
+                    byte[] Bar = k[k.Count - 1].Image1;   // считываем изображение из базы (считываем байтовый массив двоичных данных) - выбираем последнее добавленное изображение
+                    showImage(Bar, imUser);  // отображаем картинку
+                }
+                Image.ItemsSource = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
+
             }
            
         }
@@ -83,12 +91,35 @@ namespace flover_shop.Page
         private void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
 
+            btn_izm.Visibility = Visibility.Visible;
         }
 
         private void AddPhoto_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Image u = new Image();  // создание объекта для добавления записи в таблицу, где хранится фото
+                u.Id_Client = client.Id_clients;  // присваиваем значение полю idUser (id авторизованного пользователя)
 
-        }
+                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
+                //OFD.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);  // выбор папки для открытия
+                OFD.ShowDialog();  // открываем диалоговое окно             
+                string path = OFD.FileName;  // считываем путь выбранного изображения
+                System.Drawing.Image SDI = System.Drawing.Image.FromFile(path);  // создаем объект для загрузки изображения в базу
+                ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
+                byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
+                u.Image1 = Barray;  // заполяем поле photoBinary полученным байтовым массивом
+                Base.BD.Image.Add(u);  // добавляем объект в таблицу БД
+                Base.BD.SaveChanges();  // созраняем изменения в БД
+                MessageBox.Show("Фотография добавлена");
+                ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
+
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+}
 
         private void AddPhotosListView_Click(object sender, RoutedEventArgs e)
         {
@@ -101,6 +132,41 @@ namespace flover_shop.Page
         }
 
         private void Add_Photos_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
+                OFD.Multiselect = true;  // открытие диалогового окна с возможностью выбора нескольких элементов
+                if (OFD.ShowDialog() == true)  // пока диалоговое окно открыто, будет в цикле записывать каждое выбранное изображение в БД
+                {
+                    foreach (string file in OFD.FileNames)  // цикл организован по именам выбранных файлов
+                    {
+                        Image u = new Image();  // создание объекта для добавления записи в таблицу, где хранится фото
+                        u.Id_Client = client.Id_clients;  // присваиваем значение полю idUser (id авторизованного пользователя)
+                        string path = file;  // считываем путь выбранного изображения
+                        System.Drawing.Image SDI = System.Drawing.Image.FromFile(file);  // создаем объект для загрузки изображения в базу
+                        ImageConverter IC = new ImageConverter();  // создаем конвертер для перевода картинки в двоичный формат
+                        byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
+                        u.Image1 = Barray;  // заполяем поле photoBinary полученным байтовым массивом
+                        Base.BD.Image.Add(u);  // добавляем объект в таблицу БД
+                    }
+                    Base.BD.SaveChanges();
+                    MessageBox.Show("Фотографии добавлены");
+                    ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так");
+            }
+        }
+
+        private void Izmenenie_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void izmenit_Click(object sender, RoutedEventArgs e)
         {
 
         }

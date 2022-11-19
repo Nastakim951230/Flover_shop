@@ -225,7 +225,7 @@ namespace flover_shop
                                     {
                                         client.email = Email.Text;
                                     }
-                                    client.image = null;
+                                   
                                     client.points = 0;
                                   
                                         Base.BD.Сlients.Add(client);
@@ -294,7 +294,7 @@ namespace flover_shop
                                     client.email = Email.Text;
                                 }
                                
-                                client.image = null;
+                               
                                 client.points = 0;
                                 
                                     Base.BD.Сlients.Add(client);

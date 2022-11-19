@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -45,7 +46,7 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="25"/>
+                <RowDefinition Height="30"/>
               
             </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
@@ -76,15 +77,45 @@
                 </Grid> 
             <Grid Grid.Row="1">
                     <StackPanel VerticalAlignment="Center" Margin="0,0,0,1">
-                        <Button Name="Add_Photos" Click="Add_Photos_Click" >Оубликовать</Button>
+                        <Button Name="Add_Photos" Click="Add_Photos_Click" >Опубликовать</Button>
                     </StackPanel>
                 </Grid>
         </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListView Visibility="Collapsed">
-                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Name="btn_izm" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center">
+                    <Button Name="izmenit" Click="izmenit_Click">Выбрать фото</Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+        
+            <ListView Name="Image" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center">
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="5" CornerRadius="10" BorderThickness="1" BorderBrush="#FFE25ED5" Background="#FFF9DFF5">
+                            <Grid Width="150" Height="150">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <Image Width="130" Height="130" Source="{Binding Image1}"></Image>
+                                    
+
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
+            </Grid>
         </Grid>
        
     </Grid>

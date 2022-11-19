@@ -143,7 +143,6 @@
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
           <Property Name="email" Type="nvarchar(max)" />
-          <Property Name="image" Type="int" />
           <Property Name="points" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Basket_Bouquet">
@@ -685,11 +684,10 @@
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="Telefon" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="image" Type="Int32" />
           <Property Name="points" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Basket" Relationship="Model.FK_Basket_Сlients" FromRole="Сlients" ToRole="Basket" />
           <NavigationProperty Name="Featured" Relationship="Model.FK_Featured_Сlients" FromRole="Сlients" ToRole="Featured" />
-          <NavigationProperty Name="Image1" Relationship="Model.FK_Image_Сlients" FromRole="Сlients" ToRole="Image" />
+          <NavigationProperty Name="Image" Relationship="Model.FK_Image_Сlients" FromRole="Сlients" ToRole="Image" />
           <NavigationProperty Name="Liked" Relationship="Model.FK_Liked_Сlients" FromRole="Сlients" ToRole="Liked" />
           <NavigationProperty Name="Users" Relationship="Model.FK_Сlients_Users1" FromRole="Сlients" ToRole="Users" />
         </EntityType>
@@ -1055,7 +1053,6 @@
             <EntityTypeMapping TypeName="Model.Сlients">
               <MappingFragment StoreEntitySet="Сlients">
                 <ScalarProperty Name="points" ColumnName="points" />
-                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />

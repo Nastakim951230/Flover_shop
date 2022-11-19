@@ -157,7 +157,6 @@
     <Compile Include="Page\Hat_menu_admin.xaml.cs">
       <DependentUpon>Hat_menu_admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Page\ImageConverter.cs" />
     <Compile Include="Page\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
