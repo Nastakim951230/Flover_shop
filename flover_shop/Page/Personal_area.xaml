@@ -83,18 +83,8 @@
         </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Name="btn_izm" Visibility="Collapsed">
-                <StackPanel VerticalAlignment="Center">
-                    <Button Name="izmenit" Click="izmenit_Click">Выбрать фото</Button>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="1">
-        
-            <ListView Name="Image" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <ListView Name="Images" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center">
@@ -104,19 +94,18 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border Padding="5" CornerRadius="10" BorderThickness="1" BorderBrush="#FFE25ED5" Background="#FFF9DFF5">
-                            <Grid Width="150" Height="150">
+                            <Grid Width="150" Height="160">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                                     <Image Width="130" Height="130" Source="{Binding Image1}"></Image>
-                                    
-
+                                    <StackPanel>
+                                        <Button Uid="{Binding Id_Photo}" Visibility="{Binding btn_image}" Name="Izmenenie" Click="izmenit_Click">Выбрать фото</Button>
+                                    </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            </Grid>
         </Grid>
-       
     </Grid>
 </Page>

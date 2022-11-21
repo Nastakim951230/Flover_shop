@@ -25,8 +25,9 @@ namespace flover_shop.Page
     {
        
         public static int id;
-
+        public static int IzmenenieFoto;
         Сlients client;
+        
         // метод для отображения изображения в личном кабинете. первый аргумент - байтовый массив, в котором хранится изображение в БД, второй аргумент - имя изображения в разметке
         void showImage(byte[] Barray, System.Windows.Controls.Image img)
         {
@@ -82,8 +83,8 @@ namespace flover_shop.Page
                     byte[] Bar = k[k.Count - 1].Image1;   // считываем изображение из базы (считываем байтовый массив двоичных данных) - выбираем последнее добавленное изображение
                     showImage(Bar, imUser);  // отображаем картинку
                 }
-                Image.ItemsSource = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
-
+                Images.ItemsSource = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
+            
             }
            
         }
@@ -91,13 +92,16 @@ namespace flover_shop.Page
         private void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
 
-            btn_izm.Visibility = Visibility.Visible;
+            Image.btn_image = Visibility.Visible;
+            Images.ItemsSource = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
         }
 
         private void AddPhoto_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+               
+
                 Image u = new Image();  // создание объекта для добавления записи в таблицу, где хранится фото
                 u.Id_Client = client.Id_clients;  // присваиваем значение полю idUser (id авторизованного пользователя)
 
@@ -110,8 +114,9 @@ namespace flover_shop.Page
                 byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
                 u.Image1 = Barray;  // заполяем поле photoBinary полученным байтовым массивом
                 Base.BD.Image.Add(u);  // добавляем объект в таблицу БД
-                Base.BD.SaveChanges();  // созраняем изменения в БД
+            
                 MessageBox.Show("Фотография добавлена");
+                
                 ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
 
             }
@@ -119,7 +124,7 @@ namespace flover_shop.Page
             {
                 MessageBox.Show("Что-то пошло не так");
             }
-}
+        }
 
         private void AddPhotosListView_Click(object sender, RoutedEventArgs e)
         {
@@ -135,6 +140,17 @@ namespace flover_shop.Page
         {
             try
             {
+                List<Image> images = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
+                int id = images[images.Count - 1].Id_Photo;
+                string pathbase = images[images.Count - 1].Path;
+                byte[] img = images[images.Count - 1].Image1;
+
+                Image imag = Base.BD.Image.FirstOrDefault(x => x.Id_Photo == id);
+
+                Base.BD.Image.Remove(imag); // удаление кота из базы            
+                Base.BD.SaveChanges();  // сохранение изменений в базе данных
+
+
                 OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
                 OFD.Multiselect = true;  // открытие диалогового окна с возможностью выбора нескольких элементов
                 if (OFD.ShowDialog() == true)  // пока диалоговое окно открыто, будет в цикле записывать каждое выбранное изображение в БД
@@ -152,6 +168,13 @@ namespace flover_shop.Page
                     }
                     Base.BD.SaveChanges();
                     MessageBox.Show("Фотографии добавлены");
+
+                    Image imagesBase = new Image();
+                    imagesBase.Id_Client = client.Id_clients;
+                    imagesBase.Path = pathbase;
+                    imagesBase.Image1 = img;
+                    Base.BD.Image.Add(imagesBase);  // добавляем объект в таблицу БД
+                    Base.BD.SaveChanges();
                     ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
                 }
             }
@@ -161,14 +184,29 @@ namespace flover_shop.Page
             }
         }
 
-        private void Izmenenie_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
 
         private void izmenit_Click(object sender, RoutedEventArgs e)
         {
+            Button tb = (Button)sender;
+            int index = Convert.ToInt32(tb.Uid);
+            List<Image> images = Base.BD.Image.Where(x => x.Id_Photo == index).ToList();
+            string pathbase = images[images.Count - 1].Path;
+            byte[] img = images[images.Count - 1].Image1;
 
+            Image imag = Base.BD.Image.FirstOrDefault(x => x.Id_Photo == index);
+
+            Base.BD.Image.Remove(imag); // удаление кота из базы            
+            Base.BD.SaveChanges();  // сохранение изменений в базе данных
+
+            Image imagesBase = new Image();
+            imagesBase.Id_Client = client.Id_clients;
+            imagesBase.Path = pathbase;
+            imagesBase.Image1 = img;
+            Base.BD.Image.Add(imagesBase);  // добавляем объект в таблицу БД
+            Base.BD.SaveChanges();
+            Image.btn_image=Visibility.Collapsed;
+            ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
         }
     }
 }

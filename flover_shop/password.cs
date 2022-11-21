@@ -11,6 +11,7 @@ namespace flover_shop
     {
         public static string HasPassword(string password)
         {
+           
             MD5 md5 = MD5.Create();
             byte[] b= Encoding.ASCII.GetBytes(password);
             byte[] has= md5.ComputeHash(b);
@@ -21,6 +22,7 @@ namespace flover_shop
                 sb.Append(a.ToString("X2"));
             }
             return Convert.ToString(sb);
+           
         }
     }
 }

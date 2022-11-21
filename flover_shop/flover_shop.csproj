@@ -81,6 +81,7 @@
     <Compile Include="Image.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="IzmenenieFotoUsers.cs" />
     <Compile Include="Liked.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
