@@ -31,7 +31,7 @@
                                 </StackPanel>
                                 
                             </MenuItem.Header>
-                            <MenuItem Header="Личные данные"></MenuItem>
+                            <MenuItem Header="Личные данные" Name="Dann" Click="Dann_Click"></MenuItem>
                             <MenuItem Header="Пароли"></MenuItem>
                         </MenuItem>
                     </Menu>

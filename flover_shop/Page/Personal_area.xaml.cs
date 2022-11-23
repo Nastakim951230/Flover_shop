@@ -126,15 +126,6 @@ namespace flover_shop.Page
             }
         }
 
-        private void AddPhotosListView_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void menu_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Add_Photos_Click(object sender, RoutedEventArgs e)
         {
@@ -207,6 +198,15 @@ namespace flover_shop.Page
             Base.BD.SaveChanges();
             Image.btn_image=Visibility.Collapsed;
             ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
+        }
+
+     
+
+        private void Dann_Click(object sender, RoutedEventArgs e)
+        {
+            DannPersonala windowPerson = new DannPersonala(id);  // создание объекта окна
+            windowPerson.ShowDialog(); // октрытие созданного окна (дальнейший код не будет запущен, пока окно не будет закрыто)
+            ClassGlav.Glav.Navigate(new Page.Personal_area());  // перезагрузка страницы
         }
     }
 }

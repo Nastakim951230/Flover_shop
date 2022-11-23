@@ -129,6 +129,9 @@
     <Compile Include="Floor_gender.cs">
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Page\DannPersonala.xaml.cs">
+      <DependentUpon>DannPersonala.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Delet_Updatu_bouqut.xaml.cs">
       <DependentUpon>Delet_Updatu_bouqut.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page\Admin_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\DannPersonala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

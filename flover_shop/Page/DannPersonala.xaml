@@ -1,0 +1,45 @@
+﻿<Window x:Class="flover_shop.Page.DannPersonala"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:flover_shop.Page"
+        mc:Ignorable="d"
+        Title="Изменение данных"  Height="250" Width="350">
+    <Grid Background="#FFF7F9CF">
+        <ScrollViewer>
+            <StackPanel>
+                <GroupBox Header="Имя">
+                    <TextBox Name="tbName"></TextBox>
+                </GroupBox>
+                <GroupBox Header="Фамилия">
+                    <TextBox Name="tbFamili"></TextBox>
+                </GroupBox>
+                <GroupBox Header="Отчество">
+                    <TextBox Name="tbOthestvo"></TextBox>
+                </GroupBox>
+                <GroupBox Header="Пол" >
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Name="GenderM">Муж</RadioButton>
+                        <RadioButton Name="GenderG">Жен</RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Дата рождения">
+                    <DatePicker Name="Dateofbirth"></DatePicker>
+                </GroupBox>
+                <GroupBox Header="Номер телефона">
+                    <TextBox Name="telefon"></TextBox>
+                </GroupBox>
+                <GroupBox Header="Почта:">
+                    <TextBox Name="email"></TextBox>
+                </GroupBox>
+                <StackPanel VerticalAlignment="Center">
+                    <Button Name="Izmenenie" Click="Izmenenie_Click">Изменить</Button>
+                    <Button Name="next" Click="next_Click">Назад</Button>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+     
+    </Grid>
+</Window>
