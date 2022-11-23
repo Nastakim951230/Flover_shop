@@ -164,8 +164,17 @@
     <Compile Include="Page\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\LoginPassword.xaml.cs">
+      <DependentUpon>LoginPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page\Orders.xaml.cs">
       <DependentUpon>Orders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\Password.xaml.cs">
+      <DependentUpon>Password.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page\Personal_area.xaml.cs">
       <DependentUpon>Personal_area.xaml</DependentUpon>
@@ -263,7 +272,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Page\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\LoginPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page\Orders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\Password.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

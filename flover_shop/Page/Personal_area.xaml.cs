@@ -23,7 +23,10 @@ namespace flover_shop.Page
     /// </summary>
     public partial class Personal_area 
     {
-       
+        public static int id_rol;
+        int coint;
+        string pathbase;
+        byte[] img;
         public static int id;
         public static int IzmenenieFoto;
         Сlients client;
@@ -79,9 +82,13 @@ namespace flover_shop.Page
                 List<Image> k = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
                 if (k.Count != 0)  // если список с фото не пустой, начинает переводить байтовый массив в изображение
                 {
-
+                    coint = k.Count;
                     byte[] Bar = k[k.Count - 1].Image1;   // считываем изображение из базы (считываем байтовый массив двоичных данных) - выбираем последнее добавленное изображение
                     showImage(Bar, imUser);  // отображаем картинку
+                }
+                else
+                {
+                    coint = 0;
                 }
                 Images.ItemsSource = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
             
@@ -100,7 +107,6 @@ namespace flover_shop.Page
         {
             try
             {
-               
 
                 Image u = new Image();  // создание объекта для добавления записи в таблицу, где хранится фото
                 u.Id_Client = client.Id_clients;  // присваиваем значение полю idUser (id авторизованного пользователя)
@@ -114,11 +120,16 @@ namespace flover_shop.Page
                 byte[] Barray = (byte[])IC.ConvertTo(SDI, typeof(byte[]));  // создаем байтовый массив для хранения картинки
                 u.Image1 = Barray;  // заполяем поле photoBinary полученным байтовым массивом
                 Base.BD.Image.Add(u);  // добавляем объект в таблицу БД
-            
+                Base.BD.SaveChanges();
                 MessageBox.Show("Фотография добавлена");
-                
-                ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
-
+                if (id_rol == 1)
+                {
+                    ClassGlav.Admin.Navigate(new Page.Personal_area());  // перезагружаем страницу
+                }
+                else if (id_rol == 2)
+                {
+                    ClassGlav.Glav.Navigate(new Page.Personal_area());
+                }// перезагружаем страницу
             }
             catch
             {
@@ -131,16 +142,18 @@ namespace flover_shop.Page
         {
             try
             {
-                List<Image> images = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
-                int id = images[images.Count - 1].Id_Photo;
-                string pathbase = images[images.Count - 1].Path;
-                byte[] img = images[images.Count - 1].Image1;
+                if (coint != 0)
+                {
+                    List<Image> images = Base.BD.Image.Where(x => x.Id_Client == client.Id_clients).ToList();
+                    int id = images[images.Count - 1].Id_Photo;
+                     pathbase = images[images.Count - 1].Path;
+                    img = images[images.Count - 1].Image1;
 
-                Image imag = Base.BD.Image.FirstOrDefault(x => x.Id_Photo == id);
+                    Image imag = Base.BD.Image.FirstOrDefault(x => x.Id_Photo == id);
 
-                Base.BD.Image.Remove(imag); // удаление кота из базы            
-                Base.BD.SaveChanges();  // сохранение изменений в базе данных
-
+                    Base.BD.Image.Remove(imag); // удаление кота из базы            
+                    Base.BD.SaveChanges();  // сохранение изменений в базе данных
+                }
 
                 OpenFileDialog OFD = new OpenFileDialog();  // создаем диалоговое окно
                 OFD.Multiselect = true;  // открытие диалогового окна с возможностью выбора нескольких элементов
@@ -159,14 +172,24 @@ namespace flover_shop.Page
                     }
                     Base.BD.SaveChanges();
                     MessageBox.Show("Фотографии добавлены");
-
-                    Image imagesBase = new Image();
-                    imagesBase.Id_Client = client.Id_clients;
-                    imagesBase.Path = pathbase;
-                    imagesBase.Image1 = img;
-                    Base.BD.Image.Add(imagesBase);  // добавляем объект в таблицу БД
-                    Base.BD.SaveChanges();
-                    ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
+                    if (coint != 0)
+                    {
+                        Image imagesBase = new Image();
+                        imagesBase.Id_Client = client.Id_clients;
+                        imagesBase.Path = pathbase;
+                        imagesBase.Image1 = img;
+                        Base.BD.Image.Add(imagesBase);  // добавляем объект в таблицу БД
+                        Base.BD.SaveChanges();
+                       
+                    }
+                    if (id_rol == 1)
+                    {
+                        ClassGlav.Admin.Navigate(new Page.Personal_area());  // перезагружаем страницу
+                    }
+                    else if (id_rol == 2)
+                    {
+                        ClassGlav.Glav.Navigate(new Page.Personal_area());
+                    }// перезагружаем страницу
                 }
             }
             catch
@@ -197,7 +220,14 @@ namespace flover_shop.Page
             Base.BD.Image.Add(imagesBase);  // добавляем объект в таблицу БД
             Base.BD.SaveChanges();
             Image.btn_image=Visibility.Collapsed;
-            ClassGlav.Glav.Navigate(new Page.Personal_area()); // перезагружаем страницу
+            if (id_rol == 1)
+            {
+                ClassGlav.Admin.Navigate(new Page.Personal_area());  // перезагружаем страницу
+            }
+            else if (id_rol == 2)
+            {
+                ClassGlav.Glav.Navigate(new Page.Personal_area());
+            } // перезагружаем страницу
         }
 
      
@@ -206,7 +236,31 @@ namespace flover_shop.Page
         {
             DannPersonala windowPerson = new DannPersonala(id);  // создание объекта окна
             windowPerson.ShowDialog(); // октрытие созданного окна (дальнейший код не будет запущен, пока окно не будет закрыто)
-            ClassGlav.Glav.Navigate(new Page.Personal_area());  // перезагрузка страницы
+            if (id_rol == 1)
+            {
+                ClassGlav.Admin.Navigate(new Page.Personal_area());  // перезагружаем страницу
+            }
+            else if (id_rol == 2)
+            {
+                ClassGlav.Glav.Navigate(new Page.Personal_area());
+            } // перезагрузка страницы
+        }
+
+        private void LoginPass_Click(object sender, RoutedEventArgs e)
+        {
+
+            LoginPassword windowPerson = new LoginPassword(id);  // создание объекта окна
+            windowPerson.ShowDialog(); // октрытие созданного окна (дальнейший код не будет запущен, пока окно не будет закрыто)
+            if(id_rol == 1)
+            {
+                ClassGlav.Admin.Navigate(new Input());
+            }
+            else
+            {
+                ClassGlav.Glav.Navigate(new Input());
+            }
+            
+            ClassGlav.shapka.Navigate(new Hat());
         }
     }
 }

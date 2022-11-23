@@ -32,7 +32,7 @@
                                 
                             </MenuItem.Header>
                             <MenuItem Header="Личные данные" Name="Dann" Click="Dann_Click"></MenuItem>
-                            <MenuItem Header="Пароли"></MenuItem>
+                            <MenuItem Header="Пароль и Логин" Name="LoginPass" Click="LoginPass_Click"></MenuItem>
                         </MenuItem>
                     </Menu>
                 </StackPanel>

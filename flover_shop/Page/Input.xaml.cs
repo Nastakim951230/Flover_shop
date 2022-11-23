@@ -41,13 +41,16 @@ namespace flover_shop
 
                 if (users.Role == 1)
                 {
+                    Page.Personal_area.id_rol = 1;
                     Hat_menu_admin.id_user = users.ID;
+                    Page.Personal_area.id = users.ID;
                     ClassGlav.shapka.Navigate(new Hat_menu_admin());
                     ClassGlav.perehod.Navigate(new Admin());
                     
                 }
                 else if (users.Role == 2)
                 {
+                    Page.Personal_area.id_rol = 2;
                     Page.Personal_area.id = users.ID;
                     ClassGlav.shapka.Navigate(new Hat_menu());
                     ClassGlav.perehod.Navigate(new Glavna());

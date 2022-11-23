@@ -1,0 +1,20 @@
+﻿<Window x:Class="flover_shop.Page.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:flover_shop.Page"
+        mc:Ignorable="d"
+        Title="Изменение логина" Height="120" Width="350">
+    <Grid  Background="#FFF7F9CF">
+        <StackPanel>
+            <GroupBox Header="Логин">
+                <TextBox Name="tbLogin"></TextBox>
+            </GroupBox>
+            <StackPanel VerticalAlignment="Center">
+                <Button Name="btnLogin" Click="btnLogin_Click">Сохранить</Button>
+                <Button Name="NEXT" Click="NEXT_Click">Назад</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

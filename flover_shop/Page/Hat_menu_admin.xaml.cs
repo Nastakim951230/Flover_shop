@@ -25,14 +25,7 @@ namespace flover_shop
         {
             InitializeComponent();
             Registratsia.id_role = 1;
-            Users users = Base.BD.Users.FirstOrDefault(i => i.ID == id_user);
-            if (users != null)
-            {
-                Flower_Bougurt.id_role = users.Role;
-                Name_use.Text = users.Name;
-                Surname_use.Text = users.Surname;
-
-            }
+           
 
         }
 
@@ -68,7 +61,7 @@ namespace flover_shop
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-
+            ClassGlav.Admin.Navigate(new Page.Personal_area());
         }
     }
 }
