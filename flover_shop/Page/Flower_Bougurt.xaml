@@ -14,13 +14,59 @@
     
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Button Name="Add_Bouquet" Click="Add_Bouquet_Click" Visibility="Collapsed">Добавить новый букет</Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Name="TBCoint"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <GroupBox Header="Вид цветка">
+                        <ComboBox Name="cmbFlower" SelectionChanged="cmbFlower_SelectionChanged"></ComboBox>
+                    </GroupBox>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <GroupBox Header="Сортировка">
+                        <ComboBox Name="cmbSort" SelectionChanged="cmbSort_SelectionChanged">
+                            <ComboBoxItem>Без сортировки</ComboBoxItem>
+                            <ComboBoxItem>По имени от A до Я</ComboBoxItem>
+                            <ComboBoxItem>По имени от Я до А</ComboBoxItem>
+                        </ComboBox>
+                    </GroupBox>
+                </Grid>
+                
+            </Grid>
+            <Grid Grid.Row="2">
+                <GroupBox Header="Введите название букета">
+                    <TextBox Name="tbSearch" TextChanged="tbSearch_TextChanged" Height="20" FontSize="18"></TextBox>
+                </GroupBox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel>
+                    <CheckBox Name="cbPhoto" Checked="cbPhoto_Checked"  Unchecked="cbPhoto_Checked">Только с фото</CheckBox>
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
+            <StackPanel>
+                <Button Name="Add_Bouquet" Click="Add_Bouquet_Click" Visibility="Collapsed">Добавить новый букет</Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
             <ListView Name="Flower" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>

@@ -25,6 +25,7 @@ namespace flover_shop
         public Admin()
         {
             InitializeComponent();
+            Flower_Bougurt.id_role = 1;
             DataGrid.Navigate(new Flower_Bougurt());
             ClassGlav.Admin = DataGrid;
             
