@@ -15,13 +15,47 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Button Name="Add_Flover" Click="Add_Flover_Click">Добавить новый цветок</Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Name="TBCoint"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel>
+                    <GroupBox Header="Сортировка">
+                        <ComboBox Name="cmbSort" SelectionChanged="cmbSort_SelectionChanged">
+                            <ComboBoxItem>Без сортировки</ComboBoxItem>
+                            <ComboBoxItem>По имени от A до Я</ComboBoxItem>
+                            <ComboBoxItem>По имени от Я до А</ComboBoxItem>
+                        </ComboBox>
+                    </GroupBox>
+                </StackPanel>
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <GroupBox Header="Введите название букета">
+                    <TextBox Name="tbSearch" TextChanged="tbSearch_TextChanged"  Height="20" FontSize="18"></TextBox>
+                </GroupBox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel>
+                    <CheckBox Name="cbPhoto" Checked="cbPhoto_Checked"  Unchecked="cbPhoto_Checked">Только с фото</CheckBox>
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
+            <Button Name="Add_Flover" Click="Add_Flover_Click" >Добавить новый цветок</Button>
+        </Grid>
+        <Grid Grid.Row="2">
             <ListView Name="Flowersof" Background="{x:Null}" BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>

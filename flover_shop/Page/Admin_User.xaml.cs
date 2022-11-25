@@ -20,91 +20,146 @@ namespace flover_shop
     /// </summary>
     public partial class Admin_User 
     {
+        string vybor;
         public Admin_User()
         {
             InitializeComponent();
             Admin_user.ItemsSource = Base.BD.Users.ToList();
+
+            List<Floor_gender> BT = Base.BD.Floor_gender.ToList();
+
+            // программное заполнение выпадающего списка
+            cmbGender.Items.Add("Без фильтрации");  // первый элемент выпадающего списка, который сбрасывает фильтрацию
+            for (int i = 0; i < BT.Count; i++)  // цикл для записи в выпадающий список всех пород котов из БД
+            {
+                cmbGender.Items.Add(BT[i].Floor);
+            }
+            cmbGender.SelectedIndex = 0;
+            Poisk.SelectedIndex = 0;
+            SurnameFilte.SelectedIndex = 0;
         }
 
-        private void Searc_Click(object sender, RoutedEventArgs e)
+        void Filter()  // метод для одновременной фильтрации, поиска и сортировки
         {
-            string poisk = "";
-            
-            switch (Poisk.SelectedIndex)
+            List<Users> userList = new List<Users>();  // пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
+
+            userList = Base.BD.Users.ToList();
+           
+            // поиск совпадений 
+           
+            if (!string.IsNullOrWhiteSpace(TextSearc.Text))  // если строка не пустая и если она не состоит из пробелов
+            {
+                switch (Poisk.SelectedIndex)
+
+                {
+                    case 0:
+                        {
+                            userList = Base.BD.Users.ToList();
+                        }
+                        break;
+                    case 1:
+                        {
+                            userList = userList.Where(x => x.Surname.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        }
+                        break;
+                    case 2:
+                        {
+                            userList = userList.Where(s => s.Name.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        }
+                        break;
+                    case 3:
+                        {
+                            userList = userList.Where(s => s.Otchestvo.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        }
+                        break;
+                    case 4:
+                        {
+                            userList = userList.Where(s => s.Login.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        }
+                        break;
+                    case 5:
+                        {
+                            userList = userList.Where(s => s.Floor_gender.Floor.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+
+                        }
+                        break;
+
+
+                    case 6:
+                        {
+                            userList = userList.Where(s => s.Role_user_admin.Role.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        }
+                        break;
+                }
+            }
+            switch (cmbGender.SelectedIndex)
             {
                 case 0:
                     {
-
-                      
-                        
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Surname.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        userList = userList.ToList();
                     }
-                    break;
-                case 1:
+           break ;
+                    case 1:
                     {
-                        poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Name.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        userList=userList.Where(s => s.Floor == 1).ToList();
                     }
                     break;
                 case 2:
                     {
-                        poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Otchestvo.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
-                    }
-                    break;
-                case 3:
-                    {
-                        poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Login.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
-                    }
-                    break;
-                case 4:
-                    {
-                        poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor_gender.Floor.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
-
-                    }
-                    break;
-                
-                 
-                case 5:
-                    {
-                        poisk = TextSearc.Text;
-                        Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Role_user_admin.Role.ToLower().Contains(TextSearc.Text.ToLower())).ToList();
+                        userList = userList.Where(s => s.Floor == 2).ToList();
                     }
                     break;
             }
+           
+
+            // сортировка
+            switch (SurnameFilte.SelectedIndex)
+            {
+                case 0:
+                    {
+                        userList.Sort((x, y) => x.Surname.CompareTo(y.Surname));
+                    }
+                    break;
+                case 1:
+                    {
+                        userList.Sort((x, y) => x.Surname.CompareTo(y.Surname));
+                        userList.Reverse();
+                    }
+                    break;
+            }
+
+            Admin_user.ItemsSource = userList;
+            if (userList.Count == 0)
+            {
+                MessageBox.Show("нет записей");
+            }
+            
+        }
+
+
+        private void Searc_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
         }
 
       
 
         private void cmbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(cmbGender.SelectedIndex == 0)
-            {
-                Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor == 2).ToList();
-            }
-            if (cmbGender.SelectedIndex == 1)
-            {
-                Admin_user.ItemsSource = Base.BD.Users.Where(s => s.Floor == 1).ToList();
-            }
+            Filter();
         }
 
         private void SurnameFilte_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(SurnameFilte.SelectedIndex == 0)
-            {
-                Admin_user.ItemsSource = Base.BD.Users.OrderByDescending(s => s.Surname).ToList();
-            }
-            if(SurnameFilte.SelectedIndex == 1)
-            {
-                Admin_user.ItemsSource = Base.BD.Users.OrderBy(s => s.Surname).ToList();
-            }
+            Filter();
         }
 
         private void Viewbd_Click(object sender, RoutedEventArgs e)
         {
             Admin_user.ItemsSource = Base.BD.Users.ToList();
+            cmbGender.SelectedIndex = 0;
+            Poisk.SelectedIndex = 0;
+            SurnameFilte.SelectedIndex = 0;
             TextSearc.Text = "";
         }
 
@@ -136,6 +191,11 @@ namespace flover_shop
                 
             }
            
+        }
+
+        private void TextSearc_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
         }
     }
 }

@@ -19,6 +19,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                     <ComboBox Name="Poisk"  Width="150" Height="20" >
+                    <ComboBoxItem>Без фильтрации</ComboBoxItem>
                         <ComboBoxItem >Фамилия</ComboBoxItem>
                         <ComboBoxItem >Имя</ComboBoxItem>
                         <ComboBoxItem >Отчество</ComboBoxItem>
@@ -26,10 +27,8 @@
                     <ComboBoxItem >Пол</ComboBoxItem>
                     <ComboBoxItem >Роль</ComboBoxItem>
                     </ComboBox>
-                    <TextBox Name="TextSearc" Width="190" Height="25" ></TextBox>
-                    <Button Width="25" Height="25" Name="Searc" Click="Searc_Click">
-                        <Image  Source="../Image/search.png" ></Image>
-                    </Button>
+                <TextBox Name="TextSearc" TextChanged="TextSearc_TextChanged"  Width="190" Height="25" ></TextBox>
+                  
                 <Button Name="Viewbd" Click="Viewbd_Click">Очистить</Button>
                 <Button Name="Add_users" Click="Add_users_Click">Добавить</Button>
             </StackPanel>
@@ -69,8 +68,8 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Label>Сортировка по фамилии</Label>
                     <ComboBox Name="SurnameFilte"  Width="130" Height="20" SelectionChanged="SurnameFilte_SelectionChanged" >
-                        <ComboBoxItem >По убыванию</ComboBoxItem>
-                        <ComboBoxItem >По возрастанию</ComboBoxItem>
+                        <ComboBoxItem>По имени от A до Я</ComboBoxItem>
+                        <ComboBoxItem>По имени от Я до А</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
             </Grid>
@@ -78,8 +77,6 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Label>Фильтрация по полу</Label>
                     <ComboBox Name="cmbGender" Width="90" Height="20" SelectionChanged="cmbGender_SelectionChanged" >
-                        <ComboBoxItem >Мужской</ComboBoxItem>
-                        <ComboBoxItem >Женский</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
             </Grid>

@@ -11,7 +11,7 @@
     <Page.Resources>
         <BitmapImage x:Key="defaultImage" UriSource="..\Image/not-image.png"></BitmapImage>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"></RowDefinition>
@@ -29,17 +29,8 @@
                 <TextBlock Name="TBCoint"></TextBlock>
             </Grid>
             <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <GroupBox Header="Вид цветка">
-                        <ComboBox Name="cmbFlower" SelectionChanged="cmbFlower_SelectionChanged"></ComboBox>
-                    </GroupBox>
-                </Grid>
-
-                <Grid Grid.Column="1">
+             
+                <StackPanel>
                     <GroupBox Header="Сортировка">
                         <ComboBox Name="cmbSort" SelectionChanged="cmbSort_SelectionChanged">
                             <ComboBoxItem>Без сортировки</ComboBoxItem>
@@ -47,8 +38,8 @@
                             <ComboBoxItem>По имени от Я до А</ComboBoxItem>
                         </ComboBox>
                     </GroupBox>
-                </Grid>
-                
+                </StackPanel>
+
             </Grid>
             <Grid Grid.Row="2">
                 <GroupBox Header="Введите название букета">

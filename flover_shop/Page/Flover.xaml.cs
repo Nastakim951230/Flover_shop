@@ -25,7 +25,10 @@ namespace flover_shop
             InitializeComponent();
             Flowersof.ItemsSource = Base.BD.Flowers.ToList();
 
-            
+            cmbSort.SelectedIndex = 0;  // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
+
+            TBCoint.Text = "Количество записей: " + Base.BD.Flowers.ToList().Count;
+
         }
 
         private void Add_Flover_Click(object sender, RoutedEventArgs e)
@@ -67,6 +70,64 @@ namespace flover_shop
 
             // переход на страницу с редактированием (на ту же самую, где и добавляли кота)
             ClassGlav.Admin.Navigate(new Page.Add_flower(flowers));
+        }
+
+        void Filter()  // метод для одновременной фильтрации, поиска и сортировки
+        {
+            List<Flowers> flowerList = new List<Flowers>();  // пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
+
+            flowerList = Base.BD.Flowers.ToList();
+
+            // поиск совпадений по названием цветов
+            if (!string.IsNullOrWhiteSpace(tbSearch.Text))  // если строка не пустая и если она не состоит из пробелов
+            {
+                flowerList = flowerList.Where(x => x.Name_flower.ToLower().Contains(tbSearch.Text.ToLower())).ToList();
+            }
+
+
+            // выбор элементов только с фото
+            if (cbPhoto.IsChecked == true)
+            {
+                flowerList = flowerList.Where(x => x.Pfoto_flower != null).ToList();
+            }
+
+            // сортировка
+            switch (cmbSort.SelectedIndex)
+            {
+                case 1:
+                    {
+                        flowerList.Sort((x, y) => x.Name_flower.CompareTo(y.Name_flower));
+                    }
+                    break;
+                case 2:
+                    {
+                        flowerList.Sort((x, y) => x.Name_flower.CompareTo(y.Name_flower));
+                        flowerList.Reverse();
+                    }
+                    break;
+            }
+
+            Flowersof.ItemsSource = flowerList;
+            if (flowerList.Count == 0)
+            {
+                MessageBox.Show("нет записей");
+            }
+            TBCoint.Text = "Количество записей " + flowerList.Count;
+        }
+
+        private void cmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void cbPhoto_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
         }
     }
 }

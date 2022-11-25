@@ -43,18 +43,10 @@ namespace flover_shop
                 Bouquet.btn_admin = Visibility.Collapsed;
             }
 
-            List<Flowers> BT = Base.BD.Flowers.ToList();
-            // программное заполнение выпадающего списка
-            cmbFlower.Items.Add("Все цветы");  // первый элемент выпадающего списка, который сбрасывает фильтрацию
-            for (int i = 0; i < BT.Count; i++)  // цикл для записи в выпадающий список всех пород котов из БД
-            {
-                cmbFlower.Items.Add(BT[i].Name_flower);
-            }
-
-            cmbFlower.SelectedIndex = 0;  // выбранное по умолчанию значение в списке с породами котов ("Все породы")
+           
             cmbSort.SelectedIndex = 0;  // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
 
-            TBCoint.Text = "Количество записей: " + Base.BD.Bouquet_flowers.ToList().Count;
+            TBCoint.Text = "Количество записей: " + Base.BD.Bouquet.ToList().Count;
 
         }
 
@@ -127,38 +119,9 @@ namespace flover_shop
         {
             List<Bouquet> flowerList = new List<Bouquet>();  // пустой список, который далее будет заполнять элементами, удавлетворяющими условиям фильтрации, поиска и сортировки
 
-            // выбранное пользователем название породы
-            string flower = cmbFlower.SelectedValue.ToString();
-            int index = cmbFlower.SelectedIndex;
-            int indexFlower = 0;
-            int indexBouquet = 0;
-            if (index != 0)
-            {
-                List<Flowers> tcv = Base.BD.Flowers.Where(x => x.Name_flower == flower).ToList();
-                foreach (Flowers tc in tcv)
-                {
-                    indexFlower = tc.Id_Flower;
-                    List<Bouquet_flowers> FCT = Base.BD.Bouquet_flowers.Where(x => x.Id_bouquet == indexFlower).ToList();
-
-                    foreach (Bouquet_flowers ftc in FCT)
-                    {
-                        indexBouquet = ftc.Id_bouquet;
-                    }
-                }
-
-            }
-                if (index != 0)
-            {
-                
-                flowerList = Base.BD.Bouquet.Where(x => x.Id_bouquet == indexBouquet).ToList();
-            }
-            else  // если выбран пункт "Все породы", то сбрасываем фильтрацию:
-            {
-                flowerList = Base.BD.Bouquet.ToList();
-            }
-
-
-            // поиск совпадений по именам котов
+            flowerList = Base.BD.Bouquet.ToList();
+        
+            // поиск совпадений по названием цветов
             if (!string.IsNullOrWhiteSpace(tbSearch.Text))  // если строка не пустая и если она не состоит из пробелов
             {
                 flowerList = flowerList.Where(x => x.Name_bouquet.ToLower().Contains(tbSearch.Text.ToLower())).ToList();
