@@ -198,6 +198,7 @@
       <DependentUpon>BaseData.tt</DependentUpon>
     </Compile>
     <Compile Include="StrelkiProsmotr.cs" />
+    <Compile Include="StrelkiProsmotrFlower.cs" />
     <Compile Include="System\Drawing\Image.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>BaseData.tt</DependentUpon>

@@ -20,15 +20,20 @@ namespace flover_shop
     /// </summary>
     public partial class Flover 
     {
+        StrelkiProsmotrFlower sp = new StrelkiProsmotrFlower();
+        List<Flowers> FlowersFilter = new List<Flowers>();
         public Flover()
         {
             InitializeComponent();
+            FlowersFilter = Base.BD.Flowers.ToList();
             Flowersof.ItemsSource = Base.BD.Flowers.ToList();
 
+            sp.CountPageFlower = Base.BD.Flowers.ToList().Count;
+            DataContext = sp;
             cmbSort.SelectedIndex = 0;  // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
 
             TBCoint.Text = "Количество записей: " + Base.BD.Flowers.ToList().Count;
-
+          
         }
 
         private void Add_Flover_Click(object sender, RoutedEventArgs e)
@@ -128,6 +133,41 @@ namespace flover_shop
         private void cbPhoto_Checked(object sender, RoutedEventArgs e)
         {
             Filter();
+        }
+
+        private void kolvo_zapice_flower_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                sp.CountPageFlower = Convert.ToInt32(kolvo_zapice_flower.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                sp.CountPageFlower = FlowersFilter.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            sp.CountlistFlower = FlowersFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            Flowersof.ItemsSource = FlowersFilter.Skip(0).Take(sp.CountPageFlower).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+            sp.CurrentPage = 1; // текущая страница - это страница 1
+        }
+    
+
+        private void GoPageFlower_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+
+            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            {
+                case "prev":
+                    sp.CurrentPage--;
+                    break;
+                case "next":
+                    sp.CurrentPage++;
+                    break;
+                default:
+                    sp.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            Flowersof.ItemsSource = FlowersFilter.Skip(sp.CurrentPage * sp.CountPageFlower - sp.CountPageFlower).Take(sp.CountPageFlower).ToList();
         }
     }
 }

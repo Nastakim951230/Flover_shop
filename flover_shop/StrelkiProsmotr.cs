@@ -9,7 +9,7 @@ namespace flover_shop
 {
     class StrelkiProsmotr: INotifyPropertyChanged // класс, который наследуется от интерфейса INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; //событие, для изменения значения одного из массивов свойств, описанных ниже
+        public event PropertyChangedEventHandler PropertyChanged;  //событие, для изменения значения одного из массивов свойств, описанных ниже
         static int kolvo = 5; //количество объектов для отображения (1 2 3 4 5)
         public int[] NPage { get; set; } = new int[kolvo];// массив с номерами отображаемых страниц    
         public string[] Visible { get; set; } = new string[kolvo];//массив свойст, отвечающий за видимость номера страницы, Visible - видимый, Hidden - скрытый
@@ -22,7 +22,7 @@ namespace flover_shop
             set
             {
                 sohrkolvo = value;
-                for (int i = 1; i < sohrkolvo; i++)//цикл для определения видимости номеров страниц
+                for (int i = 1; i < kolvo; i++)//цикл для определения видимости номеров страниц
                 {
                     if (CountPages <= i)
                     {

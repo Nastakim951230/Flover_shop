@@ -27,8 +27,9 @@ namespace flover_shop
         public Flower_Bougurt()
         {
             InitializeComponent();
-            Flower.ItemsSource = Base.BD.Bouquet.ToList();
+            
             BouquetFilter= Base.BD.Bouquet.ToList();
+            Flower.ItemsSource = Base.BD.Bouquet.ToList();
             if (id_role==2)
             {
                 Add_Bouquet.Visibility = Visibility.Collapsed;
