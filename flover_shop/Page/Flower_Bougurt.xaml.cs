@@ -22,11 +22,13 @@ namespace flover_shop
     {
         public static int id_role;
         public static int vyhod;
+        StrelkiProsmotr sp = new StrelkiProsmotr();
+        List<Bouquet> BouquetFilter = new List<Bouquet>();
         public Flower_Bougurt()
         {
             InitializeComponent();
             Flower.ItemsSource = Base.BD.Bouquet.ToList();
-
+            BouquetFilter= Base.BD.Bouquet.ToList();
             if (id_role==2)
             {
                 Add_Bouquet.Visibility = Visibility.Collapsed;
@@ -42,7 +44,8 @@ namespace flover_shop
                 Add_Bouquet.Visibility = Visibility.Collapsed;
                 Bouquet.btn_admin = Visibility.Collapsed;
             }
-
+            sp.CountPage = Base.BD.Bouquet.ToList().Count;
+            DataContext=sp;
            
             cmbSort.SelectedIndex = 0;  // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
 
@@ -176,6 +179,42 @@ namespace flover_shop
         private void cmbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+
+            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            {
+                case "prev":
+                    sp.CurrentPage--;
+                    break;
+                case "next":
+                    sp.CurrentPage++;
+                    break;
+                default:
+                    sp.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            Flower.ItemsSource = BouquetFilter.Skip(sp.CurrentPage * sp.CountPage - sp.CountPage).Take(sp.CountPage).ToList();  // оображение записей постранично с определенным количеством на каждой странице
+            // Skip(pc.CurrentPage* pc.CountPage - pc.CountPage) - сколько пропускаем записей
+            // Take(pc.CountPage) - сколько записей отображаем на странице
+        }
+
+        private void kolvo_zapice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                sp.CountPage = Convert.ToInt32(kolvo_zapice.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                sp.CountPage = BouquetFilter.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            sp.Countlist = BouquetFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            Flower.ItemsSource = BouquetFilter.Skip(0).Take(sp.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+            sp.CurrentPage = 1; // текущая страница - это страница 1
         }
     }
 }

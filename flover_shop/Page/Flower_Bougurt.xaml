@@ -17,6 +17,8 @@
             <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -29,7 +31,7 @@
                 <TextBlock Name="TBCoint"></TextBlock>
             </Grid>
             <Grid Grid.Row="1">
-             
+
                 <StackPanel>
                     <GroupBox Header="Сортировка">
                         <ComboBox Name="cmbSort" SelectionChanged="cmbSort_SelectionChanged">
@@ -53,6 +55,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
+            
             <StackPanel>
                 <Button Name="Add_Bouquet" Click="Add_Bouquet_Click" Visibility="Collapsed">Добавить новый букет</Button>
             </StackPanel>
@@ -85,6 +88,33 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
+        <Grid Grid.Row="3">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Name="txtPrev" Uid="prev" Text=" &lt;" MouseDown="GoPage_MouseDown"/>
+                <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="GoPage_MouseDown"/>
+                <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="GoPage_MouseDown"/>
+                <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="GoPage_MouseDown"/>
+                <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="GoPage_MouseDown"/>
+                <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="GoPage_MouseDown"/>
+                <TextBlock Name="txtNext" Uid="next" Text=" &gt;" MouseDown="GoPage_MouseDown"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock>Введите количество  записей на одной странице:</TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel>
+                    <TextBox Name="kolvo_zapice" TextChanged="kolvo_zapice_TextChanged"></TextBox>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
