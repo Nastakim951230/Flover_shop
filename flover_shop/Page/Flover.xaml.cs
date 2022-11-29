@@ -27,7 +27,7 @@ namespace flover_shop
             InitializeComponent();
             FlowersFilter = Base.BD.Flowers.ToList();
             Flowersof.ItemsSource = Base.BD.Flowers.ToList();
-
+            
             sp.CountPageFlower = Base.BD.Flowers.ToList().Count;
             DataContext = sp;
             cmbSort.SelectedIndex = 0;  // выбранное по умолчанию значение в списке с видами сортировки ("Без сортировки")
@@ -162,6 +162,26 @@ namespace flover_shop
                     break;
                 case "next":
                     sp.CurrentPage++;
+                    break;
+                case "prev1":
+                    sp.CurrentPage = 1;
+                    break;
+                case "next1":
+                    {
+                        List <Flowers> fl= Base.BD.Flowers.ToList();
+                        int a=fl.Count;
+                        int b = Convert.ToInt32(kolvo_zapice_flower.Text);
+                        
+                        if (a % b == 0)
+                        {
+                            sp.CurrentPage = a / b;
+                        }
+                        else
+                        {
+                            sp.CurrentPage = a / b+1;
+                        }
+
+                    }
                     break;
                 default:
                     sp.CurrentPage = Convert.ToInt32(tb.Text);
